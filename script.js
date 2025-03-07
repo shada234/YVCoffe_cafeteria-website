@@ -11,5 +11,5 @@ document.addEventListener("DOMContentLoaded", function() {
         track.style.transform = `translateX(-${index * 100}vw)`;
     }
     
-    setInterval(moveSlide, 5000); // שינוי תמונה כל 10 שניות עם מעבר מהיר
+    setInterval(moveSlide, 3000); // שינוי תמונה כל 10 שניות עם מעבר מהיר
 });
