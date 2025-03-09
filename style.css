@@ -77,6 +77,7 @@ body, html {
     transition: all 0.3s ease-in-out;
 }
 
+<<<<<<< HEAD
 
     .mouse-icon {
         position: relative;  /* Fix the element to the viewport */
@@ -94,6 +95,22 @@ body, html {
     }
     
 
+=======
+.mouse-icon {
+    position: relative;
+    bottom: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height:25px;
+    border: 2px solid white;
+    border-radius: 25px;
+    display: flex;
+    justify-content:center;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+>>>>>>> 0d2b76fb1ec26f3f05ab17d2c6efa9ad7642ddec
 
 .scroll-down {
     width: 6px;
