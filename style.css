@@ -75,7 +75,7 @@ body, html {
 }
 
 .mouse-icon {
-    position: absolute;
+    position: relative;
     bottom: -250px;
     left: 50%;
     transform: translateX(-50%);
