@@ -1,3 +1,5 @@
+/*home.html*/
+
 body, html {
     margin: 0;
     padding: 0;
@@ -65,6 +67,7 @@ body, html {
     font-size: 18px;
     margin-top: 10px;
     border-radius: 50px; transition: all 0.3s ease-in-out;
+    text-decoration: none;
 }
 
 /* Change button color on hover */
@@ -74,20 +77,23 @@ body, html {
     transition: all 0.3s ease-in-out;
 }
 
-.mouse-icon {
-    position: absolute;
-    bottom: -250px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height:25px;
-    border: 2px solid white;
-    border-radius: 25px;
-    display: flex;
-    justify-content:center;
-    align-items: flex-start;
-    padding-top: 10px;
-}
+
+    .mouse-icon {
+        position: relative;  /* Fix the element to the viewport */
+        bottom: -150px;    /* Adjust distance from the bottom */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        border: 2px solid white;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 10px;
+    }
+    
+
 
 .scroll-down {
     width: 6px;
@@ -140,4 +146,189 @@ body, html {
 .hero-content h3 { animation-delay: 0.1s; } /* Second line */
 .hero-content h1 { animation-delay: 0.1s; } /* Third line */
 .order-btn { animation-delay: 0.4s; } /* Button appears last */
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+/*logIn.html*/
+
+.logIn body {
+    font-family: Arial, sans-serif;
+    text-align: right;
+    background-color: #f9f9f9;
+    direction: rtl;
+    margin: 0;
+}
+
+/* עיצוב הניווט */
+.navbar {
+    display: flex;
+    justify-content: flex-end; /* מצמיד את התפריט לימין */
+    align-items: right;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute; /* מצמיד לקצה העליון */
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* עיצוב הרשימה */
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* עיצוב הפריטים */
+.navbar ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* עיצוב הקישור */
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+/*.container {
+    margin-top: 50px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 50px auto;
+}*/
+
+.logIn h2 {
+    font-size: 28px;
+    color: #21412a;
+}
+
+.description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align:center;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.main-btn {
+    width: 95%;
+    background-color:#e74c3c;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.main-btn:hover {
+    background-color: #bd3122;
+}
+
+.divider {
+    text-align: center; /* ממרכז את ה- "או" */
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px auto;
+}
+
+.logIn h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* יוצר מרווח בין האייקון לטקסט */
+}
+
+
+
+.google-login-btn {
+    width: 100%; /* גורם לכפתור להיות באותו רוחב כמו הכפתור האדום */
+    max-width: 400px; /* מוודא שהתאמת הרוחב זהה */
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3c4043;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 0 auto; /* ממרכז את הכפתור */
+
+}
+
+/* אפקט כשמעבירים את העכבר על הכפתור */
+.google-login-btn:hover {
+    background-color: #e8eaf0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* עיצוב הלוגו */
+.google-icon {
+    width: 20px;
+    height: auto;
+}
+
+
+/* מסדר את הקונטיינר הראשי */
+
+.container {
+    
+    align-items: flex-start; /* מיושר להתחלה */
+    justify-content: flex-end; /* מצמיד לצד ימין */
+    max-width: 400px; /* גודל התוכן */
+    margin: 50px auto 50px 0; /* מצמיד לימין */
+    background-color: #ffffff;
+    margin-left: auto; /* דוחף את הקונטיינר לצד ימין */
+    margin-right: 150px; /* מוסיף רווח קטן מהקצה הימני */
+    text-align: right;
+    box-shadow: none; /* מסיר לחלוטין את הצל */
+    margin-top: 7%;
+    flex: 1;
+    
+} 
+
+/* מוודא שהתוכן הפנימי נשאר מיושר לימין */
+.section {
+    text-align: right; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.image-container {
+    flex: 1; /* חצי מהמסך */
+    justify-content: left; /* ממרכז את התמונה */
+   
+}
+
+.image-container img {
+    width: 80%; /* שולט על גודל התמונה */
+    max-width: 400px; /* מגביל גודל מקסימלי */
+    height: auto;
+}
 

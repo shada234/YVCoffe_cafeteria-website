@@ -1,3 +1,5 @@
+/*home.html*/
+
 document.addEventListener("DOMContentLoaded", function() {
     let track = document.querySelector(".carousel-track");
     let firstClone = track.children[0].cloneNode(true);
@@ -21,3 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setInterval(moveSlide, 4000); // שינוי תמונה כל 4 שניות
 });
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*Log in*/
+
+function handleAuth() {
+    let email = document.getElementById("email").value;
+    if (email === "") {
+        alert("נא להכניס כתובת מייל תקינה");
+    } else {
+        alert("נרשמתם בהצלחה!");
+    }
+}
