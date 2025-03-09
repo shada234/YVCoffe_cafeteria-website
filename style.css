@@ -28,6 +28,8 @@ body, html {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
+    filter: brightness(80%); /* Reduces brightness to 70% */
+
 }
 
 .hero {
@@ -36,7 +38,7 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    background: rgba(56, 53, 53, 0.6); padding: 20px; border-radius: 10px;
+    background: rgba(36, 34, 34, 0.6); padding: 20px; border-radius: 10px;
     padding: 20px;
     border-radius: 10px;
     color: white;
@@ -64,6 +66,14 @@ body, html {
     margin-top: 10px;
     border-radius: 50px; transition: all 0.3s ease-in-out;
 }
+
+/* Change button color on hover */
+.order-btn:hover {
+    background: #bd3122; /* Darker red when hovered */
+    transform: scale(1.05); /* Slight enlarge effect */
+    transition: all 0.3s ease-in-out;
+}
+
 .mouse-icon {
     position: absolute;
     bottom: -250px;
@@ -84,10 +94,50 @@ body, html {
     height: 6px;
     background-color: white;
     border-radius: 50%;
-    animation: scrollAnimation 1.5s infinite;
+    animation: scrollAnimation 2s infinite;
 }
 
 @keyframes scrollAnimation {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(15px); opacity: 0; }
 }
+
+/* Adding animation for text to slide up on first load */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+}
+/* Adding staggered animation for text lines to appear one after another */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h2, .hero-content p, .hero-content h1, .order-btn {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+
+.hero-content h1.brand { animation-delay: 0.1s; } /* YVCoffe appears first */
+.hero-content h3 { animation-delay: 0.1s; } /* Second line */
+.hero-content h1 { animation-delay: 0.1s; } /* Third line */
+.order-btn { animation-delay: 0.4s; } /* Button appears last */
+
