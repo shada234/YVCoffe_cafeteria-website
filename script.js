@@ -31,6 +31,24 @@ function handleAuth() {
     if (email === "") {
         alert("נא להכניס כתובת מייל תקינה");
     } else {
-        alert("נרשמתם בהצלחה!");
+        window.location.href = "signUp.html";
     }
 }
+function handleSignUp() {
+    let email = document.getElementById("signUpEmail").value;
+    let name = document.getElementById("signUpName").value;
+    let lastName = document.getElementById("signUpLastName").value;
+    let termsChecked = document.getElementById("signUpTerms").checked;
+
+    if (email === "" || name === "" || lastName === "") {
+        alert("נא למלא את כל השדות החובה");
+    } else if (!termsChecked) {
+        alert("יש לאשר את תנאי השימוש");
+    } else {
+        window.location.href = "dashboard.html"; // מעביר לדף הראשי לאחר ההרשמה
+    }
+}
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+

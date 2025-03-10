@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up/ Log in</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body class="logIn">
     <header>
@@ -14,28 +16,36 @@
             </ul>
         </nav>
     </header>
-    <main class="container">
-    
-        <h2>🍕? רעבים</h2>
-        <p class="description"> (: התחברות או הרשמה בקלות ובמהירות</p>
 
-        <input type="email" id="email" placeholder="הכניסו כתובת מייל (חובה)" required>
-
-        <button class="main-btn" onclick="handleAuth()">הרשמה / התחברות</button>
-
-        <div class="divider">או</div>
-
-        <button class="google-login-btn">
-            <a href="https://accounts.google.com/signin" class="google-login-btn">
-                <span class="login-text">Google כניסה באמצעות </span>
-                <img src="google.png" alt="Google Logo" class="google-icon">
-            </a>
-
-        </button>
+    <!-- חלוקה לשני חלקים -->
+    <div class="wrapper">
+        <!-- חלק שמאל - תמונה -->
         <div class="image-container">
-            <img src="pizza1.jpg" alt="Pizza Image">
+            <img src="pizza2.jpg" alt="Pizza Image">
         </div>
-    </main>
+
+        <!-- חלק ימין - טופס -->
+        <div class="content-container">
+            <div class="container">
+                <h2>🍕? רעבים</h2>
+                <p class="description">(: התחברות או הרשמה בקלות ובמהירות</p>
+
+                <input type="email" id="email" placeholder="הכניסו כתובת מייל (חובה)" required>
+
+                <button class="main-btn" onclick="handleAuth()">הרשמה / התחברות</button>
+
+                <div class="divider">או</div>
+
+                <button class="google-login-btn">
+                    <a href="https://accounts.google.com/signin" class="google-login-btn">
+                        <span class="login-text">Google כניסה באמצעות </span>
+                        <img src="google.png" alt="Google Logo" class="google-icon">
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

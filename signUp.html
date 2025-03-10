@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="signUpBody">
+
+    <header class="signUpHeader">
+        <nav class="signUpNavbar">
+            <ul>
+                <li><a href="home.html">ראשי</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="containerSignUp">
+        <div class="signUpForm">
+            <h2 class="signUpTitle"> הצטרפו אלינו &#127860;
+            </h2>
+            <p class="signUpDescription">הרשמה קלה ומהירה</p>
+
+            <input type="email" id="signUpEmail" placeholder="מספר טלפון (חובה)" required>
+            <input typשe="text" id="signUpName" placeholder="שם פרטי (חובה)" required>
+            <input type="text" id="signUpLastName" placeholder="שם משפחה (חובה)" required>
+
+        
+
+            <button type="submit" class="signUpBtn" onclick="handleSignUp()">אפשר להתקדם</button>
+        </div>
+        
+        <div class="signUpImageContainer">
+            <img src="toast.jpeg" alt="toast Image">
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
