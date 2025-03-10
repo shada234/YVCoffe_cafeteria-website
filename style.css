@@ -344,85 +344,53 @@ input {
 }
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 /*SignUp*/ 
-/* עיצוב כלל הדף */
-.signUpBody {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* עיצוב Wrapper המחלק את הדף לשני חלקים */
-.containerSignUp {
+/* כללי */
+.signUpWrapper {
     display: flex;
-    height: 100vh;
-    flex-direction: row-reverse; /* מסובב את החלוקה כדי שהתמונה תהיה בצד ימין */
-}
-
-/* חלק ימני - תמונה */
-.signUpImageContainer {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    flex-direction: row; /* מסדר את האלמנטים בשורה (תמונה שמאל, טופס ימין) */
     align-items: center;
-    background-color: #ffcc00; /* צבע רקע */
+    justify-content: center;
+    width: 100%;
+    gap: 20px; /* רווח בין התמונה לטופס */
+}
+
+.signUpImageContainer {
+    width: 100%; /* חצי מסך */
+    display: flex;
+    justify-content: flex-start; /* מצמיד לשמאל */
 }
 
 .signUpImageContainer img {
     width: 90%;
-    max-width: 500px;
     height: auto;
+    border-radius: 10px;
 }
 
-/* חלק שמאלי - טופס הרשמה */
-.signUpForm {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.signUpFormContainer {
+    width: 40%;
+    background: white;
     padding: 30px;
+    border-radius: 10px;
+    text-align: right; /* מוודא שהטקסט מיושר לימין */
+    box-shadow: none; /* מסיר את הצל */
 }
-
-/* כותרת */
-.signUpTitle {
-    font-size: 28px;
-    color: #21412a;
-}
-
-/* תיאור */
-.signUpDescription {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* שדות קלט */
-.signUpInput {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-}
-
-/* כפתור הרשמה */
 .signUpBtn {
-    width: 80%;
+    width: 60%;
     background-color: #e74c3c;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    display: block; /* הכפתור מוצג כחסימה */
+    margin: 20px auto; /* ממורכז באמצע */
+    text-align: center;
+    transition: background 0.3s ease-in-out;
 }
 
 .signUpBtn:hover {
-    background-color: #bd3122;
+    background-color: #d98324;
 }
 

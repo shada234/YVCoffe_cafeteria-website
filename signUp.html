@@ -16,25 +16,30 @@
         </nav>
     </header>
 
-    <main class="containerSignUp">
-        <div class="signUpForm">
-            <h2 class="signUpTitle"> הצטרפו אלינו &#127860;
-            </h2>
-            <p class="signUpDescription">הרשמה קלה ומהירה</p>
 
-            <input type="email" id="signUpEmail" placeholder="מספר טלפון (חובה)" required>
-            <input typשe="text" id="signUpName" placeholder="שם פרטי (חובה)" required>
-            <input type="text" id="signUpLastName" placeholder="שם משפחה (חובה)" required>
-
+        <!-- צד ימין - טופס הרשמה -->
+        <div class="signUpWrapper">
+            <!-- התמונה משמאל -->
+            <div class="signUpImageContainer">
+                <img src="toast.jpeg" alt="תמונה של טוסט">
+            </div>
         
+            <!-- הקונטיינר של טופס ההרשמה מימין -->
+            <div class="signUpFormContainer">
+                <h2 class="signUpTitle">&#127860;
 
-            <button type="submit" class="signUpBtn" onclick="handleSignUp()">אפשר להתקדם</button>
+                    הצטרפו אלינו</h2>
+                <p class="signUpDescription">הרשמה קלה ומהירה</p>
+        <div class="signUpInput">  <input type="tel" id="signUpPhone" placeholder="
+                מספר טלפון (חובה) &#128222;" required>
+                <input type="text" id="signUpFirstName" placeholder=" שם פרטי (חובה) &#128100;" required>
+                <input type="text" id="signUpLastName" placeholder=" שם משפחה (חובה)  &#128101;" required></div>
+              
+        
+                <button type="submit" class="signUpBtn"> אפשר להתקדם</button>
+            </div>
         </div>
         
-        <div class="signUpImageContainer">
-            <img src="toast.jpeg" alt="toast Image">
-        </div>
-    </main>
 
     <script src="script.js"></script>
 </body>
