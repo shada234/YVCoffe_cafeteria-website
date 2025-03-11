@@ -342,15 +342,18 @@ input {
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 /*SignUp*/ 
 /* כללי */
+
 .signUpWrapper {
     display: flex;
-    height: 100vh;
-    flex-direction: row-reverse; /* מסובב את החלוקה כדי שהתמונה תהיה בצד ימין */
+    flex-direction: row; /* מסדר את האלמנטים בשורה (תמונה שמאל, טופס ימין) */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px; /* רווח בין התמונה לטופס */
 }
 
-/* חלק ימני - תמונה */
 .signUpImageContainer {
-    flex: 1;
+    width: 100%; /* חצי מסך */
     display: flex;
     justify-content: flex-start; /* מצמיד לשמאל */
 }
