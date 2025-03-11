@@ -25,6 +25,29 @@ body, html {
     transition: transform 1s ease-in-out;
 }
 
+.carousel-indicators {
+    position: absolute;
+    bottom: 50px; /* Adjusted to make space for the mouse icon */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 30px;
+    height: 5px;
+    background-color: #fff;
+    opacity: 0.5;
+    transition: opacity 0.3s, background-color 0.3s;
+    cursor: pointer; /* Add cursor pointer */
+    
+}
+.indicator.active {
+    opacity: 1;
+    background-color: #e74c3c; /* Change color when active */
+
+}
 
 .carousel-track img {
     width: 100vw;
@@ -56,7 +79,8 @@ body, html {
     font-size: 32px;
     font-weight: bold;
     margin: 10px 0;
-}
+    margin-bottom:20px;
+}       
 
 .order-btn {
     background: #e74c3c;
@@ -77,53 +101,32 @@ body, html {
     transition: all 0.3s ease-in-out;
 }
 
-<<<<<<< HEAD
 
-    .mouse-icon {
-        position: relative;  /* Fix the element to the viewport */
-        bottom: -150px;    /* Adjust distance from the bottom */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 20px;
-        border: 2px solid white;
-        border-radius: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 10px;
-    }
-    
-
-=======
 .mouse-icon {
-    position: relative;
-    bottom: -250px;
+    position: absolute;
+    bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height:25px;
-    border: 2px solid white;
+    width: 32px; /* Adjust width based on the SVG */
+    height: 40px; /* Adjust height based on the SVG */
     border-radius: 25px;
     display: flex;
-    justify-content:center;
-    align-items: flex-start;
-    padding-top: 10px;
-}
->>>>>>> 0d2b76fb1ec26f3f05ab17d2c6efa9ad7642ddec
-
-.scroll-down {
-    width: 6px;
-    height: 6px;
-    background-color: white;
-    border-radius: 50%;
-    animation: scrollAnimation 2s infinite;
+    justify-content: center;
+    align-items: center;
+    animation: bounce 2s infinite ease-in-out;
 }
 
-@keyframes scrollAnimation {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(15px); opacity: 0; }
+
+/* Mouse bouncing effect */
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
 }
+
+
+
+
+
 
 /* Adding animation for text to slide up on first load */
 @keyframes slideUp {
@@ -157,7 +160,6 @@ body, html {
     opacity: 0;
     animation: fadeInUp 1s ease-out forwards;
 }
-
 
 .hero-content h1.brand { animation-delay: 0.1s; } /* YVCoffe appears first */
 .hero-content h3 { animation-delay: 0.1s; } /* Second line */
@@ -215,8 +217,6 @@ body, html {
     padding: 10px;
 }
 
-
-
 .logIn h2 {
     font-size: 28px;
     color: #21412a;
@@ -270,8 +270,6 @@ input {
     gap: 8px; /* יוצר מרווח בין האייקון לטקסט */
 }
 
-
-
 .google-login-btn {
     width: 100%; /* גורם לכפתור להיות באותו רוחב כמו הכפתור האדום */
     max-width: 400px; /* מוודא שהתאמת הרוחב זהה */
@@ -303,7 +301,6 @@ input {
     width: 20px;
     height: auto;
 }
-
 
 /* מסדר את הקונטיינר הראשי */
 /* מחלק את המסך לשני חלקים */
@@ -359,7 +356,7 @@ input {
 }
 
 /* חלק ימני - תמונה */
-.signUpImageContainer {
+.signUpImageContainer  {
     flex: 1;
     display: flex;
     justify-content: center;
