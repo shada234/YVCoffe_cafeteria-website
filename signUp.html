@@ -9,32 +9,50 @@
 <body class="signUpBody">
 
     <header class="signUpHeader">
-        <nav class="signUpNavbar">
+        <nav class="navbar">
             <ul>
-                <li><a href="home.html">ראשי</a></li>
+                <li><a href="home.html">Home</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="containerSignUp">
-        <div class="signUpForm">
-            <h2 class="signUpTitle"> הצטרפו אלינו &#127860;
-            </h2>
-            <p class="signUpDescription">הרשמה קלה ומהירה</p>
 
-            <input type="email" id="signUpEmail" placeholder="מספר טלפון (חובה)" required>
-            <input typשe="text" id="signUpName" placeholder="שם פרטי (חובה)" required>
-            <input type="text" id="signUpLastName" placeholder="שם משפחה (חובה)" required>
-
+        <!-- צד ימין - טופס הרשמה -->
+        <div class="signUpWrapper">
+            <!-- התמונה משמאל -->
+            <div class="signUpImageContainer">
+                <img src="toast.jpeg" alt="תמונה של טוסט">
+            </div>
         
+            <!-- הקונטיינר של טופס ההרשמה מימין -->
+            <div class="signUpFormContainer">
+                <h2 class="signUpTitle">&#127860;
 
-            <button type="submit" class="signUpBtn" onclick="handleSignUp()">אפשר להתקדם</button>
+                    הצטרפו אלינו</h2>
+                <p class="signUpDescription">הרשמה קלה ומהירה</p>
+                <div class="signUpInput">
+                    <div class="inputContainer">
+                        <span class="inputIcon">📞</span>
+                        <input type="tel" id="signUpPhone" placeholder="מספר טלפון (חובה)" required>
+                    </div>
+                
+                    <div class="inputContainer">
+                        <span class="inputIcon">👤</span>
+                        <input type="text" id="signUpFirstName" placeholder="שם פרטי (חובה)" required>
+                    </div>
+                
+                    <div class="inputContainer">
+                        <span class="inputIcon">👥</span>
+                        <input type="text" id="signUpLastName" placeholder="שם משפחה (חובה)" required>
+                    </div>
+                </div>
+                
+              
+        
+                <button type="submit" class="signUpBtn"> אפשר להתקדם</button>
+            </div>
         </div>
         
-        <div class="signUpImageContainer">
-            <img src="toast.jpeg" alt="toast Image">
-        </div>
-    </main>
 
     <script src="script.js"></script>
 </body>
