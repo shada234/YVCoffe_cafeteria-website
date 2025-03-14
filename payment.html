@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 תשלום</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="payment-page">
+    <div class="payment-container">
+        <h1>🔒 תשלום</h1>
+        <p>:בחר שיטת תשלום</p>
+    
+        <!-- ✅ קונטיינר לסידור אמצעי התשלום -->
+        <div class="payment-methods">
+            <label class="payment-option">
+                <input type="radio" name="payment-method" value="credit" checked onclick="togglePaymentFields()">
+                כרטיס אשראי
+            </label>
+        
+            <label class="payment-option">
+                <input type="radio" name="payment-method" value="cash" onclick="togglePaymentFields()">
+                מזומן בעת האיסוף
+            </label>
+        </div>
+        
+    
+        <!-- ✅ טופס תשלום בכרטיס אשראי -->
+        <div id="credit-card-fields">
+            <label for="card-number">📇 :מספר כרטיס אשראי </label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-credit-card"></i>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)">
+            </div>
+    
+            <label for="expiry-date">📆 :תוקף</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" oninput="formatExpiryDate(this)">
+    
+            <label for="cvv">🔑 :CVV </label>
+            <input type="text" id="cvv" placeholder="123" maxlength="3">
+        </div>
+    
+        <!-- כפתור אישור תשלום -->
+        <button onclick="processPayment()">💳 בצע תשלום</button>
+    
+        <p id="payment-status" class="status-message"></p>
+    
+        <a href="cart.html" class="back-to-cart">🔙 חזרה לעגלה</a>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>  

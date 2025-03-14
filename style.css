@@ -5,9 +5,12 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     font-family: Arial, sans-serif;
-}
+    overflow-x: hidden; /* Only prevents horizontal scrolling */
+    overflow-y: auto;  /* Allows vertical scrolling */
+    }
+    
+
 
 
 .carousel {
@@ -69,6 +72,7 @@ body, html {
     border-radius: 10px;
     color: white;
     z-index: 10;
+   
 }
 
 .hero-content h2 {
@@ -577,6 +581,525 @@ input {
 
 
 
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+/* Header Styling */
+.menu-header {
+    background: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.menu-header h1::before {
+    content: "📜";
+    margin-right: 10px;
+}
+
+/* Back Button */
+.back-button {
+    background: #007bff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: #0056b3;
+}
+
+/* Menu Grid */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Menu Item Card */
+.menu-item {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
+    position: relative;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Menu Item Image */
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+/* Menu Item Title */
+.menu-item h3 {
+    margin: 15px 0 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Price Styling */
+.menu-item p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
 
 
+/* "Add to Cart" Button */
+.add-to-cart {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.add-to-cart:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Footer */
+.menu-footer {
+    background: #333;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 🔹 עיצוב הקונטיינר של הכפתורים */
+.menu-buttons {
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    display: flex;
+    gap: 10px; /* ריווח בין הכפתורים */
+}
+
+/* 🔹 עיצוב לכפתור חזרה לתחנות */
+.back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* 🔹 עיצוב לכפתור עגלת הקניות */
+.cart-button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* אפקט hover לכפתורים */
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.cart-button:hover {
+    background-color: #ffb700;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+/* עיצוב כללי של העגלה */
+.cart-container {
+    max-width: 800px; /* מגביל את גודל העגלה למרכז הדף */
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* רשימת הפריטים */
+.cart-items-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* כל מוצר בעגלה */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* תמונת המוצר */
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+
+/* שם ומחיר המוצר */
+.cart-item-details {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* קופסת הכמות */
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-quantity button {
+    background: #ddd;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.cart-item-quantity input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+/* כפתור הסרה */
+.remove-item {
+    background: rgb(255, 0, 0);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    background: rgb(73, 0, 0);
+}
+
+/* עיצוב הסכום הכולל */
+.total-price-container {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* כפתור המשך לתשלום */
+#checkout {
+    display: block;
+    width: 100%;
+    background: rgb(121, 122, 122);
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    text-decoration: none;
+
+}
+
+#checkout:hover {
+    background: #6fb38c;
+}
+
+/* קישור חזרה לתפריט */
+.cart-link {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #9ba49c;
+}
+
+.cart-link:hover {
+    color: #3b3b3b;
+}
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*payment*/
+/* ✅ עיצוב עמוד התשלום */
+/* ✅ עיצוב עמוד התשלום */
+.payment-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-container h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.payment-container label {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.payment-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ✅ עיצוב כפתור התשלום */
+.payment-container button {
+    width: 100%;
+    background: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.payment-container button:hover {
+    background: #333;
+}
+
+/* ✅ הודעות סטטוס */
+.status-message {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+}
+
+/* ✅ קישור חזרה לעגלה */
+.back-to-cart {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.back-to-cart:hover {
+    color: #0056b3;
+}
+/* ✅ סידור שיטת התשלום בשורה */
+.payment-methods {
+    display: flex;
+    justify-content: center; /* שומר שהאלמנטים יהיו במרכז */
+    gap: 20px; /* ריווח בין האפשרויות */
+    margin-bottom: 15px;
+}
+
+/* ✅ כל אופציה (כרטיס אשראי / מזומן) תוצג עם הכפתור לידה */
+.payment-option {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 8px; /* ריווח בין הכפתור לטקסט */
+    cursor: pointer;
+
+/*---------------------------------------------------------------------------------------------------*/
+/*thank-you*/
+/* ✅ עיצוב דף תודה */
+.thank-you-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f9f9f9;
+}
+
+/* ✅ קונטיינר ההודעה */
+.thank-you-container {
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ✅ כותרת */
+.thank-you-container h1 {
+    font-size: 24px;
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+
+/* ✅ טקסט */
+.thank-you-container p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ✅ כפתורים */
+.thank-you-actions {
+    display: flex;
+    flex-direction: column;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+/*order-status*/
+/* ✅ עיצוב עמוד סטטוס ההזמנה */
+.order-status-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f9f9f9;
+}
+
+/* ✅ קונטיינר התוכן */
+.order-container {
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ✅ כותרת */
+.order-container h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* ✅ פרטי ההזמנה */
+.order-container p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#order-status {
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* ✅ רשימת הפריטים */
+.order-items-list {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+}
+
+/* ✅ כל מוצר שהוזמן */
+.order-items-list li {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+/* ✅ עיצוב המחיר הכולל */
+.total-price-container {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ✅ כפתור חזרה לתפריט */
+.order-button {
+    display: block;
+    padding: 12px;
+    background: black;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.order-button:hover {
+    background: #333;
+}
 

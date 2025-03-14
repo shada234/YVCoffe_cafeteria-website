@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 סטטוס ההזמנה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="order-status-page">
+
+    <div class="order-container">
+        <h1>📦 סטטוס ההזמנה</h1>
+        <p>מספר הזמנה: <span id="order-id"></span></p>
+        <p>סטטוס: <span id="order-status">בהכנה</span></p>
+        <p>⏳ זמן משוער לאיסוף: <span id="order-time">3 דקות</span></p>
+
+        <h2>🛒:הפריטים שהוזמנו</h2>
+        <ul id="order-items" class="order-items-list"></ul>
+
+        <p id="total-price" class="total-price-container"></p>
+
+        <a href="home.html" class="order-button">🔙 חזרה לדף ראשי</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -22,41 +22,45 @@
 
     <div class="stationsContainer">
         <!-- קפטריה חלבית -->
-        <div class="stationItem" onclick="redirectTo('menu1.html')">
+        <div class="stationItem" onclick="redirectTo('cafeteria_dairy')">
             <div class="stationIcon">🥛</div>
             <h2 class="stationTitle">קפטריה חלבית</h2>
             <p class="stationLocation">  בניין 4, קומה 1-</p>
         </div>
 
         <!-- חנות חטיפים -->
-        <div class="stationItem" onclick="redirectTo('menu2.html')">
+        <div class="stationItem" onclick="redirectTo('snack_shop')">
             <div class="stationIcon">🍫</div>
             <h2 class="stationTitle">חנות חטיפים</h2>
             <p class="stationLocation">  בניין 4, קומה 1-</p>
         </div>
 
         <!-- בר קפה -->
-        <div class="stationItem" onclick="redirectTo('menu3.html')">
+        <div class="stationItem" onclick="redirectTo('coffee_bar')">
             <div class="stationIcon">☕</div>
             <h2 class="stationTitle">בר קפה</h2>
             <p class="stationLocation">בניין 4, קומה 1-, סמוך לספרייה</p>
-        </div>
+        </div>        
 
         <!-- בר שירות -->
-        <div class="stationItem" onclick="redirectTo('menu4.html')">
+        <div class="stationItem" onclick="redirectTo('service_bar')">
             <div class="stationIcon">&#127978;</div>
             <h2 class="stationTitle">בר שירות</h2>
             <p class="stationLocation">בניין 1, קומה 0</p>
         </div>
 
         <!-- קפטריה בשרית -->
-        <div class="stationItem" onclick="redirectTo('menu5.html')">
+        <div class="stationItem" onclick="redirectTo('cafeteria_meat')">
             <div class="stationIcon">🍖</div>
             <h2 class="stationTitle">קפטריה בשרית</h2>
             <p class="stationLocation">בניין 6, קומה 0</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function redirectTo(station) {
+            window.location.href = `menu.html?station=${station}`;
+        }
+    </script>
 </body>
 </html>
