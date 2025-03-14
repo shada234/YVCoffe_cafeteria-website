@@ -9,6 +9,7 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+
 .carousel {
     position: fixed;
     width: 100%;
@@ -180,8 +181,8 @@ body, html {
 /* עיצוב הניווט */
 .navbar {
     display: flex;
-    justify-content: flex-end ; /* מצמיד את התפריט לימין */
-    align-items: right;
+    justify-content: flex-end; /* מצמיד את התפריט לימין */
+    align-items: center; /* מוודא שהאלמנטים מיושרים אנכית */
     padding: 15px 20px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -189,10 +190,9 @@ body, html {
     top: 0;
     right: 0;
     width: 100%;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-        font-weight: bold;
-    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* עיצוב הרשימה */
@@ -200,6 +200,9 @@ body, html {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex; /* מאפשר שהפריטים יהיו באותו קו */
+    justify-content: flex-end; /* מצמיד את הפריטים לימין */
+    width: 100%;
 }
 
 /* עיצוב הפריטים */
@@ -216,6 +219,7 @@ body, html {
     font-weight: bold;
     padding: 10px;
 }
+
 
 .logIn h2 {
     font-size: 28px;
@@ -386,22 +390,26 @@ input {
     margin: 20px auto; /* ממורכז באמצע */
     text-align: center;
     transition: background 0.3s ease-in-out;
+    text-decoration: none; /* מסיר את הקו מתחת לקישור */
 }
 
 .signUpBtn:hover {
     background-color: #bd3122;
+    text-decoration: none; /* מסיר את הקו מתחת לקישור */
 }
 
 .signUpInput {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
 }
 
 .inputContainer {
     position: relative;
     display: flex;
     align-items: center;
+    
 }
 
 .inputContainer input {
@@ -413,6 +421,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+    
 }
 
 .inputIcon {
@@ -439,6 +448,7 @@ input {
     justify-content: center;
     gap: 20px;
     padding: 30px;
+    margin-top: 7%;
 }
 
 /* כל תחנה בנפרד */
@@ -493,6 +503,79 @@ input {
     height: 100%;
     object-fit: cover; /* חיתוך התמונה כך שתמלא את המסך */
 }
+.navbar2 {
+    display: flex;
+    justify-content: flex-end; /* מצמיד את התפריט לימין */
+    align-items: center; /* מוודא שהאלמנטים מיושרים אנכית */
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute; /* מצמיד לקצה העליון */
+    top: 0;
+    right: 0;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* עיצוב הרשימה */
+.navbar2 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* מאפשר שהפריטים יהיו באותו קו */
+    justify-content: flex-end; /* מצמיד את הפריטים לימין */
+    width: 100%;
+}
+
+/* עיצוב הפריטים */
+.navbar2 ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* עיצוב הקישור */
+.navbar2 ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+.contact {
+    display: block !important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999; /* מבטיח שהתפריט יהיה מעל כל האלמנטים */
+    background-color: rgba(43, 41, 41, 0.7); /* רקע שחור חצי שקוף */
+
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact li {
+    display: inline;
+}
+
+.contact a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white; /* שינוי צבע הכתב ללבן */
+    padding: 8px 12px;
+}
+
+
 
 
 

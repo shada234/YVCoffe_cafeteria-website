@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .contact-form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #a11;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .phone {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+        
+            <nav class="navbar">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                </ul>
+            </nav>
+        
+
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>נשמח לעזור ולסייע לך</p>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <input type="email" id="email" placeholder="Enter email address" required>
+                </div>
+                <input type="text" id="subject" placeholder="Write a subject" required>
+                <textarea id="message" placeholder="Write your message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <p><strong>Call Us:</strong> <span class="phone">+972 543567687</span></p>
+            <p><strong>Hours:</strong> Mon-Fri: 7am - 7pm | Sat, Sun: close</p>
+            <p><strong>Our Location:</strong> The Max stern yezreel valley college, Afula </p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("אנחנו על זה, אחד מהנציגים שלנו יחזור אליך בקרוב. ");
+        });
+    </script>
+</body>
+</html>
