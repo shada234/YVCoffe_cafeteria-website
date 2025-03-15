@@ -6,8 +6,8 @@ body, html {
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Only prevents horizontal scrolling */
-    overflow-y: auto;  /* Allows vertical scrolling */
+    overflow: hidden;
+
     }
     
 
@@ -583,12 +583,14 @@ input {
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /* Global Styles */
-body {
+.menuBody {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
     text-align: center;
+    overflow-x: hidden; /* Only prevents horizontal scrolling */ 
+    overflow-y: auto;  /* Allows vertical scrolling */
 }
 
 /* Header Styling */
