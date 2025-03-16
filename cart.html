@@ -10,13 +10,28 @@
 
     <div class="cart-container">
         <h1>🛒 עגלת הקניות שלך</h1>
+        <ul id="cart-items" class="cart-items-list">
+            <li class="cart-item">
+                <div class="product-details">
+                    <img src="coffee.jpg" class="product-image" alt="קפה הפוך">
+                </div>
+                <div class="product-info">
+                    <p class="product-name">קפה הפוך</p>
+                    <p class="product-price">7₪</p>
+                </div>
+                <div class="quantity-controls">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" class="quantity-input">
+                    <button class="increase">+</button>
+                    <button class="remove-item">❌</button> <!-- כפתור ההסרה כאן -->
+                </div>
+            </li>
+        </ul>
         
-        <ul id="cart-items" class="cart-items-list"></ul>
+        
 
-        <p id="total-price" class="total-price-container">סך הכל: 0₪</p>
+        <p id="total-price" class="total-price-container">סך הכל: 8₪</p>
         <a href="payment.html" id="checkout" class="checkout-button"> המשך לתשלום</a>
-
-        
 
         <a href="stations.html" class="cart-link">🔗 חזרה לתפריט</a>
     </div>

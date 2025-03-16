@@ -795,6 +795,10 @@ input {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+.cart-container h1 {
+    text-align: center;
 }
 
 /* רשימת הפריטים */
@@ -857,18 +861,45 @@ input {
 }
 
 /* כפתור הסרה */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* יוצר מרווח בין התמונה לכפתור */
+}
+
+.product-image {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
 .remove-item {
-    background: rgb(255, 0, 0);
+    background: rgb(253, 200, 200);
     color: white;
     border: none;
     padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
+    order: -1; /* מבטיח שהכפתור יהיה לפני התמונה */
 }
 
+
 .remove-item:hover {
-    background: rgb(73, 0, 0);
+    background: rgb(226, 160, 160);
 }
+
+
+
 
 /* עיצוב הסכום הכולל */
 .total-price-container {
@@ -880,19 +911,21 @@ input {
 
 /* כפתור המשך לתשלום */
 #checkout {
-    display: block;
-    width: 100%;
+    display: flex;
+    justify-content: center; /* ממרכז את הטקסט אופקית */
+    align-items: center; /* ממרכז את הטקסט אנכית */
+    width: 200px; /* או כל רוחב שתרצה */
+    padding: 12px 40px;
+    margin: 15px auto 0 auto;
     background: rgb(121, 122, 122);
     color: white;
-    padding: 12px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    margin-top: 15px;
     text-decoration: none;
-
 }
+
 
 #checkout:hover {
     background: #6fb38c;
