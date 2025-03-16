@@ -86,7 +86,7 @@ const menuData = {
             { name: "קולה", price: "5₪", image: "images/cola.png" },
             { name: "פנטה", price: "5₪", image: "images/fanta.png" },
             { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
-            { name: "ספרייט", price: "8₪", image: "images/spright.png" },
+            { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
             { name: "טמבור XL", price: "9₪", image: "images/Tamakor_XL.png" },
             { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
             { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
