@@ -65,6 +65,88 @@ function handleAuth() {
         window.location.href = "signUp.html";
     }
 }
+// קבלת אלמנטים מה-HTML
+const modalRegister = document.getElementById("modal-register"); // חלון הרשמה
+const modalLogin = document.getElementById("modal-login"); // חלון התחברות עם סיסמה
+
+// בדיקת אם האימייל קיים במערכת
+function checkEmail() {
+    let email = document.getElementById("email").value.trim();
+
+    if (email === "") {
+        alert("אנא הזן כתובת אימייל");
+        return;
+    }
+
+    let storedUser = localStorage.getItem(email);
+
+    if (storedUser) {
+        // האימייל כבר קיים - הצגת חלון הזנת סיסמה
+        modalLogin.style.display = "flex";
+    } else {
+        // אימייל חדש - הצגת חלון הרשמה
+        modalRegister.style.display = "flex";
+    }
+}
+
+// סגירת חלון
+function closeModal(modal) {
+    document.getElementById(modal).style.display = "none";
+}
+
+// שליחת פרטי הרשמה ושמירה ב-localStorage
+function submitRegistration() {
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let firstName = document.getElementById("firstName").value.trim();
+    let lastName = document.getElementById("lastName").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    if (!email || !phone || !firstName || !lastName || !password) {
+        alert("יש למלא את כל השדות!");
+        return;
+    }
+
+    // שמירת המשתמש ב-localStorage
+    let userData = {
+        phone,
+        firstName,
+        lastName,
+        password
+    };
+
+    localStorage.setItem(email, JSON.stringify(userData));
+
+    alert("ההרשמה הושלמה! כעת תוכל להתחבר.");
+    closeModal("modal-register"); // סגירת מודאל ההרשמה
+}
+
+// בדיקת סיסמה למשתמשים רשומים
+function loginUser() {
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("loginPassword").value.trim();
+
+    if (!email || !password) {
+        alert("אנא הזן כתובת אימייל וסיסמה.");
+        return;
+    }
+
+    let storedUser = localStorage.getItem(email);
+
+    if (storedUser) {
+        let userData = JSON.parse(storedUser);
+
+        if (userData.password === password) {
+            alert("התחברת בהצלחה!");
+            window.location.href = "stations.html"; // מעבר לדף התחנות
+        } else {
+            alert("סיסמה שגויה, נסה שנית.");
+        }
+    } else {
+        alert("המשתמש לא נמצא, יש להירשם תחילה.");
+    }
+}
+
 
 /*---------------------------------------------------------------------------------------------------------------------------------*/
 /*signup*/

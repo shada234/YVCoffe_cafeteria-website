@@ -8,11 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
+
 <body class="logIn">
     <header>
         <nav class="navbar">
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="home.html">דף הבית</a></li>
             </ul>
         </nav>
     </header>
@@ -33,7 +34,7 @@
 
                 <input type="email" id="email" placeholder="הכניסו כתובת מייל (חובה)" required>
 
-                <button class="main-btn" onclick="handleAuth()">הרשמה / התחברות</button>
+                <button class="main-btn" onclick="checkEmail()">הרשמה / התחברות</button>
 
                 <div class="divider">או</div>
 
@@ -46,6 +47,32 @@
             </div>
         </div>
     </div>
+<!-- חלון הרשמה -->
+<div id="modal-register" class="modal">
+    <div class="modal-content">
+        <h2>🍽️ הצטרפו אלינו</h2>
+        <p class="description">הרשמה קלה ומהירה</p>
+        <input type="tel" id="phone" placeholder="מספר טלפון (חובה)">
+        <input type="text" id="firstName" placeholder="שם פרטי (חובה)">
+        <input type="text" id="lastName" placeholder="שם משפחה (חובה)">
+        <input type="password" id="password" placeholder="בחר סיסמה (חובה)">
+        <button class="main-btn" onclick="submitRegistration()">אשר והמשך</button>
+        <button class="close-btn" onclick="closeModal('modal-register')">ביטול</button>
+    </div>
+</div>
+
+<!-- חלון הזנת סיסמה -->
+<div id="modal-login" class="modal">
+    <div class="modal-content">
+        <h2>🔐 הכנס סיסמה</h2>
+        <p class="description">אנא הכנס את הסיסמה שלך כדי להמשיך</p>
+        <input type="password" id="loginPassword" placeholder="סיסמה">
+        <button class="main-btn" onclick="loginUser()">כניסה</button>
+        <button class="close-btn" onclick="closeModal('modal-login')">ביטול</button>
+    </div>
+</div>
+
+
 
     <script src="script.js"></script>
 </body>
