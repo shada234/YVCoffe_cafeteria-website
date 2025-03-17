@@ -195,7 +195,7 @@ body, html {
     right: 0;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 10px;
     font-weight: bold;
 }
 
@@ -226,12 +226,12 @@ body, html {
 
 
 .logIn h2 {
-    font-size: 28px;
+    font-size: 20px;
     color: #21412a;
 }
 
 .description {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     margin-bottom: 20px;
     text-align:center;
@@ -239,8 +239,8 @@ body, html {
 
 input {
     width: 90%;
-    padding: 10px;
-    font-size: 16px;
+    padding: 14px;
+    font-size: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -251,7 +251,7 @@ input {
     width: 95%;
     background-color:#e74c3c;
     color: whitesmoke;
-    font-size: 18px;
+    font-size: 14px;
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -279,17 +279,17 @@ input {
 }
 
 .google-login-btn {
-    width: 100%; /* גורם לכפתור להיות באותו רוחב כמו הכפתור האדום */
-    max-width: 400px; /* מוודא שהתאמת הרוחב זהה */
+    width: 95%; /* גורם לכפתור להיות באותו רוחב כמו הכפתור האדום */
+    max-width: 300px; /* מוודא שהתאמת הרוחב זהה */
     display: flex;
     align-items: right;
     justify-content: center;
     gap: 10px;
     padding: 12px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.773);
     border: 1px solid #ccc;
     border-radius: 25px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     color: #3c4043;
     text-decoration: none;
@@ -347,6 +347,69 @@ input {
     text-align: center;
     box-shadow: none; /* מסיר צל */
 }
+/* עיצוב המודאל (חלון קופץ) */
+/* עיצוב המודאל (חלון קופץ) */
+/* עיצוב כללי לחלונות הקופצים */
+.modal {
+    display: none; /* מוסתר כברירת מחדל */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* עיצוב המודאל מבפנים */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* כפתור הרשמה ואישור */
+.main-btn {
+    width: 100%;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.main-btn:hover {
+    background-color: #bd3122;
+}
+
+/* כפתור ביטול */
+.close-btn {
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.close-btn:hover {
+    background-color: #555;
+}
+
+
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 /*SignUp*/ 
 /* כללי */
@@ -443,6 +506,7 @@ input {
     text-align: center;
     background-color: #f9f9f9;
     direction: rtl;
+    
 }
 
 /* קונטיינר לכל התחנות */
@@ -507,46 +571,49 @@ input {
     height: 100%;
     object-fit: cover; /* חיתוך התמונה כך שתמלא את המסך */
 }
-.navbar2 {
+/* עיצוב הניווט */
+.navbarstations {
     display: flex;
-    justify-content: flex-end; /* מצמיד את התפריט לימין */
-    align-items: center; /* מוודא שהאלמנטים מיושרים אנכית */
+    justify-content: flex-start; /* מצמיד את התפריט לשמאל */
+    align-items: center;
     padding: 15px 20px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: absolute; /* מצמיד לקצה העליון */
+    position: absolute;
     top: 0;
-    right: 0;
+    left: 0; /* מעביר לצד שמאל */
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 10px;
     font-weight: bold;
 }
 
 /* עיצוב הרשימה */
-.navbar2 ul {
+.navbarstations ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* מאפשר שהפריטים יהיו באותו קו */
-    justify-content: flex-end; /* מצמיד את הפריטים לימין */
+    display: flex;
+    justify-content: flex-start; /* מעביר את הפריטים לשמאל */
     width: 100%;
 }
 
 /* עיצוב הפריטים */
-.navbar2 ul li {
+.navbarstations ul li {
     display: inline-block;
-    margin-left: 15px;
+    margin-right: 15px; /* מעביר ריווח לצד שמאל */
+    margin-left: 0;
 }
 
 /* עיצוב הקישור */
-.navbar2 ul li a {
+.navbarstations ul li a {
     text-decoration: none;
     color: black;
     font-size: 18px;
     font-weight: bold;
     padding: 10px;
 }
+
 
 
 .contact {
