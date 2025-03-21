@@ -1,56 +1,228 @@
-// ** home.html**
-
+/*home page- תמונות       */
 document.addEventListener("DOMContentLoaded", function () {
-    let currentPage = window.location.pathname.split("/").pop();
+    let track = document.querySelector(".carousel-track");
+    let indicators = document.querySelectorAll(".indicator");
+    let items = document.querySelectorAll(".carousel-item");
+    let totalSlides = items.length;
+    let index = 0;
+    let isTransitioning = false;
 
-    // **קרוסלת התמונות בעמוד home.html**
-    if (currentPage === "home.html" || currentPage === "") {
-        let track = document.querySelector(".carousel-track");
-        let indicators = document.querySelectorAll(".indicator");
-        let firstClone = track.children[0]?.cloneNode(true);
-        if (firstClone) {
-            track.appendChild(firstClone);
-        }
+    // 🟢 שכפול התמונה הראשונה בסוף הקרוסלה כדי ליצור אפקט רציף
+    let firstClone = items[0].cloneNode(true);
+    track.appendChild(firstClone);
 
-        let images = document.querySelectorAll(".carousel-track img");
-        let index = 0;
-
-        function updateIndicators() {
-            indicators.forEach((indicator, i) => {
-                indicator.classList.toggle("active", i === index);
-            });
-        }
-
-        function moveSlide() {
-            index++;
-            track.style.transform = `translateX(-${index * 100}vw)`;
-            track.style.transition = "transform 1s ease-in-out";
-
-            if (index >= images.length - 1) {
-                setTimeout(() => {
-                    track.style.transition = "none";
-                    track.style.transform = "translateX(0)";
-                    index = 0;
-                    updateIndicators();
-                }, 1000);
-            } else {
-                updateIndicators();
-            }
-        }
-
-        indicators.forEach(indicator => {
-            indicator.addEventListener("click", function () {
-                index = parseInt(this.getAttribute("data-index"));
-                track.style.transform = `translateX(-${index * 100}vw)`;
-                track.style.transition = "transform 1s ease-in-out";
-                updateIndicators();
-            });
+    function updateIndicators() {
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle("active", i === index);
         });
+    }
 
-        setInterval(moveSlide, 4000);
+    function moveSlide() {
+        if (isTransitioning) return; // למנוע בעיות במעבר מהיר
+        isTransitioning = true;
+
+        index++;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transition = "transform 1s ease-in-out";
+
+        if (index === totalSlides) { // **כאשר מגיעים לשכפול**
+            setTimeout(() => {
+                track.style.transition = "none"; // מבטלים את האנימציה לרגע
+                track.style.transform = "translateX(0%)"; // קופצים חזרה להתחלה
+                index = 0;
+                isTransitioning = false;
+            }, 1000); // נותנים לאנימציה להסתיים לפני המעבר
+        } else {
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1000);
+        }
+
         updateIndicators();
     }
 
+    indicators.forEach((indicator, i) => {
+        indicator.addEventListener("click", function () {
+            index = i;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            track.style.transition = "transform 1s ease-in-out";
+            updateIndicators();
+        });
+    });
+
+    setInterval(moveSlide, 5000); // מעבר כל 5 שניות
+    updateIndicators();
+});
+
+/*-----------------------------------------------------------------------------------------------
+home page- אודות*/
+document.addEventListener("DOMContentLoaded", function () {
+    // 1️⃣ ניווט חלק מה-NAVBAR:
+    document.querySelectorAll("a[data-target]").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const target = document.querySelector(this.getAttribute("data-target"));
+            if (target) {
+                window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+            }
+        });
+    });
+
+    // 2️⃣ אקורדיון – פתיחה וסגירה בלחיצה:
+    document.querySelectorAll(".accordion-button").forEach(button => {
+        button.addEventListener("click", function () {
+            const item = this.parentElement;
+            const content = item.querySelector(".accordion-content");
+
+            // בדיקה אם האקורדיון כבר פתוח
+            const isActive = item.classList.contains("active");
+
+            // סוגר את כל האקורדיונים
+            document.querySelectorAll(".accordion-item").forEach(i => {
+                i.classList.remove("active");
+                i.querySelector(".accordion-content").style.display = "none";
+            });
+
+            // אם הוא לא היה פתוח – פותח אותו
+            if (!isActive) {
+                item.classList.add("active");
+                content.style.display = "block";
+            }
+        });
+    });
+});
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*home page- NAVBAR*/
+document.addEventListener("DOMContentLoaded", function () {
+    let navbar = document.querySelector(".HomeNavbar"); // מזהה את ה-NAVBAR
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > navbar.offsetHeight) {
+            navbar.classList.add("fixed"); // הוספת מחלקת FIXED כשהמשתמש גולל
+        } else {
+            navbar.classList.remove("fixed"); // החזרת המצב הרגיל
+        }
+    });
+});
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*home page- התחברות*/
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("🔹 script.js נטען!");
+
+    let isLoggedIn = localStorage.getItem("userLoggedIn");
+    let username = localStorage.getItem("username");
+
+    console.log("🔹 userLoggedIn:", isLoggedIn);
+    console.log("🔹 username:", username);
+
+    let authText = document.getElementById("home-auth-text");
+
+    if (isLoggedIn === "true" && authText) {
+        authText.textContent = username; // מחליף את הטקסט בשם המשתמש
+        authText.href = "profile.html"; // גורם ללחיצה להוביל לדף הפרופיל
+    }
+});
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*home page- חלון עגלה*/
+document.addEventListener("DOMContentLoaded", function () {
+    const accordionButtons = document.querySelectorAll(".accordion-button");
+
+    accordionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const parent = this.parentElement;
+            parent.classList.toggle("active");
+
+            const content = parent.querySelector(".accordion-content");
+            if (parent.classList.contains("active")) {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        });
+    });
+});
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*home page- חלון עגלה*/
+document.addEventListener("DOMContentLoaded", function () {
+    const accordionButtons = document.querySelectorAll(".accordion-button");
+
+    accordionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const parent = this.parentElement;
+            parent.classList.toggle("active");
+
+            const content = parent.querySelector(".accordion-content");
+            if (parent.classList.contains("active")) {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        });
+    });
+});
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*home page- cart*/
+// הצגת חלון הקופץ כשעוברים עם העכבר על הסל
+function showCartPopup() {
+    const cartPopup = document.getElementById("cart-popup");
+    cartPopup.style.display = "block";
+}
+
+function keepCartPopup() {
+    const cartPopup = document.getElementById("cart-popup");
+    cartPopup.style.display = "block";
+}
+
+// הסתרת החלון כאשר העכבר יוצא מהסל
+function hideCartPopup() {
+    setTimeout(() => {
+        const cartPopup = document.getElementById("cart-popup");
+        if (!cartPopup.matches(":hover") && !document.querySelector(".cart-container").matches(":hover")) {
+            cartPopup.style.display = "none";
+        }
+    }, 300); // Small delay to allow moving to the popup
+}
+// ניווט לדף העגלה כאשר לוחצים על הסל
+function goToCart() {
+    window.location.href = "cart.html"; // מעבר לדף העגלה
+}
+
+// עדכון החלון הקופץ עם פריטי העגלה
+function updateCartPopup() {
+    const cart = getCart();
+    const cartItemsContainer = document.getElementById("cart-items");
+    const totalPriceElement = document.getElementById("popup-total-price");
+    const emptyCartMessage = document.getElementById("empty-cart-message");
+
+    cartItemsContainer.innerHTML = ""; // לנקות קודם
+    let total = 0;
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = "block";
+        totalPriceElement.style.display = "none";
+    } else {
+        emptyCartMessage.style.display = "none";
+        totalPriceElement.style.display = "block";
+
+        cart.forEach((item) => {
+            total += item.price * item.quantity;
+            const itemElement = document.createElement("p");
+            itemElement.innerHTML = `${item.name} - ${item.quantity}x ${item.price}₪`;
+            cartItemsContainer.appendChild(itemElement);
+        });
+    }
+
+    totalPriceElement.innerText = `סך הכל: ${total.toFixed(2)}₪`;
+}
+
+// 🔹 טעינת הדף - עדכון מספר הפריטים בתצוגה העליונה
+document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
 });
 
 
@@ -138,7 +310,14 @@ function loginUser() {
 
         if (userData.password === password) {
             alert("התחברת בהצלחה!");
-            window.location.href = "stations.html"; // מעבר לדף התחנות
+
+            // **שמירת הנתונים ב-localStorage**
+            localStorage.setItem("userLoggedIn", "true"); // 📌 כאן הבעיה - עכשיו זה יישמר
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("username", userData.firstName + " " + userData.lastName);
+
+            // מעבר לדף התחנות
+            window.location.href = "stations.html";
         } else {
             alert("סיסמה שגויה, נסה שנית.");
         }
@@ -148,14 +327,9 @@ function loginUser() {
 }
 
 
-/*---------------------------------------------------------------------------------------------------------------------------------*/
-/*signup*/
-
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*stations*/
-
-/*menu*/
 
 function redirectTo(station) {
     window.location.href = `menu.html?station=${station}`;
@@ -169,7 +343,6 @@ const menuData = {
             { name: "פנטה", price: "5₪", image: "images/fanta.png" },
             { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
             { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-            { name: "טמבור XL", price: "9₪", image: "images/Tamakor_XL.png" },
             { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
             { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
         ],
@@ -190,17 +363,17 @@ const menuData = {
                 { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
                 { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
                 { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" }
+                { name: "תה", price: "7₪", image: "images/Tea.png" },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
+
             ],
             "משקאות קרים": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
                 { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
                 { name: "קפה קר", price: "10₪", image: "images/Iced_Coffee.png" },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
                 { name: "שווופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
                 { name: "שווופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
                 { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "טמבור XL", price: "9₪", image: "images/Tamakor_XL.png" },
                 { name: "מים עין גדי", price: "6₪", image: "images/Water_Ein_Gedi.png" }
             ],
             "מאפים": [
@@ -246,7 +419,9 @@ const menuData = {
                 { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
                 { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
                 { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" }
+                { name: "תה", price: "7₪", image: "images/Tea.png" },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
+
             ],
             "משקאות קרים": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
@@ -257,7 +432,6 @@ const menuData = {
                 { name: "שווופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
                 { name: "שווופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
                 { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "טמבור XL", price: "9₪", image: "images/Tamakor_XL.png" },
                 { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
                 { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
             ],
@@ -290,7 +464,9 @@ const menuData = {
                 { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
                 { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
                 { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" }
+                { name: "תה", price: "7₪", image: "images/Tea.png" },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
+
             ],
             "משקאות קרים": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
@@ -301,7 +477,6 @@ const menuData = {
                 { name: "שווופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
                 { name: "שווופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
                 { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "טמבור XL", price: "9₪", image: "images/Tamakor_XL.png" },
                 { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
                 { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
             ],
@@ -349,38 +524,28 @@ function getStationFromURL() {
 }
 
 function loadMenu() {
-    console.log("📢 Page fully loaded, running loadMenu()");
-    
     // בדיקה שהמשתנה menuData קיים
     if (typeof menuData === "undefined") {
-        console.error("❌ Error: menuData is not defined!");
         return;
     }
 
     const station = getStationFromURL();
-    console.log("📌 Station from URL:", station);
-
+    
     // בדיקת קיום האלמנט menu-items
     const menuContainer = document.getElementById("menu-items");
-    console.log("🔍 Checking menu-items:", menuContainer);
     if (!menuContainer) {
-        console.error("❌ Error: Element 'menu-items' not found in the DOM!");
         return;
     }
 
     const menuCategories = menuData[station];
     if (!menuCategories) {
-        console.error("⚠ No menu found for:", station);
-        menuContainer.innerHTML = "<p>❌ לא נמצא תפריט לתחנה זו</p>";
+        menuContainer.innerHTML = "<p> לא נמצא תפריט לתחנה זו</p>";
         return;
     }
 
-    console.log("📋 Categories Loaded:", menuCategories);
     menuContainer.innerHTML = "";
 
     for (const category in menuCategories) {
-        console.log(`📌 Loading category: ${category}`);
-
         const categorySection = document.createElement("div");
         categorySection.classList.add("category-section");
 
@@ -393,24 +558,26 @@ function loadMenu() {
         itemsContainer.classList.add("category-items");
 
         menuCategories[category].forEach(item => {
-            console.log(`🛒 Adding item: ${item.name}`);
-
             const itemElement = document.createElement("div");
             itemElement.classList.add("menu-item");
             itemElement.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" onerror="this.src='images/placeholder.png';">
-                <h3>${item.name}</h3>
-                <p>${item.price}</p>
-                <button class="add-to-cart" onclick="addToCart('${item.name}', '${item.price}', '${item.image}')">🛒 הוסף לעגלה</button>
-            `;
+            <img src="${item.image}" alt="${item.name}" class="menu-item-image" onerror="this.src='images/placeholder.png';">
+            <h3>${item.name}</h3>
+            <div class="menu-item-bottom">
+                <p class="menu-price">${item.price.includes("₪") ? item.price : item.price + " ₪"}</p>
+                <button class="add-to-cart" onclick="addToCart('${item.name}', '${item.price.replace("₪", "").trim()}', '${item.image}', this)">
+                    <img src="add-to-cart.png" alt="הוסף לעגלה">
+                </button>
+            </div>
+        `;
+        
+        
             itemsContainer.appendChild(itemElement);
         });
 
         categorySection.appendChild(itemsContainer);
         menuContainer.appendChild(categorySection);
     }
-
-    console.log("✅ Menu loaded successfully!");
 }
 
 // Cart functionality
@@ -418,18 +585,18 @@ let cart = [];
 function addToCart(name, price, image) {
     cart.push({ name, price, image });
     alert(`🛍️ ${name} נוסף לעגלה!`);
-    console.log("🛒 Cart Items:", cart);
 }
 
 // Ensure script runs only when DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("📢 Document fully loaded, running loadMenu()");
     loadMenu();
 });
 
 
 /*---------------------------------------------------------------------------------------------------------------*/
 /*cart*/
+/*שמירת העגלה ב LOCALSTORAGE*/
+
 // 🔹 מפתח לשמירת העגלה ב-localStorage
 const cartKey = "shoppingCart";
 
@@ -471,10 +638,9 @@ function updateCartCount() {
 }
 
 // 🔹 פונקציה להצגת מוצרים בעגלה (בדף `cart.html`)
-// פונקציה להצגת מוצרים בעגלה
 function updateCartPage() {
     const cart = getCart();
-    const cartItems = document.getElementById("cart-items");
+    const cartItems = document.getElementById("cartPage-items");
     const totalPrice = document.getElementById("total-price");
 
     if (!cartItems) return; // אם אנחנו לא בעמוד העגלה, לא לעשות כלום
@@ -495,6 +661,7 @@ function updateCartPage() {
 
             li.innerHTML = `
                 <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                <button class="remove-item" onclick="removeFromCart(${index})"> ❌</button>
                 <div class="cart-item-details">
                     <p>${item.name}</p>
                     <p>${item.price}₪</p>
@@ -504,7 +671,6 @@ function updateCartPage() {
                     <input type="text" value="${item.quantity}" readonly>
                     <button onclick="updateQuantity(${index}, 1)">+</button>
                 </div>
-                <button class="remove-item" onclick="removeFromCart(${index})">❌</button>
             `;
             cartItems.appendChild(li);
         });
@@ -513,7 +679,31 @@ function updateCartPage() {
     totalPrice.innerText = `סך הכל: ${total}₪`;
 }
 
-// פונקציה לעדכון כמות מוצר בעגלה
+// 🔹 פונקציה להצגת עגלת הקניות גם בדף `payment.html`
+function updatePaymentPage() {
+    const cart = getCart();
+    const cartList = document.getElementById("cart-items-list");
+    const totalPriceElement = document.getElementById("total-price");
+
+    if (!cartList) return; // אם אנחנו לא בדף התשלום, לא לעשות כלום
+
+    cartList.innerHTML = "";
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+        cartList.innerHTML = "<p style='text-align:center;'>העגלה שלך ריקה</p>";
+    } else {
+        cart.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `x ${item.quantity} <strong>${item.name}</strong> - ${item.price * item.quantity}₪` ;
+            cartList.appendChild(li);
+            totalPrice += item.price * item.quantity;
+        });
+    }
+    totalPriceElement.textContent = `סך הכל: ${totalPrice}₪`;
+}
+
+// 🔹 פונקציה לעדכון כמות מוצר בעגלה
 function updateQuantity(index, change) {
     let cart = getCart();
     if (cart[index]) {
@@ -523,10 +713,9 @@ function updateQuantity(index, change) {
         }
         saveCart(cart);
         updateCartPage();
+        updatePaymentPage(); // עדכון גם בדף התשלום
     }
 }
-
-
 
 // 🔹 פונקציה להסרת מוצר מהעגלה
 function removeFromCart(index) {
@@ -534,6 +723,7 @@ function removeFromCart(index) {
     cart.splice(index, 1);
     saveCart(cart);
     updateCartPage();
+    updatePaymentPage(); // עדכון גם בדף התשלום
 }
 
 // 🔹 טעינת הדף - רישום אירועים
@@ -541,51 +731,63 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartCount(); // עדכון מספר הפריטים בעגלה כאשר הדף נטען
 
     // אם המשתמש נמצא ב-`cart.html`, נעדכן את העגלה
-    if (document.getElementById("cart-items")) {
+    if (document.getElementById("cartPage-items")) {
         updateCartPage();
 
         // אירוע למחיקת מוצר מהעגלה
-        document.getElementById("cart-items").addEventListener("click", function (event) {
+        document.getElementById("cartPage-items").addEventListener("click", function (event) {
             if (event.target.classList.contains("remove-item")) {
                 const index = event.target.getAttribute("data-index");
                 removeFromCart(index);
             }
         });
+    }
 
-    
+    // אם המשתמש נמצא ב-`payment.html`, נעדכן את העגלה שם
+    if (document.getElementById("cart-items-list")) {
+        updatePaymentPage();
     }
 });
+function togglePickupTime() {
+    const customTimeInput = document.getElementById("custom-pickup-time");
+    const selectedOption = document.querySelector('input[name="pickup-time"]:checked').value;
+
+    if (selectedOption === "custom") {
+        customTimeInput.disabled = false;
+    } else {
+        customTimeInput.disabled = true;
+        customTimeInput.value = ""; // איפוס השעה אם חזרו ל-5 דקות
+    }
+}
+
 /*-------------------------------------------------------------------------------------------------------*/
 /*payment*/
+// 🔹 פונקציה להצגת/הסתרת שדות אשראי בהתאם לבחירת המשתמש
 // 🔹 פונקציה להצגת/הסתרת שדות אשראי בהתאם לבחירת המשתמש
 function togglePaymentFields() {
     const creditFields = document.getElementById("credit-card-fields");
     const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
 
-    if (paymentMethod === "credit") {
-        creditFields.style.display = "block";
-    } else {
-        creditFields.style.display = "none";
-    }
+    creditFields.style.display = (paymentMethod === "credit") ? "block" : "none";
 }
 
-// 🔹 פונקציה לעיצוב מספר כרטיס אשראי (מרווחים בין הספרות)
+// 🔹 פונקציה לעיצוב מספר כרטיס אשראי (רווחים כל 4 ספרות)
 function formatCardNumber(input) {
-    let value = input.value.replace(/\D/g, ""); // מסיר תווים לא מספריים
-    value = value.replace(/(.{4})/g, "$1 "); // מוסיף רווח כל 4 ספרות
-    input.value = value.trim().substring(0, 19); // חותך ל-19 תווים מקסימום
+    let value = input.value.replace(/\D/g, ""); // מסיר תווים שאינם מספרים
+    value = value.replace(/(.{4})/g, "$1 ").trim(); // מוסיף רווח כל 4 ספרות
+    input.value = value.substring(0, 19); // מגביל ל-19 תווים מקסימום
 }
 
 // 🔹 פונקציה לעיצוב תוקף הכרטיס (MM/YY)
 function formatExpiryDate(input) {
     let value = input.value.replace(/\D/g, ""); // מסיר תווים לא מספריים
-    if (value.length >= 2) {
+    if (value.length > 2) {
         value = value.substring(0, 2) + "/" + value.substring(2, 4);
     }
     input.value = value.substring(0, 5);
 }
 
-// 🔹 פונקציה לבדיקת תשלום
+// 🔹 פונקציה לבדיקה ואישור תשלום
 function processPayment() {
     const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
     const statusMessage = document.getElementById("payment-status");
@@ -595,31 +797,72 @@ function processPayment() {
         const expiryDate = document.getElementById("expiry-date").value.trim();
         const cvv = document.getElementById("cvv").value.trim();
 
-        // בדיקות תקינות בסיסיות
-        if (cardNumber.length < 19 || expiryDate.length < 5 || cvv.length < 3) {
-            statusMessage.style.color = "red";
-            statusMessage.innerText = "❌ יש למלא את כל פרטי הכרטיס כראוי!";
+        // ✅ בדיקות תקינות של כרטיס אשראי
+        if (cardNumber.length < 19) {
+            showError("❌ מספר כרטיס האשראי אינו תקין (יש להכניס 16 ספרות)");
+            return;
+        }
+        if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+            showError("❌ תוקף הכרטיס אינו תקין (פורמט MM/YY)");
+            return;
+        }
+        if (cvv.length < 3) {
+            showError("❌ מספר CVV חייב להיות 3 ספרות");
             return;
         }
 
-        // הודעה על הצלחה (סימולציה)
-        statusMessage.style.color = "green";
-        statusMessage.innerText = "✅ התשלום בוצע בהצלחה!";
-
+        // ✅ תשלום מוצלח
+        showSuccess("✅ התשלום בוצע בהצלחה");
     } else {
-        // תשלום במזומן
-        statusMessage.style.color = "green";
-        statusMessage.innerText = "✅ התשלום יתבצע במזומן בעת האיסוף!";
+        // ✅ תשלום במזומן
+        showSuccess("✅ התשלום יתבצע במזומן בעת האיסוף");
     }
 
-    // לאחר שנייה, ניתן להפנות לדף אישור הזמנה (כמו `thank-you.html`)
+    // ✅ לאחר שנייה, הצגת ה-Modal במקום מעבר לדף חדש
     setTimeout(() => {
-        window.location.href = "thank-you.html";
-    }, 2000);
+        document.getElementById("modal-payment").style.display = "flex";
+    }, 1000);
 }
+
+// 🔹 פונקציה להצגת שגיאה
+function showError(message) {
+    const statusMessage = document.getElementById("payment-status");
+    statusMessage.style.color = "red";
+    statusMessage.innerText = message;
+}
+
+// 🔹 פונקציה להצגת הצלחה
+function showSuccess(message) {
+    const statusMessage = document.getElementById("payment-status");
+    statusMessage.style.color = "green";
+    statusMessage.innerText = message;
+}
+
+// 🔹 פונקציה למניעת הכנסת תווים שאינם מספרים
+function validateNumbers(input) {
+    input.value = input.value.replace(/[^0-9]/g, ''); // מסיר כל תו שאינו מספר
+}
+
+// 🔹 פונקציה למניעת הכנסת תווים לא חוקיים בתוקף (רק מספרים ולוכסן /)
+function validateExpiryDate(input) {
+    input.value = input.value.replace(/[^0-9/]/g, ''); // רק מספרים ולוכסן מותרים
+}
+
+// 🔹 פונקציה לסגירת המודאל (חלון קופץ)
+function closeModalPayment() {
+    document.getElementById("modal-payment").style.display = "none";
+    window.location.href = "home.html"; // הפניה חזרה לדף הראשי
+}
+
+// 🔹 פונקציה לצפייה בהזמנה לאחר התשלום
+function viewOrder() {
+    document.getElementById("modal-payment").style.display = "none";
+    window.location.href = "order-status.html"; // מעבר לדף סטטוס ההזמנה
+}
+
+
 /*---------------------------------------------------------------------------------------------------*/
 /*order status*/
-// 🔹 פונקציה לקבלת עגלת הקניות מה-localStorage
 function getCart() {
     return JSON.parse(localStorage.getItem("shoppingCart")) || [];
 }
@@ -642,9 +885,11 @@ function displayOrderDetails() {
         totalPriceElement.style.display = "block";
 
         cart.forEach((item) => {
-            total += item.price * item.quantity;
+            let itemTotalPrice = item.price * item.quantity; // מחיר כולל לכל מוצר
+            total += itemTotalPrice; // הוספת המחיר הכולל לסכום הכללי
+
             const li = document.createElement("li");
-            li.innerHTML = `${item.name} - ${item.price}₪ x ${item.quantity}`;
+            li.innerHTML = `${itemTotalPrice}₪ - ${item.name} x ${item.quantity} `;
             orderItems.appendChild(li);
         });
     }
@@ -663,3 +908,60 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+/*---------------------------------------------------------------------------------------------------*/
+/*login התחברות*/
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("🔹 script.js נטען!");
+
+    setTimeout(() => {
+        let isLoggedIn = localStorage.getItem("userLoggedIn");
+        let userEmail = localStorage.getItem("userEmail");
+        let username = localStorage.getItem("username");
+
+        console.log("🔹 userLoggedIn:", isLoggedIn);
+        console.log("🔹 userEmail:", userEmail);
+        console.log("🔹 username:", username);
+
+        let usernameText = document.getElementById("username-text");
+        let profileHeader = document.getElementById("profile-header");
+        let profileUsername = document.getElementById("profile-username");
+
+        if (!profileUsername) {
+            console.log("⚠️ profile-username עדיין לא נטען, מחכים...");
+            return;
+        }
+
+        if (isLoggedIn === "true") {
+            usernameText.textContent = username;
+            profileUsername.textContent = userEmail;
+            profileHeader.style.display = "block";
+
+            document.getElementById("login-link").style.display = "none";
+            document.getElementById("register-link").style.display = "none";
+            document.getElementById("profile-link").style.display = "block";
+            document.getElementById("orders-link").style.display = "block";
+            document.getElementById("logout-link").style.display = "block";
+        } else {
+            usernameText.textContent = "התחברות";
+            profileHeader.style.display = "none";
+            document.getElementById("login-link").style.display = "block";
+            document.getElementById("register-link").style.display = "block";
+            document.getElementById("profile-link").style.display = "none";
+            document.getElementById("orders-link").style.display = "none";
+            document.getElementById("logout-link").style.display = "none";
+        }
+    }, 200); // מחכים 200 מילישניות כדי לוודא שהאלמנטים קיימים
+});
+
+// 🔹 פונקציה להתנתקות מהמערכת
+function logoutUser() {
+    localStorage.removeItem("userLoggedIn");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("username");
+
+    alert("התנתקת בהצלחה!");
+    window.location.href = "login.html"; // חזרה לדף ההתחברות
+}
+
+document.getElementById("logout-link").addEventListener("click", logoutUser);

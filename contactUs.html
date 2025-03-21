@@ -60,14 +60,6 @@
     </style>
 </head>
 <body>
-        
-            <nav class="navbar">
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                </ul>
-            </nav>
-        
-
     <div class="container">
         <h1>Contact Us</h1>
         <p>נשמח לעזור ולסייע לך</p>
@@ -94,5 +86,38 @@
             alert("אנחנו על זה, אחד מהנציגים שלנו יחזור אליך בקרוב. ");
         });
     </script>
+
+
+
+
+
+
+<div id="navbar-container"></div>
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+            
+            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
+            setTimeout(() => {
+                const script = document.createElement("script");
+                script.src = "script.js";
+                document.body.appendChild(script);
+            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
+        });
+</script>
+
+    
+<div id="footer-container"></div>
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
+</script>
+<script src="script.js"></script>
+
 </body>
 </html>

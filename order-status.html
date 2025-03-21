@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📦 סטטוס ההזמנה</title>
+    
+    <title> סטטוס ההזמנה</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="order-status-page">
 
     <div class="order-container">
-        <h1>📦 סטטוס ההזמנה</h1>
+        <img src="serving.png" alt="אייקון הגשה" class="order-icon">
+        <h1> סטטוס ההזמנה</h1>
         <p>מספר הזמנה: <span id="order-id"></span></p>
         <p>סטטוס: <span id="order-status">בהכנה</span></p>
         <p>⏳ זמן משוער לאיסוף: <span id="order-time">3 דקות</span></p>
 
-        <h2>🛒:הפריטים שהוזמנו</h2>
+        <h2>:הפריטים שהוזמנו</h2>
         <ul id="order-items" class="order-items-list"></ul>
 
         <p id="total-price" class="total-price-container"></p>
 
-        <a href="home.html" class="order-button">🔙 חזרה לדף ראשי</a>
+        <a href="home.html" class="order-button"> חזרה לדף ראשי</a>
     </div>
+
+
+
+    
+<div id="navbar-container"></div>
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+            
+            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
+            setTimeout(() => {
+                const script = document.createElement("script");
+                script.src = "script.js";
+                document.body.appendChild(script);
+            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
+        });
+</script>
+
+<div id="footer-container"></div>
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
+</script>
 
     <script src="script.js"></script>
 </body>
+
+
 </html>

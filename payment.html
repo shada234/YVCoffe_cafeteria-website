@@ -3,52 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔒 תשלום</title>
+    <title> תשלום</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="payment-page">
+
+    <!-- עגלת הקניות -->
+    <div class="cart-summary">
+        <h2> עגלת הקניות שלך🛒</h2>
+        <ul id="cart-items-list"></ul>
+        <p id="total-price" class="total-price-container">סך הכל: 0₪</p>
+    </div>
+
+    <!-- טופס התשלום -->
     <div class="payment-container">
-        <h1>🔒 תשלום</h1>
-        <p>:בחר שיטת תשלום</p>
-    
-        <!-- ✅ קונטיינר לסידור אמצעי התשלום -->
+        <!-- ✅ כותרת ממורכזת -->
+        <div class="payment-header">
+            <h1>תשלום</h1>
+        </div>
+        <p class="payment-subtitle">:בחר שיטת תשלום</p>
+
+        <!-- ✅ אפשרויות תשלום -->
         <div class="payment-methods">
             <label class="payment-option">
                 <input type="radio" name="payment-method" value="credit" checked onclick="togglePaymentFields()">
                 כרטיס אשראי
             </label>
-        
             <label class="payment-option">
                 <input type="radio" name="payment-method" value="cash" onclick="togglePaymentFields()">
                 מזומן בעת האיסוף
             </label>
         </div>
-        
-    
-        <!-- ✅ טופס תשלום בכרטיס אשראי -->
+
+        <!-- ✅ טופס פרטי אשראי -->
         <div id="credit-card-fields">
-            <label for="card-number">📇 :מספר כרטיס אשראי </label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-credit-card"></i>
-                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)">
+            <label for="cardholder-name">:שם בעל הכרטיס</label>
+            <input type="text" id="cardholder-name" placeholder="הכנס שם בעל הכרטיס">
+
+            <label for="id-number">:תעודת זהות</label>
+            <input type="text" id="id-number" placeholder="123456789" maxlength="9" inputmode="numeric" pattern="[0-9]*" oninput="validateNumbers(this)">
+
+            <label for="card-number">:מספר כרטיס אשראי</label>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" pattern="[0-9]*" oninput="validateNumbers(this)">
+
+            <!-- ✅ שדה תוקף ו-CVV באותה שורה -->
+            <div class="expiry-cvv-container">
+                <div>
+                    <label for="expiry-date">:תוקף</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" inputmode="numeric" pattern="[0-9/]*" oninput="validateExpiryDate(this)">
+                </div>
+                <div>
+                    <label for="cvv">:CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3" inputmode="numeric" pattern="[0-9]*" oninput="validateNumbers(this)">
+                </div>
             </div>
-    
-            <label for="expiry-date">📆 :תוקף</label>
-            <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" oninput="formatExpiryDate(this)">
-    
-            <label for="cvv">🔑 :CVV </label>
-            <input type="text" id="cvv" placeholder="123" maxlength="3">
         </div>
-    
-        <!-- כפתור אישור תשלום -->
-        <button onclick="processPayment()">💳 בצע תשלום</button>
-    
+
+        <!-- ✅ כפתור אישור תשלום -->
+        <button class="payment-button" onclick="processPayment()">בצע הזמנה</button>
         <p id="payment-status" class="status-message"></p>
-    
-        <a href="cart.html" class="back-to-cart">🔙 חזרה לעגלה</a>
+        
+
+        <!-- ✅ קישור חזרה לעגלה -->
+        <a href="cart.html" class="back-to-cart"> חזרה לעגלה</a>
     </div>
-    
+<!-- ✅ מודאל לתשלום מוצלח -->
+<div id="modal-payment" class="modal-payment">
+    <div class="modal-content">
+        <h2> תודה על ההזמנה</h2>
+        <p>😊 ההזמנה שלך התקבלה בהצלחה, אנחנו מכינים אותה</p>
+        
+        <button class="modal-button" onclick="closeModalPayment()">חזרה לדף ראשי</button>
+        <button class="modal-button" onclick="viewOrder()"> צפייה בהזמנה</button>
+    </div>
+</div>
+
+
+<div id="navbar-container"></div>
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+            
+            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
+            setTimeout(() => {
+                const script = document.createElement("script");
+                script.src = "script.js";
+                document.body.appendChild(script);
+            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
+        });
+</script>
+
+<div id="footer-container"></div>
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
+</script>
 
     <script src="script.js"></script>
+    
 </body>
-</html>  
+</html>

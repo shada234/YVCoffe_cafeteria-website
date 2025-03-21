@@ -6,36 +6,91 @@
     <title>🛒 עגלת הקניות</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="cart-page">
 
-    <div class="cart-container">
-        <h1>🛒 עגלת הקניות שלך</h1>
-        <ul id="cart-items" class="cart-items-list">
-            <li class="cart-item">
-                <div class="product-details">
-                    <img src="coffee.jpg" class="product-image" alt="קפה הפוך">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">קפה הפוך</p>
-                    <p class="product-price">7₪</p>
-                </div>
-                <div class="quantity-controls">
-                    <button class="decrease">-</button>
-                    <input type="number" value="1" class="quantity-input">
-                    <button class="increase">+</button>
-                    <button class="remove-item">❌</button> <!-- כפתור ההסרה כאן -->
-                </div>
-            </li>
-        </ul>
+    <div class="cartPage-wrapper">
         
-        
+        <!-- סיכום ההזמנה ואמצעי תשלום - עכשיו הם בצד שמאל -->
+        <div class="summary-payment-container">
+<!-- מסגרת זמן האיסוף -->
+<div class="pickup-time-container">
+    <h3> זמן איסוף</h3>
 
-        <p id="total-price" class="total-price-container">סך הכל: 8₪</p>
-        <a href="payment.html" id="checkout" class="checkout-button"> המשך לתשלום</a>
+    <label class="pickup-option">
+        <input type="radio" id="pickup-now" name="pickup-time" value="5min" checked onclick="togglePickupTime()">
+        <span class="pickup-text">החילו בהכנה - אגיע תוך 5 דקות</span>
+    </label>
 
-        <a href="stations.html" class="cart-link">🔗 חזרה לתפריט</a>
+    <label class="pickup-option">
+        <input type="radio" id="pickup-later" name="pickup-time" value="custom" onclick="togglePickupTime()">
+        <span class="pickup-text">בחירת שעת איסוף משוערת:</span>
+    </label>
+
+    <div class="time-picker">
+        <input type="time" id="custom-pickup-time" disabled>
+    </div>
+</div>
+
+            <div class="summary-container">
+                <h2>סיכום הזמנה</h2>
+                <p id="total-price">סך הכל: 0₪</p>
+                <a href="payment.html" id="checkout" class="checkout-button">💳 המשך לתשלום</a>
+                <a href="stations.html" class="cart-link">🔗 חזרה לתפריט</a>
+            </div>
+
+        <!-- מסגרת לאמצעי התשלום -->
+        <div class="paymentcontainer">
+            <h3>:אמצעי תשלום נתמכים</h3>
+            <div class="payment-icons">
+                <img src="visa.png" alt="Visa">
+                <img src="wallet.png" alt="Wallet">
+                <img src="mastercard.png" alt="MasterCard">
+                <img src="American_Express.webp" alt="American Express">
+            </div>
+</div>
+
+
+        </div>
+
+        <!-- עגלת הקניות - עכשיו בצד ימין -->
+        <div class="cartPage-container">
+            <h1>🛒 עגלת הקניות שלך</h1>
+            <div class="cart-items-wrapper">
+                <ul id="cartPage-items" class="cart-items-list">
+                    <!-- המוצרים יוכנסו דינאמית -->
+                </ul>
+            </div>
+        </div>
+
     </div>
 
+
+
+
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+                
+                // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
+                setTimeout(() => {
+                    const script = document.createElement("script");
+                    script.src = "script.js";
+                    document.body.appendChild(script);
+                }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
+            });
+    </script>
+    
+        
+    <div id="footer-container"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-container").innerHTML = data;
+            });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -7,30 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="menuBody">
+    <div id="navbar-container"></div>
+    <main>
 
-    <!-- Sticky Header -->
-    <header class="menu-header">
-        <h1>תפריט</h1>
-        <div class="menu-buttons">
-            <button onclick="window.location.href='stations.html'" class="back-button">⬅ חזרה לתחנות</button>
-            <button onclick="window.location.href='cart.html'" class="cart-button">
-                🛒 
-            </button>
-        </div>
-    </header>
-    
+        <!-- Sticky Header -->
+        <header class="menu-header">
+            <h1>תפריט</h1>
+            <div class="menu-buttons">
+                <button onclick="window.location.href='stations.html'" class="back-button">⬅ חזרה לתחנות</button>
+                <button onclick="window.location.href='cart.html'" class="cart-button">
+                    🛒 
+                </button>
+            </div>
+        </header>
 
-    <!-- Menu Container -->
-    <main class="menu-container">
-        <div id="menu-items" class="menu"></div>
         
+        <!-- Menu Container -->
+        <main class="menu-container">
+            <div id="menu-items" class="menu"></div>
+            
+        </main>
     </main>
 
-    <!-- Footer -->
-    <footer class="menu-footer">
-        <p>🍽️ טעים ובתיאבון! &copy; 2025 קפיטריה</p>
-    </footer>
-    <script src="script.js"></script>
+    
+<div id="navbar-container"></div>
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+            
+            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
+            setTimeout(() => {
+                const script = document.createElement("script");
+                script.src = "script.js";
+                document.body.appendChild(script);
+            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
+        });
+</script>
+
+<div id="footer-container"></div>
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-container").innerHTML = data;
+        });
+</script>
+
+<script src="script.js"></script>
+
+
 
 </body>
 </html>
