@@ -329,7 +329,7 @@ function loginUser() {
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
-/*stations*/
+/*menu*/
 
 function redirectTo(station) {
     window.location.href = `menu.html?station=${station}`;
@@ -584,7 +584,6 @@ function loadMenu() {
 let cart = [];
 function addToCart(name, price, image) {
     cart.push({ name, price, image });
-    alert(`🛍️ ${name} נוסף לעגלה!`);
 }
 
 // Ensure script runs only when DOM is fully loaded
@@ -611,7 +610,7 @@ function saveCart(cart) {
 }
 
 // 🔹 פונקציה להוספת מוצר לעגלה
-function addToCart(name, price, image) {
+function addToCart(name, price, image, button) {
     let cart = getCart();
     let item = cart.find(item => item.name === name);
 
@@ -622,9 +621,20 @@ function addToCart(name, price, image) {
     }
 
     saveCart(cart);
-    alert(name + " נוסף לעגלה!"); // הודעה למשתמש
     updateCartCount(); // עדכון מספר הפריטים בעגלה
+   // 🎯 **הוספת אנימציה לכפתור העגלה**
+button.classList.add("added-to-cart");
+
+// שינוי האייקון זמנית ל-"✔"
+button.innerHTML = "✔";
+
+// אחרי 1.5 שניות נחזיר את הכפתור לקדמותו
+setTimeout(() => {
+    button.classList.remove("added-to-cart");
+    button.innerHTML = `<img src="add-to-cart.png" alt="הוסף לעגלה">`;
+}, 1500);
 }
+
 
 // 🔹 פונקציה לעדכון מספר הפריטים בעגלת הקניות (בכפתור למעלה)
 function updateCartCount() {

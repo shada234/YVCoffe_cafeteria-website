@@ -4,7 +4,6 @@ html, body {
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
-
 }
 
 /* RESET */
@@ -16,13 +15,10 @@ html, body {
     background-color: #f8f8f8;
     scroll-behavior: smooth;
     font-family: Arial, sans-serif;
-
-
-    
 }
-/* HEADER העליון ------------------------------------------------------------------*/
+/* HEADER העליון ---------------------------------------------*/
 .top-header {
-    display: flex;
+    display: flex;  
     justify-content: space-between;
     align-items: center;
     background: #ffffff;
@@ -272,7 +268,6 @@ html, body {
     background: #b7463a;
     transform: scale(1.05);
 }
-
 /* סגנון לאזור ההרשמה ---------------------------------------------------------------------------*/
 .auth-container {
     display: flex;
@@ -691,7 +686,7 @@ html, body {
 /*login*/
 .logIn body {
     text-align: right;
-    background-color: #f9f9f9;
+    background-color: #f2f2f2; /* רקע כללי רך */
     direction: rtl;
     font-family: Arial, sans-serif;
 
@@ -776,7 +771,7 @@ input {
 }
 
 /* חלק שמאל - תמונה */
-.image-container {
+.video-container {
     flex: 1; /* חצי מסך */
     /*background-color: #e74c3c; /* רקע תואם */
     display: flex;
@@ -784,11 +779,14 @@ input {
     justify-content:flex-end;
 }
 
-.image-container img {
+.video-container video {
     width: 105%; /* גודל התמונה */
     max-width: 1000px;
     height: auto;
-    filter: brightness(70%); /* משנה את הבהירות ל-70% */
+    filter: brightness(85%); /* משנה את הבהירות ל-70% */
+
+      
+      
 }
 
 /* חלק ימין - תוכן */
@@ -868,6 +866,39 @@ input {
     background-color: #555;
 }
 
+@media (max-width: 768px) {
+    .wrapper {
+      flex-direction: column;
+    }
+  
+    .video-container {
+      display: none;
+    }
+  
+    .content-container {
+      width: 100%;
+    }
+  
+    .container {
+      width: 90%;
+    }
+  }
+  
+
+/* newww*/
+
+.container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    background-color: white; /* רקע לבן */
+    padding: 30px; /* ריווח פנימי */
+    border-radius: 15px; /* פינות מעוגלות */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל יפה */
+    border: 1px solid #eee;
+
+}
+
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*stations*/
 /* רקע כללי לדף של תחנות */
@@ -893,9 +924,9 @@ input {
 
 /* כל תחנה בנפרד */
 .stationItem {
-    width: 250px;
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 2%;
+    width: 250px; 
+    background-color: rgba(255, 255, 255, 0.592);
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(88, 88, 88, 0.1);
     transition: 0.3s ease-in-out;
@@ -931,7 +962,7 @@ input {
 
 
 .backgroundImage {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -943,23 +974,20 @@ input {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.85);
+    filter: brightness(80%);
 }
-
-
 .content {
     padding: 30px 0 160px 0;
     text-align: center;
     color: white;
 }
-
 .content h2 {
     font-size: 28px;
     margin-bottom: 40px;
 }
 
 /* contact us ------------------------------------------------------------- */
-body {
+.bodyContact {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -971,7 +999,7 @@ body {
     height: 100vh;
 }
 
-.container {
+.contactContainer {
     text-align: center;
     padding: 20px;
 }
@@ -1110,7 +1138,6 @@ button {
 
 .add-to-cart:hover {
     transform: rotate(-10deg) scale(1.1);
-    background-color: #8c483e;
 }
 .add-to-cart img {
     width: 20px;
@@ -1187,6 +1214,24 @@ button {
         width: 18px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*---------------------------------------------------------------------------------------------*/
 /* CART*/
@@ -2038,8 +2083,10 @@ button {
 /*--------------------------------------------------------------------------------------------------------*/
 /*navbar  */
 /* עיצוב ה-NAVBAR */
+
 .navbar {
-    background-color: #c57464;
+    background-color: rgba(255, 255, 255, 0.76);
+    /* שאר הקוד נשאר אותו דבר */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2050,24 +2097,24 @@ button {
     left: 0;
     z-index: 1000;
     direction: rtl;
-
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* מוסיף צל כמו SHEIN */
 }
 
-/* עיצוב כפתורי הניווט */
 .nav-item {
-    color: white;
+    color: black; /* במקום white */
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
-    padding:8px 50px;
+    padding: 8px 20px;
     transition: 0.3s;
+    margin-right: 40px; /* מֵרָחָק מהצד הימני */
+
 }
 
 .nav-item:hover {
-    background-color: #8c483e;
+    background-color: #f2f2f2;
     border-radius: 8px;
 }
-
 /* עיצוב כפתור הפרופיל */
 .profile-btn {
     background: none;
@@ -2078,8 +2125,10 @@ button {
     align-items: center;
     gap: 5px;
     font-weight: bold;
-    color: white;
+    color: black; /* במקום white */
 }
+
+
 
 /* תפריט נפתח */
 .profile-dropdown {
@@ -2126,3 +2175,8 @@ button {
     text-align: center;
     color: #333;
 }
+
+
+
+
+
