@@ -5,133 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>תחנות האוכל</title>
     <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="stationsBody">
- 
-    <div class="backgroungImage">
-        <img src="בר_קפה.png" alt="image-container">
-    </div>
-
-    
-
-    <div class="stationsContainer">
-        <!-- קפטריה חלבית -->
-        <div class="stationItem" onclick="redirectTo('cafeteria_dairy')">
-            <div class="stationIcon">🥛</div>
-            <h2 class="stationTitle">קפטריה חלבית</h2>
-            <p class="stationLocation">  בניין 4, קומה 1-</p>
-        </div>
-
-        <!-- חנות חטיפים -->
-        <div class="stationItem" onclick="redirectTo('snack_shop')">
-            <div class="stationIcon">🍫</div>
-            <h2 class="stationTitle">חנות חטיפים</h2>
-            <p class="stationLocation">  בניין 4, קומה 1-</p>
-        </div>
-
-        <!-- בר קפה -->
-        <div class="stationItem" onclick="redirectTo('coffee_bar')">
-            <div class="stationIcon">☕</div>
-            <h2 class="stationTitle">בר קפה</h2>
-            <p class="stationLocation">בניין 4, קומה 1-, סמוך לספרייה</p>
-        </div>        
-
-        <!-- בר שירות -->
-        <div class="stationItem" onclick="redirectTo('service_bar')">
-            <div class="stationIcon">&#127978;</div>
-            <h2 class="stationTitle">בר שירות</h2>
-            <p class="stationLocation">בניין 1, קומה 0</p>
-        </div>
-
-        <!-- קפטריה בשרית -->
-        <div class="stationItem" onclick="redirectTo('cafeteria_meat')">
-            <div class="stationIcon">🥩</div>
-            <h2 class="stationTitle">קפטריה בשרית</h2>
-            <p class="stationLocation">בניין 6, קומה 0</p>
-        </div>
-    </div>
-
-    <script>
-        function redirectTo(station) {
-            window.location.href = `menu.html?station=${station}`;
-        }
-    </script>
-
-
-
-<div id="navbar-container"></div>
-<script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar-container").innerHTML = data;
-            
-            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
-            setTimeout(() => {
-                const script = document.createElement("script");
-                script.src = "script.js";
-                document.body.appendChild(script);
-            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
-        });
-</script>
-
-<footer>
-    <div class="footer-container">
-        <!-- מיקום -->
-        <div class="footer-section location">
-            <h3>📍 מיקום</h3>
-            <p>מכללת עמק יזרעאל</p>
-        </div>
-
-        <div class="footer-logo">
-            <img src="LOGO2.png" alt="YVCoffee Logo">
-        </div>
-        
-        <!-- צור קשר -->
-        <div class="footer-section-contact">
-            <h3>✉️ צור קשר</h3>
-            <p>📧 <a href="mailto:support@yvcoffe.com">support@yvcoffe.com</a></p>
-            <p>📞 <a href="tel:041234567">04-1234567</a></p>
-        </div>
-    </div>
-</footer>
-
-
-<style>
-    /* שיפור עיצוב ה-Footer */
-
+    <style>
 
 .footer {
-    opacity: 0; /* בהתחלה ה-footer מוסתר */
-    transform: translateY(50px); /* ה-footer מתחיל נמוך */
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* אנימציה חלקה */
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: #c57464; /* ודא שזה הרקע שאתה רוצה */
-    z-index: 1000; /* ודא שהוא יופיע מעל כל שאר האלמנטים */
+    color: white !important;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 100px;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #c57464;
-    width: 100vw; /* לרוחב מלא */
-    max-width: 100%;
     padding: 5px 25px;
-    box-sizing: border-box; /* מונע בעיות של חישוב שוליים */
+    background-color: #c57464;
+    width: 100%;
+    max-width: 95.45vw;
+    flex-direction: row-reverse;
+   
 }
 
-
-.footer-container h3 {
-    color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-}
-.footer-container p {
-    color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-}
 .location {
     text-align: left; /* מיושר לשמאל */
 }
@@ -151,6 +46,14 @@
     text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
 }
 
+.footer-container h3 {
+    color: white !important; /* מבטיח שהכותרות יהיו לבנות */
+
+}
+.footer-container p {
+    color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+}
+
 
 .footer-bottom {
     text-align: center;
@@ -167,8 +70,81 @@
     max-width: 140px; /* גודל הלוגו */
 }
 </style>
+</head>
 
+<body class="stationsBody">
+    <div class="wrapper">
+        <div class="backgroundImage">
+            <img src="בר_קפה.png" alt="image-container">
+        </div>
 
-<script src="script.js"></script>
+        <div class="content">
+            <h2 style="margin-top: 40px; padding-top: 20px; animation: fadeInDown 1s ease-out;">היכן תרצה להזמין היום? בחר את הקפיטריה שהכי מתאימה לך!</h2>
+            <div class="stationsContainer">
+                <div class="stationItem" onclick="redirectTo('cafeteria_dairy')">
+                    <div class="stationIcon">🥛</div>
+                    <h2 class="stationTitle">קפטריה חלבית</h2>
+                    <p class="stationLocation">  בניין 4, קומה 1-</p>
+                </div>
+                <div class="stationItem" onclick="redirectTo('snack_shop')">
+                    <div class="stationIcon">🍫</div>
+                    <h2 class="stationTitle">חנות חטיפים</h2>
+                    <p class="stationLocation">  בניין 4, קומה 1-</p>
+                </div>
+                <div class="stationItem" onclick="redirectTo('coffee_bar')">
+                    <div class="stationIcon">☕</div>
+                    <h2 class="stationTitle">בר קפה</h2>
+                    <p class="stationLocation">בניין 4, קומה 1-, סמוך לספרייה</p>
+                </div>
+                <div class="stationItem" onclick="redirectTo('service_bar')">
+                    <div class="stationIcon">🏪</div>
+                    <h2 class="stationTitle">בר שירות</h2>
+                    <p class="stationLocation">בניין 1, קומה 0</p>
+                </div>
+                <div class="stationItem" onclick="redirectTo('cafeteria_meat')">
+                    <div class="stationIcon">🥩</div>
+                    <h2 class="stationTitle">קפטריה בשרית</h2>
+                    <p class="stationLocation">בניין 6, קומה 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectTo(station) {
+            window.location.href = `menu.html?station=${station}`;
+        }
+    </script>
+
+    <div id="navbar-container"></div>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+                setTimeout(() => {
+                    const script = document.createElement("script");
+                    script.src = "script.js";
+                    document.body.appendChild(script);
+                }, 100);
+            });
+    </script>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section location">
+                <h3> מיקום📍</h3>
+                <p>מכללת עמק יזרעאל</p>
+            </div>
+            <div class="footer-logo">
+                <img src="LOGO2.png" alt="YVCoffee Logo">
+            </div>
+            <div class="footer-section-contact">
+                <h3> צור קשר✉️</h3>
+                <p> <a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧</a></p>
+                <p> <a href="tel:041234567">04-1234567📞</a></p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
