@@ -57,41 +57,39 @@ document.addEventListener("DOMContentLoaded", function () {
 /*-----------------------------------------------------------------------------------------------
 home page- אודות*/
 document.addEventListener("DOMContentLoaded", function () {
-    // 1️⃣ ניווט חלק מה-NAVBAR:
+    document.querySelectorAll(".me-accordion-button").forEach(button => {
+      button.addEventListener("click", function () {
+        const item = this.parentElement;
+        const content = item.querySelector(".accordion-content");
+        const isActive = item.classList.contains("active");
+  
+        document.querySelectorAll(".accordion-item").forEach(i => {
+          i.classList.remove("active");
+          i.querySelector(".accordion-content").style.display = "none";
+        });
+  
+        if (!isActive) {
+          item.classList.add("active");
+          content.style.display = "block";
+        }
+      });
+    });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("a[data-target]").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const target = document.querySelector(this.getAttribute("data-target"));
-            if (target) {
-                window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
-            }
-        });
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const targetSelector = this.getAttribute("data-target");
+        const target = document.querySelector(targetSelector);
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      });
     });
-
-    // 2️⃣ אקורדיון – פתיחה וסגירה בלחיצה:
-    document.querySelectorAll(".accordion-button").forEach(button => {
-        button.addEventListener("click", function () {
-            const item = this.parentElement;
-            const content = item.querySelector(".accordion-content");
-
-            // בדיקה אם האקורדיון כבר פתוח
-            const isActive = item.classList.contains("active");
-
-            // סוגר את כל האקורדיונים
-            document.querySelectorAll(".accordion-item").forEach(i => {
-                i.classList.remove("active");
-                i.querySelector(".accordion-content").style.display = "none";
-            });
-
-            // אם הוא לא היה פתוח – פותח אותו
-            if (!isActive) {
-                item.classList.add("active");
-                content.style.display = "block";
-            }
-        });
-    });
-});
-
+  });
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 /*home page- NAVBAR*/
 document.addEventListener("DOMContentLoaded", function () {
@@ -209,14 +207,16 @@ function goToCart() {
     window.location.href = "cart.html"; // מעבר לדף העגלה
 }
 
-// עדכון החלון הקופץ עם פריטי העגלה
 function updateCartPopup() {
-    const cart = getCart();
     const cartItemsContainer = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("popup-total-price");
     const emptyCartMessage = document.getElementById("empty-cart-message");
 
-    cartItemsContainer.innerHTML = ""; // לנקות קודם
+    // אם האלמנטים לא קיימים – לצאת מהפונקציה
+    if (!cartItemsContainer || !totalPriceElement || !emptyCartMessage) return;
+
+    const cart = getCart();
+    cartItemsContainer.innerHTML = "";
     let total = 0;
 
     if (cart.length === 0) {
@@ -235,8 +235,8 @@ function updateCartPopup() {
     }
 
     totalPriceElement.innerText = `סך הכל: ${total.toFixed(2)}₪`;
-    
 }
+
 function addToCart(name, price, image, button) {
     let cart = getCart();
     let item = cart.find(item => item.name === name);
@@ -1006,43 +1006,56 @@ function formatExpiryDate(input) {
     input.value = value.substring(0, 5);
 }
 
-// 🔹 פונקציה לבדיקה ואישור תשלום
 function processPayment() {
+    const isLoggedIn = localStorage.getItem("userLoggedIn");
+    if (isLoggedIn !== "true") {
+      alert("אנא התחבר לפני ביצוע ההזמנה");
+      window.location.href = "logIn.html";
+      return;
+    }
+  
     const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
     const statusMessage = document.getElementById("payment-status");
-
+  
     if (paymentMethod === "credit") {
-        const cardNumber = document.getElementById("card-number").value.trim();
-        const expiryDate = document.getElementById("expiry-date").value.trim();
-        const cvv = document.getElementById("cvv").value.trim();
-
-        // ✅ בדיקות תקינות של כרטיס אשראי
-        if (cardNumber.length < 19) {
-            showError("❌ מספר כרטיס האשראי אינו תקין (יש להכניס 16 ספרות)");
-            return;
-        }
-        if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-            showError("❌ תוקף הכרטיס אינו תקין (פורמט MM/YY)");
-            return;
-        }
-        if (cvv.length < 3) {
-            showError("❌ מספר CVV חייב להיות 3 ספרות");
-            return;
-        }
-
-        // ✅ תשלום מוצלח
-        showSuccess("✅ התשלום בוצע בהצלחה");
+      const cardNumber = document.getElementById("card-number").value.trim();
+      const expiryDate = document.getElementById("expiry-date").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
+  
+      if (cardNumber.length < 19) {
+        showError("❌ מספר כרטיס האשראי אינו תקין (יש להכניס 16 ספרות)");
+        return;
+      }
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        showError("❌ תוקף הכרטיס אינו תקין (פורמט MM/YY)");
+        return;
+      }
+      if (cvv.length < 3) {
+        showError("❌ מספר CVV חייב להיות 3 ספרות");
+        return;
+      }
+  
+      showSuccess("✅ התשלום בוצע בהצלחה");
     } else {
-        // ✅ תשלום במזומן
-        showSuccess("✅ התשלום יתבצע במזומן בעת האיסוף");
+      showSuccess("✅ התשלום יתבצע במזומן בעת האיסוף");
     }
-
-    // ✅ לאחר שנייה, הצגת ה-Modal במקום מעבר לדף חדש
+  
+    // ✨ שמירת ההזמנה
+    const cart = getCart();
+    if (cart.length === 0) {
+      alert("העגלה ריקה");
+      return;
+    }
+  
+    saveOrder(cart);   // ⬅️ קודם שומרים
+    clearCart();       // ⬅️ אחר כך מנקים
+  
+    // ✅ הצגת המודאל אחרי שנייה
     setTimeout(() => {
-        document.getElementById("modal-payment").style.display = "flex";
+      document.getElementById("modal-payment").style.display = "flex";
     }, 1000);
-}
-
+  }
+  
 // 🔹 פונקציה להצגת שגיאה
 function showError(message) {
     const statusMessage = document.getElementById("payment-status");
@@ -1184,6 +1197,7 @@ function saveOrder(cart) {
   
     const newOrder = {
       date: new Date().toLocaleDateString('he-IL'),
+      time: new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }),
       items: cart,
       total: cart.reduce((sum, item) => sum + item.quantity * item.price, 0),
       status: "בהכנה"
@@ -1195,8 +1209,7 @@ function saveOrder(cart) {
   
   function clearCart() {
     localStorage.removeItem("shoppingCart");
-    updateCartCount(); // אם יש לך עדכון במספר בעגלה
-    updateCartPopup?.(); // אם יש לך קופץ בעמוד הבית (אם לא – אפשר למחוק שורה זו)
+    updateCartCount(); // אם יש ספירה ליד עגלת קניות
+    updateCartPopup(); // אם יש עגלת פופאפ
   }
-  
   

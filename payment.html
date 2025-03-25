@@ -163,29 +163,6 @@
     </script>
 
 <script>
-function processPayment() {
-  const isLoggedIn = localStorage.getItem("userLoggedIn");
-  if (isLoggedIn !== "true") {
-    alert("אנא התחבר לפני ביצוע ההזמנה");
-    window.location.href = "logIn.html";
-    return;
-  }
-
-  const cart = getCart();
-  if (cart.length === 0) {
-    alert("העגלה ריקה");
-    return;
-  }
-
-  // ✨ שמירת ההזמנה
-  saveOrder(cart);
-  clearCart();
-
-  // הצגת מודאל תודה
-  document.getElementById("modal-payment").style.display = "flex";
-}
-
-
   function closeModalPayment() {
     window.location.href = "home.html";
   }

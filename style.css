@@ -44,6 +44,7 @@ html, body {
 
 .logo img {
     height: 100px; /* גובה הלוגו */
+    margin-right: 140px; /* מוסיף רווח משמאל */
 }
 
 
@@ -447,28 +448,6 @@ html, body {
     display: block;
 }
  
-/* כפתור הוספת לסל ------------------------------------------------------------------*/
-.add-to-cart-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease;
-  }
-  
-  .add-to-cart-btn i {
-    font-size: 24px;
-    color: rgb(83, 80, 80); /* או צבע אחר */
-  }
-  .add-to-cart-btn:hover {
-    transform: scale(1.2) rotate(-5deg);
-  }
-  
-  .add-to-cart-btn:hover i {
-    color: #494949; /* צבע חום כהה לדוגמה */
-  }
-  
-
 /*אודות------------------------------------------------------------------------*/
 .about-section {
     display: flex;
@@ -481,8 +460,11 @@ html, body {
     flex-direction: row-reverse; /* הופך את הסדר – תמונה בימין, טקסט בשמאל */
     direction: rtl; /* כיוון עברית */
     margin-top: 50px;
+    scroll-margin-top: 100px; /* או גובה ה-navbar שלך בפיקסלים */
+      }
+      
 
-}
+
 .about-image {
     flex: 1.3;
     display: flex;
@@ -521,7 +503,7 @@ html, body {
     border-bottom: 1px solid #ccc;
 }
 
-.accordion-button {
+.me-accordion-button {
     width: 100%;
     background: none;
     border: none;
@@ -535,12 +517,12 @@ html, body {
     color: #6b250e;
 }
 
-.accordion-button:hover {
+.me-accordion-button:hover {
     background: #f3e5e5;
 }
 
 .accordion-content {
-    display: none;
+    display: none ;
     padding: 15px;
     font-size: 18px;
     color: #673517;
