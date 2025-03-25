@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <title>YVCoffe_cafeteria</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,6 +15,12 @@
         <div class="auth-container">
             <div class="auth-text">
                 <a href="login.html" class="auth-link" id="home-auth-text">התחברות / הרשמה</a>
+                <div class="auth-dropdown" id="home-auth-menu" style="display: none;">
+                    <a href="profile.html">👤 הפרופיל שלי</a>
+                    <a href="orders.html">📦 ההזמנות שלי</a>
+                    <a href="#" id="home-logout">🚪 התנתקות</a>
+                </div>
+                
             </div>
             <div class="auth-icon">
                 <img src="account.png" alt="התקשרו אלינו">
@@ -43,6 +51,7 @@
             </div>
         </div>
     </div>
+      
     
     <!-- NAVBAR ----------------------------------------------------------------->
     <nav class="HomeNavbar">
@@ -218,7 +227,10 @@
         <img src="/images/pizaaa.png" alt="Pizza">
         <div class="meal-info">
             <h3>פיצה</h3>
-            <p>₪25</p>
+            <p>25₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -227,7 +239,10 @@
         <img src="/images/toast.png" alt="Toast">
         <div class="meal-info">
             <h3>טוסט</h3>
-            <p>₪18</p>
+            <p>18₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -236,7 +251,10 @@
         <img src="/images/Almond_Croissant.png" alt="Almond Croissant">
         <div class="meal-info">
             <h3>קרואסון שקדים</h3>
-            <p>₪15</p>
+            <p>15₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -245,7 +263,10 @@
         <img src="images/Chocolate_Croissant.png" alt="Chocolate Croissant">
         <div class="meal-info">
             <h3>קרואסון שוקולד</h3>
-            <p>₪15</p>
+            <p>15₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -254,7 +275,10 @@
         <img src="images/Tuna_Roll.png" alt="Tuna Roll">
         <div class="meal-info">
             <h3>רול טונה</h3>
-            <p>₪22</p>
+            <p>22₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -262,7 +286,10 @@
         <img src="images/Egg_Salad_Sandwich.png" alt="Egg_Salad_Sandwich">
         <div class="meal-info">
             <h3>כריך סלט ביצים </h3>
-            <p>₪22</p>
+            <p>22₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -271,7 +298,10 @@
         <img src="images/Cheese_Bourekas.png" alt="Cheese_Bourekas">
         <div class="meal-info">
             <h3>בורקס גבינה </h3>
-            <p>₪22</p>
+            <p>22₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -279,7 +309,10 @@
         <img src="images/Potato_Bourekas.png" alt="Potato_Bourekas">
         <div class="meal-info">
             <h3>בורקס תפוח אדמה</h3>
-            <p>₪22</p>
+            <p>22₪</p>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-cart-plus"></i>
+              </button>
 
         </div>
     </div>
@@ -299,7 +332,7 @@
         </div>
 
         <div class="footer-logo">
-            <img src="LOGO2.png" alt="YVCoffee Logo">
+            <img src="logow.png" alt="YVCoffee Logo">
         </div>
         
         <!-- צור קשר -->
@@ -339,6 +372,8 @@ footer {
 }
 .footer-section-contact {
     text-align: right; /* מיושר לימין */
+
+
     
 }
 
@@ -367,6 +402,7 @@ footer {
 
 .footer-logo img {
     max-width: 140px; /* גודל הלוגו */
+    margin-left: 80px;
 }
 
 

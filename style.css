@@ -24,7 +24,9 @@ html, body {
     background: #ffffff;
     padding: 5px 20px;
     position: relative;
-
+    min-height: 120px;
+    z-index: 2;        /* מוריד את ה-navbar מהרקע הגבוה מדי */
+    overflow: visible; /* הכי חשוב - כדי שהdropdown יוכל לצאת מהמסגרת */
 }
 
 .contact-info, .cart {
@@ -103,17 +105,15 @@ html, body {
 
 /* עיצוב התפריט הנפתח */
 .dropdown-content {
-    display: none;
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    width: 180px;
-    text-align: right;
-    z-index: 10;
-}
+    background-color: white;
+    z-index: 9999; /* גבוה כדי שיופיע מעל הכל */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 10px;
+  }
+  
 
 .dropdown-content a {
     display: block;
@@ -141,8 +141,9 @@ html, body {
     height: 43px; /* או כל ערך שמתאים לך */
     line-height: 50px; /* ליישור אנכי של הטקסט */
     padding: 10px 0; /* מוסיף רווח פנימי */
-    z-index: 1000; /* מוודא שהוא מעל כל האלמנטים */
-
+    z-index: 1 !important;
+    
+    
 }
 .HomeNavbar.fixed {
     position: fixed;
@@ -262,6 +263,7 @@ html, body {
     border-radius: 50px;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
+
 }
 
 .order-btn:hover {
@@ -273,14 +275,12 @@ html, body {
     display: flex;
     align-items: center;
     gap: 10px;
-    position: absolute;
-    left: 50px; /* מזיז שמאלה לכיוון הסימון שלך */
-    top: 50%;
-    transform: translateY(-50%); /* ממקם אותו בדיוק במרכז האנכי */
+    position: relative;     /* חשוב כדי ש-dropdown יתמקם נכון */
     font-family: Arial, sans-serif;
     text-align: right;
     direction: rtl;
     flex-direction: row-reverse;
+    z-index: 1000;          /* גבוה כדי שה-dropdown יופיע מעל הכל */
 }
 
 .auth-icon {
@@ -317,6 +317,34 @@ html, body {
 .auth-link:hover {
     color: #d9534f; /* משנה צבע לאדום */
     transform: translateX(7px); /* מזיז טיפה ימינה */
+}
+
+.auth-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    width: 170px;
+    z-index: 9999 !important;
+}
+
+
+
+
+.auth-dropdown a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.auth-dropdown a:hover {
+    color: #d9534f;
 }
 
 /* עיצוב הסל -------------------------------------------------------------------*/
@@ -368,7 +396,8 @@ html, body {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    z-index: 1050;
+    z-index: 9999 !important;
+    direction: rtl;
 }
 
 
@@ -417,6 +446,28 @@ html, body {
 .cart-container:hover .cart-popup {
     display: block;
 }
+ 
+/* כפתור הוספת לסל ------------------------------------------------------------------*/
+.add-to-cart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+  }
+  
+  .add-to-cart-btn i {
+    font-size: 24px;
+    color: rgb(83, 80, 80); /* או צבע אחר */
+  }
+  .add-to-cart-btn:hover {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  
+  .add-to-cart-btn:hover i {
+    color: #494949; /* צבע חום כהה לדוגמה */
+  }
+  
 
 /*אודות------------------------------------------------------------------------*/
 .about-section {
@@ -699,7 +750,7 @@ html, body {
 }
 
 .description {
-    font-size: 14px;
+    font-size: 18px;
     color: #666;
     margin-bottom: 20px;
     text-align:center;
@@ -775,19 +826,21 @@ input {
     flex: 1; /* חצי מסך */
     /*background-color: #e74c3c; /* רקע תואם */
     display: flex;
-    align-items: flex;
-    justify-content:flex-end;
+    align-items: center;
+    justify-content:center;
+    overflow: hidden;
+    height: 100vh; /* חשוב */
 }
 
 .video-container video {
-    width: 105%; /* גודל התמונה */
-    max-width: 1000px;
-    height: auto;
-    filter: brightness(85%); /* משנה את הבהירות ל-70% */
-
-      
-      
-}
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ימלא את החלק גם אם חותך קצת */
+    filter: brightness(80%); /* משנה את הבהירות ל-80% */
+    margin-top: 70px; 
+    padding-top: 70px; 
+  }
+  
 
 /* חלק ימין - תוכן */
 .content-container {
@@ -803,8 +856,12 @@ input {
     max-width: 400px;
     width: 100%;
     text-align: center;
-    box-shadow: none; /* מסיר צל */
-    
+    background-color: white; /* רקע לבן */
+    padding: 30px; /* ריווח פנימי */
+    border-radius: 15px; /* פינות מעוגלות */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל יפה */
+    border: 1px solid #eee;
+
 }
 /* עיצוב המודאל (חלון קופץ) */
 .modal {
@@ -884,21 +941,6 @@ input {
     }
   }
   
-
-/* newww*/
-
-.container {
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    background-color: white; /* רקע לבן */
-    padding: 30px; /* ריווח פנימי */
-    border-radius: 15px; /* פינות מעוגלות */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל יפה */
-    border: 1px solid #eee;
-
-}
-
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*stations*/
 /* רקע כללי לדף של תחנות */
@@ -907,84 +949,94 @@ input {
     text-align: center;
     background-color: #f9f9f9;
     direction: rtl;
+    padding-top: 50px;
     
 
 }
 
-/* קונטיינר לכל התחנות */
-.stationsContainer {
+.stationsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+}
+
+.stationsRow {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px;
-    margin-top: 7%;
-
+    gap: 30px;
+    justify-content: space-between;
 }
 
-/* כל תחנה בנפרד */
+.stationsRow.center {
+    justify-content: center; /* השורה עם 2 תחנות תהיה ממורכזת */
+}
+
 .stationItem {
-    width: 250px; 
-    background-color: rgba(255, 255, 255, 0.592);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(88, 88, 88, 0.1);
-    transition: 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-}
-
-/* שינוי צבע רקע בתחנה בעת ריחוף */
-.stationItem:hover {
-    background-color: #C76C59; /* צבע כהה */
-    color: rgba(255, 255, 255, 0.786);
-    transform: scale(1.05);
-}
-
-/* אייקון של התחנה */
-.stationIcon {
-    font-size: 50px;
-    margin-bottom: 10px;
-}
-
-
-/* כותרת של התחנה */
-.stationTitle {
-    font-size: 22px;
-    margin-bottom: 5px;
-    
-}
-
-/* מיקום התחנה */
-.stationLocation {
-    font-size: 16px;
-    color:black;
-}
-
-
-.backgroundImage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.backgroundImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(80%);
-}
-.content {
-    padding: 30px 0 160px 0;
+    width: 280px;
     text-align: center;
-    color: white;
+    padding-bottom: 15px;
 }
-.content h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
+
+.stationItem:hover {
+    transform: scale(1.03);
 }
+
+.stationImage {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.stationTitle {
+    font-size: 20px;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #222;
+}
+
+.stationLocation,
+.stationHours {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+.stationsHeader {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+    animation: fadeInDown 0.8s ease-in-out;
+    font-size: 20px;
+}
+.stationItem {
+    opacity: 0;
+    animation: fadeInUp 0.7s ease forwards;
+}
+.stationItem:nth-child(1) { animation-delay: 0.1s; }
+.stationItem:nth-child(2) { animation-delay: 0.2s; }
+.stationItem:nth-child(3) { animation-delay: 0.3s; }
+/* וכן הלאה... */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* contact us ------------------------------------------------------------- */
 .bodyContact {
@@ -994,14 +1046,17 @@ input {
     background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    min-height: 100vh; /* במקום height */
+    direction: rtl;
+    padding-top: 50px;
 }
 
 .contactContainer {
     text-align: center;
     padding: 20px;
+    flex: 1; /* זה דוחף את הפוטר למטה */
+    direction: rtl;
+
 }
 .contact-form {
     background: white;
@@ -1044,12 +1099,13 @@ button {
 .menuBody {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     background-color: #f8f1ed;
     text-align: center;
     overflow-x: hidden;
     overflow-y: auto;
     direction: rtl;
+    padding-top: 80px; /* הגובה של ה־navbar */
+
 
 }
 
@@ -1120,7 +1176,6 @@ button {
     direction: rtl;
 }
 
-/* כפתור עגלת הקניות */
 /* 🛒 עיצוב כפתור העגלה */
 .add-to-cart {
     width: 35px;
@@ -1135,7 +1190,6 @@ button {
     background-color: transparent;
 }
 
-
 .add-to-cart:hover {
     transform: rotate(-10deg) scale(1.1);
 }
@@ -1143,56 +1197,70 @@ button {
     width: 20px;
     height: 20px;
 }
-/* כפתור חזרה ועגלת קניות */
-.menu-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 8px 15px;
+
+.add-to-cart.added {
+    background-color: #d4edda; /* רקע ירקרק */
+    transform: scale(1.1);
+    transition: background-color 0.3s ease-in-out;
 }
 
-/* כפתור חזרה */
-.back-button {
-    background-color: transparent;
-    color: #a85d4f;
-    border: 2px solid #a85d4f;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 8px;
+.station-title {
+    text-align: center;
+    font-size: 24px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    transition: background 0.3s ease-in-out, transform 0.2s, color 0.3s;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #4a4949;
 }
-.back-button:hover {
+
+
+/* כפתור חזרה -----------------*/
+.floating-buttons {
+    position: fixed;
+    bottom: 20px; /* 🟢 משנה את המרחק מהתחתית - שימי לב! כאן משחקים */
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+    align-items: center;
+  }
+  
+  
+  .floating-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .floating-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     background-color: #a85d4f;
     color: white;
-    transform: scale(1.05);
-}
-
-
-.cart-button {
-    background-color: #a44d3e;
-    color: white;
     border: none;
-    padding: 10px;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-}
-
-.cart-button:hover {
+  }
+  
+  .floating-btn:hover {
     background-color: #8c483e;
     transform: scale(1.1);
-}
+  }
+  
+  .floating-label {
+    font-size: 12px;
+    margin-top: 3px;
+    color: #444;
+    font-weight: bold;
+  }
+  
 
 /* התאמה למובייל */
 @media (max-width: 768px) {
@@ -1215,388 +1283,349 @@ button {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*---------------------------------------------------------------------------------------------*/
-/* CART*/
-
-#cart-page {
-    background-color: #ebd9d9d0; /* רקע אפור בהיר */
-}
-
-
-/*  גלילה אנכית פנימית אם יש יותר מדי מוצרים */
-.cartPage-items-wrapper {
-    overflow-y: auto;
-    max-height: 350px;
-}
-
-.cart-item {
+/* מיקום ---------------*/ 
+.station-top-bar {
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: space-between;
-    background: #f9f9f9;
-    border-radius: 8px;
+    background-color: #f8f3f1;
+    padding: 12px 25px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
+    direction: rtl;
 }
 
-/*  תמונת מוצר */
-.product-image {
-    width: 50px;
-    height: auto;
-    border-radius: 5px;
-}
-
-/*  מידע המוצר */
-.product-info {
-    flex-grow: 1;
-    text-align: right;
-}
-
-/*  כפתורי כמות */
-.quantity-controls {
+.station-name-block {
     display: flex;
     align-items: center;
-
-}
-
-.quantity-controls button {
-    background: #ddd;
-    border: none;
-    padding: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    width: 20px;
-    height: 25px;
-    text-align: center;
-    border-radius: 5px;
-}
-/* מסגרת זמן האיסוף */
-.pickup-time-container{
-    background: #fff;
-    padding:10px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: right;
-    max-width: 400px;
-}
-
-/* עיצוב כותרת */
-.pickup-time-container h3 {
+    gap: 12px;
     font-size: 20px;
     font-weight: bold;
-    gap: 8px;
-    text-align: center;
+    color: #333;
 }
 
-/*  עיצוב כל אפשרות רדיו */
-.pickup-option {
-    display: flex;
+.station-small-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.station-icon {
+    font-size: 22px;
+}
+
+.station-name-text {
+    font-size: 22px;
+}
+
+/*search ------------*/
+.station-header-bar {
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
+    justify-content: space-between;
+    background-color: #f8f3f1;
+    padding: 12px 25px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     direction: rtl;
-    text-align: right;
-    gap: 10px; /* רווח קטן בין הכפתור לטקסט */
-}
-/*  עיצוב כפתורי הרדיו */
-.pickup-option input {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #e74c3c; /* צבע אדום אלגנטי */
-}
-/*  עיצוב טקסט של כל אופציה */
-.pickup-text {
-    flex: 1;
-    font-size: 16px;
+    gap: 20px;
 }
 
-/*  עיצוב שדה בחירת השעה */
-.time-picker {
+.station-title-block {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     gap: 10px;
-    background: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    margin-top: 10px;
-
-}/*  עיצוב שדה הזמן */
-.time-picker input {
-    border: none;
-    font-size: 12px;
-    width: 100px;
-    text-align: center;
-    padding: 0%;
-    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
 }
 
+.station-small-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
 
-.cartPage-wrapper {
+.station-icon {
+    font-size: 20px;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* רווח בין האייקון לאינפוט */
+    margin-top: 10px;
+  }
+  
+  
+
+#product-search {
+  width: 400px;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  text-align: center;
+  outline: none;
+  transition: 0.3s;
+}   
+
+  #product-search:focus {
+    border-color: #888;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  }
+  .search-icon {
+    font-size: 22px;
+    color: #a05845; /* צבע חום שמתאים לעיצוב שלך */
+  }
+  
+/*---------------------------------------------------------------------------------------------
+cart*/
+#cart-page {
+    background-color: #f9f9f9;
+    overflow: auto;
+    padding-top: 100px;
+  }
+  
+
+  
+  /* פריסת העמוד */
+  #cart-page .cartPage-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    flex-wrap: wrap;
     max-width: 1100px;
     margin: auto;
+    padding: 20px;
     gap: 20px;
-    flex-direction: row-reverse; /* הופך את הסדר - עגלה מימין, סיכום משמאל */
-    
-}
-
-/*  עיצוב עגלת הקניות */
-.cartPage-container {
+    flex-direction: row-reverse;
+    direction: rtl;
+    min-height: calc(100vh - 120px);
+  }
+  
+  /* קונטיינר עגלה */
+  #cart-page .cartPage-container {
     flex: 2;
     background: #fff;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* גלילה פנימית */
-    max-height: 450px; /* גובה מקסימלי לעגלה */
-}
-
-/*  יישור כותרת עגלת הקניות לאמצע */
-.cartPage-container h1 {
+    overflow-y: unset;
+    max-height: none;
+  }
+  
+  #cart-page .cartPage-container h1 {
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 10px;
-    order: 1; /* שם את העגלה בצד ימין */
-
-}
-
-/*  רשימת הפריטים בתוך העגלה */
-.cartPage-items-list {
+  }
+  
+  /* רשימת פריטים */
+  #cart-page .cart-items-list {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-/*  כל פריט בעגלה */
-.cart-item {
+  }
+  
+  /* פריט בעגלה – כולל 2 שורות */
+  #cart-page .cart-item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     background: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
-    margin-bottom: 8px;
-    max-height: 80px;
-}
-
-/* ✅ עיצוב תמונת המוצר */
-.cart-item img {
+    margin-bottom: 10px;
+    direction: rtl;
+  }
+  
+  /* שורה ראשונה – תמונה + שם + איקס */
+  #cart-page .cart-item-main {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  #cart-page .cart-item-main img {
     width: 60px;
     height: auto;
     border-radius: 5px;
-}
-
-/* ✅ פרטי המוצר: שם + מחיר */
-.cart-item-details {
-    flex: 1;
+  }
+  
+  #cart-page .cart-item-main .item-name {
+    font-weight: bold;
+    font-size: 16px;
+    flex-grow: 1;
     text-align: right;
-    font-size: 14px;
-    padding: 0 10px;
-}
-
-
-
-/* ✅ עיצוב בקר הכמות */
-.cart-item-quantity {
+  }
+  
+  /* כפתור הסרה */
+  #cart-page .remove-item {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-right: 6px; /* רווח קל אחרי המינוס */
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  
+  #cart-page .remove-item .bin-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  
+
+  #cart-page .remove-item:hover {
+    transform: scale(1.1);
+  }
+
+
+
+  
+  /* שורה שנייה – מחיר + כמות */
+  #cart-page .cart-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  #cart-page .item-price {
+    font-size: 16px;
+  }
+  
+  /* כמות */
+  #cart-page .cart-item-quantity {
+    display: flex;
+    align-items: center;
     gap: 5px;
-}
-
-/* ✅ הקטנת שדה הכמות */
-.cart-item-quantity input {
-    width: 35px !important; /* מקטין את הרוחב */
-    height: 30px !important; /* מקטין את הגובה */
-    font-size: 14px; /* מקטין את גודל הטקסט */
-    text-align: center;
+  }
+  
+  #cart-page .cart-item-quantity button {
+    width: 30px;
+    height: 30px;
+    background: #ccc;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #cart-page .cart-item-quantity input {
+    width: 35px;
+    text-align: center ;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    padding: 2px;
-}
-
-/* ✅ הקטנת כפתורי הפלוס והמינוס */
-.cart-item-quantity button {
-    background: #ddd;
-    border: none;
-    width: 24px !important; /* מקטין את הכפתורים */
-    height: 24px !important;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-/* ✅ אפקט מעבר */
-.cart-item-quantity button:hover {
-    background: #bbb;
-}
-
-
-
-/* ✅ כפתור מחיקת מוצר */
-.remove-item {
-    background: rgb(253, 200, 200);
-    color: white;
-    border: none;
-    padding: 5px 8px ;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 2%;
-}
-
-.remove-item:hover {
-    background: rgb(226, 160, 160);
-}
-
-/* ✅ סיכום ההזמנה + אמצעי תשלום */
-.summary-payment-container {
+  }
+  
+  /* תקציר הזמנה */
+  #cart-page .summary-payment-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    order: 2; /* שם את סיכום ההזמנה ואמצעי התשלום בצד שמאל */
-
-}
-
-/* ✅ סגנון סיכום ההזמנה */
-.summary-container {
+  }
+  
+  #cart-page .summary-container {
     background: #fff;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 10px;
     text-align: center;
-    max-height: 200px;
-}
-
-/* ✅ כפתור המשך לתשלום */
-.checkout-button {
-    display:inline-block;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #cart-page .checkout-button {
     background: #e74c3c;
     color: white;
-    text-align: center;
-    padding: 5px;
+    padding: 8px 12px;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
-
-.checkout-button:hover {
+    display: inline-block;
+  }
+  
+  #cart-page .checkout-button:hover {
     background: #c0392b;
-}
-
-/* ✅ קישור חזרה לתפריט */
-.cart-link {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #7f8c8d;
-    text-decoration: none;
-}
-
-.cart-link:hover {
-    color: #2c3e50;
-}
-
-/* ✅ מסגרת לאמצעי תשלום */
-.payment-methods-container {
+  }
+  
+  /* אמצעי תשלום */
+  #cart-page .paymentcontainer {
     background: #f8f8f8;
+    padding: 10px;
     border-radius: 10px;
     text-align: center;
-}
-
-/* ✅ עיצוב תמונת כרטיסי אשראי */
-.payment-methods-container img {
-    width: 180px;
-    margin-top: 5px;
-}
-
-/* ✅ התאמות למסכים קטנים */
-@media (max-width: 900px) {
-    .cartPage-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cartPage-container {
-        width: 100%;
-    }
-
-    .summary-payment-container {
-        width: 100%;
-    }
-}
-/* ✅ מסגרת לאמצעי התשלום */
-.paymentcontainer {
-    background: #f8f8f8; /* רקע עדין */
-    padding: 5px;
+  }
+  
+  #cart-page .payment-icons img {
+    width: 40px;
+    margin: 0 5px;
+  }
+  
+  /* זמן איסוף */
+  .pickup-time-container {
+    flex: 1;
+    background: #fff;
     border-radius: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* ✅ כותרת אמצעי תשלום */
-.paymentcontainer h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333;
-    font-weight: bold;
-}
-
-/* ✅ עיצוב שורת האייקונים */
-.payment-icons {
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: fit-content;
+    overflow: hidden;
+  }
+  
+  .time-picker {
     display: flex;
     justify-content: center;
-    gap: 10px; /* ריווח בין האייקונים */
-}
+    align-items: center;
+    padding: 12px;
+  }
+  
+  .time-picker input[type="time"] {
+    width: 120px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px;
+  }
+  
+  .pickup-option {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    direction: rtl;
+  }
+  
+  .pickup-text {
+    font-weight: normal;
+    font-size: 16px;
+  }
+  
+  /* מובייל */
+  @media (max-width: 768px) {
+    #cart-page .cartPage-wrapper {
+      flex-direction: column;
+    }
+  
+    #cart-page footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
 
-/* ✅ עיצוב תמונות הכרטיסים */
-.payment-icons img {
-    width: 30px; /* גודל אחיד לכל כרטיס */
-    height: auto;
-    border-radius: 5px;
-    transition: transform 0.2s ease-in-out;
-}
-
-/* ✅ אפקט בעת מעבר עכבר */
-.payment-icons img:hover {
-    transform: scale(1.1);
-}
-
-
+  
 /*---------------------------------------------------------------------------------------------------------------------------*/
 /*payment*/
 /*  עיצוב עמוד התשלום */
@@ -1612,7 +1641,7 @@ button {
     margin-bottom: 5px; /* הקטנת הרווח למטה */
     margin-top: 0px;
 }
-/* ✅ עיצוב קישור "חזרה לעגלה" */
+/* עיצוב קישור "חזרה לעגלה" */
 .back-to-cart {
     display: block; /* מוודא שהאלמנט יתפוס שורה מלאה */
     text-align: center; /* ממרכז את הטקסט */
@@ -1629,7 +1658,7 @@ button {
 }
 
 
-/* ✅ "בחר שיטת תשלום" - צמצום הרווח מלמעלה */
+/* "בחר שיטת תשלום" - צמצום הרווח מלמעלה */
 .payment-subtitle {
     text-align: center;
     font-size: 16px;
@@ -1638,55 +1667,31 @@ button {
     margin-bottom: 8px; /* ריווח קטן מתחת */
 }
 
-/* ✅ אם משתמשים באייקון תמונה */
-.payment-header img {
-    width: 18px;
-    height: auto;
-}
-
-/* ✅ עיצוב כללי של העמוד */
-.payment-page {
-    display: flex;
-    justify-content: center; /* ממקם הכל במרכז */
-    align-items: flex-start;
-    gap: 8px; /* פחות רווח בין העגלה לתשלום */
-    max-width: 1000px;
-    margin: auto;
-    padding: 15px;
-    background: #ebd9d9d0
-}
-
-/* ✅ עיצוב העגלה */
+/* עיצוב העגלה */
 .cart-summary {
     order: 2;
     width: 30%;
     background: #f9f9f9;
-    padding: 10px; /* פחות מקום */
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: right;
     font-size: 14px;
     direction: rtl;
-
+    min-width: 270px;
 }
 
-/* ✅ קונטיינר התשלום קטן יותר */
+/*  קונטיינר התשלום קטן יותר */
 .payment-container {
     order: 1;
-    width: 38%; /* היה 40% */
+    width: 38%;
     background: white;
-    padding: 12px; /* היה 15px */
+    padding: 12px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 270px;
 }
-.payment-container input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
+
 
 .payment-container input:focus {
     border-color: #3498db;
@@ -1694,7 +1699,7 @@ button {
     outline: none;
 }
 
-/* ✅ שיטות התשלום בשורה אחידה */
+/*  שיטות התשלום בשורה אחידה */
 .payment-methods {
     display: flex;
     justify-content: center;
@@ -1710,29 +1715,28 @@ button {
     cursor: pointer;
 }
 
-/* ✅ יישור תוויות לימין */
+/*  יישור תוויות לימין */
 .payment-container label {
     display: block;
     text-align: right;
     font-size: 14px;
 }
 
-/* ✅ תוקף ו-CVV באותה שורה עם פחות רווחים */
-/* ✅ עיצוב השורה של תוקף ו-CVV */
+/*  עיצוב השורה של תוקף ו-CVV */
 .expiry-cvv-container {
     display: flex;
     justify-content: space-between;
     gap: 20px; /* מגדיל את הרווח בין שני השדות */
 }
 
-/* ✅ כל קונטיינר של שדה */
+/*  כל קונטיינר של שדה */
 .expiry-cvv-container div {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* ✅ עיצוב שדות הקלט */
+/*  עיצוב שדות הקלט */
 .expiry-cvv-container input {
     width: 100%;
     padding: 10px;
@@ -1743,7 +1747,7 @@ button {
 }
 
 
-/* ✅ התאמת השדות לרוחב מתאים */
+/*  התאמת השדות לרוחב מתאים */
 .payment-container input {
     width: 100%;
     padding: 6px;
@@ -1752,7 +1756,7 @@ button {
     border-radius: 5px;
 }
 
-/* ✅ כפתור התשלום מוקטן ומסודר */
+/*  כפתור התשלום מוקטן ומסודר */
 .payment-container button {
     width: 100%;
     background: #d08f88;
@@ -1774,7 +1778,7 @@ button {
     background: #d7948d;
 }
 
-/* ✅ התאמות למסכים קטנים */
+/*  התאמות למסכים קטנים */
 @media (max-width: 900px) {
     .payment-page {
         flex-direction: column;
@@ -1789,7 +1793,7 @@ button {
         order: 1;
     }
 }
-/* ✅ מודאל מוסתר כברירת מחדל */
+/*  מודאל מוסתר כברירת מחדל */
 .modal-payment {
     display: none; /* מוסתר עד שייפתח */
     position: fixed;
@@ -1803,7 +1807,7 @@ button {
     align-items: center;
 }
 
-/* ✅ תוכן המודאל */
+/* תוכן המודאל */
 .modal-payment-content {
     background: white;
     padding: 20px;
@@ -1812,7 +1816,7 @@ button {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ עיצוב הכפתורים */
+/*  עיצוב הכפתורים */
 .modal-payment-button {
     background: #3498db;
     color: white;
@@ -1824,7 +1828,7 @@ button {
     margin-top: 10px;
 }
 
-/* ✅ סגנון כללי לכפתורי המודאל */
+/*  סגנון כללי לכפתורי המודאל */
 .modal-button {
     display: inline-flex;
     align-items: center;
@@ -1848,15 +1852,14 @@ button {
     
 }
 
-  
 
-/* ✅ שינוי צבע בהעברת עכבר */
+/*  שינוי צבע בהעברת עכבר */
 .modal-button:hover {
     background: #882020; /* גוון כהה יותר של כחול */
     transform: scale(1.05);
 }
 
-/* ✅ התאמה לכפתור שחוזר לדף הראשי */
+/*  התאמה לכפתור שחוזר לדף הראשי */
 .modal-button.secondary {
     background: #95a5a6; /* אפור עדין */
 }
@@ -1865,42 +1868,52 @@ button {
     background: #7f8c8d; /* אפור כהה */
 }
 
-/* ✅ אייקון בתוך הכפתור */
+/*  אייקון בתוך הכפתור */
 .modal-button img {
     width: 20px;
     height: 20px;
 }
 
+
+
 /*--------------------------------------------------------------------------------------------------------*/
-/*order-status*/
-/* ✅ עיצוב כללי לעמוד */
-/* ✅ עיצוב עמוד ההזמנה */
+/*orderStatus*/
+/*  עיצוב כללי לעמוד */
 .order-status-page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center; /* ממרכז אופקית */
+    min-height: 100vh;       /* גובה מלא של המסך */
     background: #f9f9f9;
-    padding: 20px;
-}
-
-/* ✅ עיצוב הקונטיינר */
-.order-container {
+    padding: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+    direction: rtl;
     position: relative;
-    width: 450px; /* הרחבת הקונטיינר */
-    max-width: 90%;
-    max-height: 85vh;
-    padding: 25px;
+  }
+/*  עיצוב הקונטיינר */
+.order-container {
+    width: 450px; 
     background: white;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    overflow:visible; 
     display: flex;
     flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+    direction: rtl;
+    align-items: center;     /* ממרכז אנכית */
+
 }
 
-/* ✅ עיצוב רשימת הפריטים עם גלילה */
+.orderwrapper {
+    min-height: calc(100vh - 140px); /* התאימי לפי גובה הפוטר שלך */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/*  עיצוב רשימת הפריטים עם גלילה */
 .order-items-list {
     list-style: none;
     padding: 0;
@@ -1911,7 +1924,7 @@ button {
     padding-right: 10px; /* מעט רווח מהצד */
 }
 
-/* ✅ כותרות */
+/*  כותרות */
 .order-container h1 {
     font-size: 24px;
     color: #8e1616;
@@ -1924,21 +1937,22 @@ button {
     margin-bottom: 10px;
 }
 
-/* ✅ פרטי הזמנה */
+/*  פרטי הזמנה */
 .order-container p {
     font-size: 16px;
     color: #333;
     margin-bottom: 8px;
+
 }
 
-/* ✅ סטטוס ההזמנה */
+/*  סטטוס ההזמנה */
 #order-status {
     font-weight: bold;
     color: #0e6a39;
     font-size: 20px;
 }
 
-/* ✅ עיצוב הפריטים */
+/*  עיצוב הפריטים */
 .order-items-list li {
     background: #f9f9f9;
     padding: 12px;
@@ -1949,16 +1963,17 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
-/* ✅ עיצוב מחיר כולל */
+/*  עיצוב מחיר כולל */
 .total-price-container {
     font-size: 18px;
     font-weight: bold;
     margin-top: 15px;
 }
 
-/* ✅ כפתור חזרה */
+/*  כפתור חזרה */
 .order-button {
     display: block;
     padding: 12px;
@@ -1977,23 +1992,32 @@ button {
     background: #6b1111;
 }
 
-/* ✅ עיצוב האייקון */
+/*  עיצוב האייקון */
 .order-icon {
     position: absolute;
-    top: -35px; /* שיפור המיקום - שלא יחתוך */
-    left: -30px;
-    width: 85px; /* הגדלת האייקון */
-    height: 85px;
-    z-index: 10;
-    transform: rotate(-15deg); /* סיבוב קל */
-    transition: transform 0.3s ease-in-out;
+    top: -40px;
+    left: -40px;
+    width: 80px;
+    height: auto;
+    z-index: 100;
+    transform: rotate(-15deg);
 }
+.order-icon {
+    position: absolute;
+    top: -35px; /* כדי שיבלוט החוצה למעלה */
+    width: 80px;
+    height: auto;
+    transform: rotate(-20deg);
+    transition: transform 0.3s ease-in-out;
+
+}
+
 
 .order-icon:hover {
     transform: rotate(5deg) scale(1.1);
 }
 
-/* ✅ התאמות למסכים קטנים */
+/*  התאמות למסכים קטנים */
 @media (max-width: 500px) {
     .order-container {
         width: 95%;
@@ -2017,76 +2041,11 @@ button {
         left: -25px;
     }
 }
-
-/*--------------------------------------------------------------------------------------------------------*/
-/*thank-you*/
-/* ✅ עיצוב דף תודה */
-/* ✅ עיצוב דף התשלום שהושלם */
-.thank-you-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('merged.png') center/cover no-repeat; /* הגדרת תמונת הרקע */
-}
-
-/* ✅ עיצוב הקונטיינר */
-.thank-you-container {
-    background: rgba(255, 255, 255, 0.9); /* רקע לבן שקוף מעט */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
-    
-}
-/* ✅ יצירת שכבת רקע כהה */
-.thank-you-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(239, 238, 238, 0.959); /* שינוי הבהירות של הרקע */
-    z-index: 1; /* מוודא שהרקע יהיה מתחת לתוכן */
-}
-
-/* ✅ מבטיח שהתוכן יישאר מעל הרקע */
-.thank-you-container {
-    position: relative;
-    z-index: 2;
-    background: rgb(255, 243, 243);
-}
-
-
-/* ✅ כפתורים */
-.thank-you-button {
-    display: block;
-    background: #714848fb;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background 0.3s ease-in-out;
-}
-
-.thank-you-button:hover {
-    background: #472d2dfb;
-}
-
-
-
 /*--------------------------------------------------------------------------------------------------------*/
 /*navbar  */
 /* עיצוב ה-NAVBAR */
-
 .navbar {
-    background-color: rgba(255, 255, 255, 0.76);
-    /* שאר הקוד נשאר אותו דבר */
+    background-color: #f5ede9; /* צבע רקע */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2097,7 +2056,8 @@ button {
     left: 0;
     z-index: 1000;
     direction: rtl;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* מוסיף צל כמו SHEIN */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* הצללה קטנה */
+
 }
 
 .nav-item {
@@ -2107,12 +2067,12 @@ button {
     font-weight: bold;
     padding: 8px 20px;
     transition: 0.3s;
-    margin-right: 40px; /* מֵרָחָק מהצד הימני */
+    margin-right: 60px; /* מֵרָחָק מהצד הימני */
 
 }
 
 .nav-item:hover {
-    background-color: #f2f2f2;
+    background-color: #a85d4f;
     border-radius: 8px;
 }
 /* עיצוב כפתור הפרופיל */
@@ -2126,6 +2086,8 @@ button {
     gap: 5px;
     font-weight: bold;
     color: black; /* במקום white */
+    margin-left: 40px; /* מֵרָחָק מהצד השמאלי */
+
 }
 
 

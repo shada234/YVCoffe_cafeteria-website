@@ -6,147 +6,129 @@
     <title>🛒 עגלת הקניות</title>
     <link rel="stylesheet" href="style.css">
     <style>
-
-.footer {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    margin-top: 100px;
-    direction: rtl;
-   }
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 25px;
-    background-color: #c57464;
-    width: 100%;
-    max-width: 95.45vw;
-    direction: rtl;
-    flex-direction: row-reverse;
-   
-}
-
-.location {
-    text-align: left; /* מיושר לשמאל */
+        /* שיפור עיצוב ה-Footer */
     
-}
-.footer-section-contact {
-    text-align: right; /* מיושר לימין */
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+        overflow-x: hidden;
+        width: 100%;
     
-}
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100vw; /* לרוחב מלא */
+        max-width: 100%;
+        padding: 5px 25px;
+        box-sizing: border-box; /* מונע בעיות של חישוב שוליים */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        direction: rtl;
+        flex-direction: row-reverse;
+    
+    }
+    
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important; /* מבטיח שהכותרות יהיו לבנות */
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+    }
+    .location {
+        text-align: left; /* מיושר לשמאל */
+        margin-left: 100px;
 
-/* הסרת הצבע הכחול והקו התחתון מהקישורים */
-.footer-section-contact a {
-    color: white !important; /* שינוי צבע ללבן */
-    text-decoration: none !important; /* הסרת קו תחתון */
-    font-weight: bold;
-}
+    }
+    .footer-section-contact {
+        text-align: right; /* מיושר לימין */
+        margin-right: 100px;
 
-.footer-section-contact a:hover {
-    text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
-}
+    }
+    
+    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
+        text-decoration: none !important; /* הסרת קו תחתון */
+        font-weight: bold;
+    }
+    
+    .footer-section-contact a:hover {
+        text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
+    }
+    
+    
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 140px; /* גודל הלוגו */
+        margin-left: 80px;
 
-.footer-container h3 {
-    color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-
-}
-.footer-container p {
-    color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-}
-
-
-.footer-bottom {
-    text-align: center;
-    font-size: 14px;
-    color: #f5f5f5;
-}
-
-
-.footer-logo {
-    text-align: center;
-}
-
-.footer-logo img {
-    max-width: 140px; /* גודל הלוגו */
-}
+    }
+    
+    
     </style>
 </head>
 <body id="cart-page">
-
+    <div id="navbar-container"></div>
+    <!-- עמוד תוכן -->
     <div class="cartPage-wrapper">
-        
-        <!-- סיכום ההזמנה ואמצעי תשלום - עכשיו הם בצד שמאל -->
+        <!-- צד שמאל: סיכום + איסוף -->
         <div class="summary-payment-container">
-<!-- מסגרת זמן האיסוף -->
-<div class="pickup-time-container">
-    <h3> זמן איסוף</h3>
-
-    <label class="pickup-option">
-        <input type="radio" id="pickup-now" name="pickup-time" value="5min" checked onclick="togglePickupTime()">
-        <span class="pickup-text">החילו בהכנה - אגיע תוך 5 דקות</span>
-    </label>
-
-    <label class="pickup-option">
-        <input type="radio" id="pickup-later" name="pickup-time" value="custom" onclick="togglePickupTime()">
-        <span class="pickup-text">בחירת שעת איסוף משוערת:</span>
-    </label>
-
-    <div class="time-picker">
-        <input type="time" id="custom-pickup-time" disabled>
-    </div>
-</div>
+            <div class="pickup-time-container">
+                <h3>זמן איסוף</h3>
+                <label class="pickup-option">
+                    <input type="radio" name="pickup-time" value="5min" checked onclick="togglePickupTime()">
+                    <span class="pickup-text">החילו בהכנה </span>
+                </label>
+                <label class="pickup-option">
+                    <input type="radio" name="pickup-time" value="custom" onclick="togglePickupTime()">
+                    <span class="pickup-text">בחירת שעת איסוף משוערת:</span>
+                </label>
+                <div class="time-picker">
+                    <input type="time" id="custom-pickup-time" disabled>
+                </div>
+            </div>
 
             <div class="summary-container">
                 <h2>סיכום הזמנה</h2>
                 <p id="total-price">סך הכל: 0₪</p>
-                <a href="payment.html" id="checkout" class="checkout-button">💳 המשך לתשלום</a>
-                <a href="stations.html" class="cart-link">🔗 חזרה לתפריט</a>
+                <button class="checkout-button" onclick="checkLoginBeforePayment()">💳 המשך לתשלום</button>
             </div>
 
-        <!-- מסגרת לאמצעי התשלום -->
-        <div class="paymentcontainer">
-            <h3>:אמצעי תשלום נתמכים</h3>
-            <div class="payment-icons">
-                <img src="visa.png" alt="Visa">
-                <img src="wallet.png" alt="Wallet">
-                <img src="mastercard.png" alt="MasterCard">
-                <img src="American_Express.webp" alt="American Express">
+            <div class="paymentcontainer">
+                <h3>:אמצעי תשלום נתמכים</h3>
+                <div class="payment-icons">
+                    <img src="visa.png" alt="Visa">
+                    <img src="wallet.png" alt="Wallet">
+                    <img src="mastercard.png" alt="MasterCard">
+                    <img src="American_Express.webp" alt="American Express">
+                </div>
             </div>
-</div>
-
-
         </div>
 
-        <!-- עגלת הקניות - עכשיו בצד ימין -->
+        <!-- צד ימין: עגלת קניות -->
         <div class="cartPage-container">
-            <h1>🛒 עגלת הקניות שלך</h1>
-            <div class="cart-items-wrapper">
-                <ul id="cartPage-items" class="cart-items-list">
-                    <!-- המוצרים יוכנסו דינאמית -->
-                </ul>
-            </div>
+            <h1> עגלת הקניות שלך🛒</h1>
+            <ul id="cartPage-items" class="cart-items-list">
+                <!-- פריטים יוזנו כאן דינאמית -->
+            </ul>
         </div>
-
     </div>
 
-    <div id="navbar-container"></div>
-    <script>
-        fetch("navbar.html")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("navbar-container").innerHTML = data;
-                
-                // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
-                setTimeout(() => {
-                    const script = document.createElement("script");
-                    script.src = "script.js";
-                    document.body.appendChild(script);
-                }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
-            });
-    </script>
-    
+    <!-- תחתית -->
     <footer>
         <div class="footer-container">
             <div class="footer-section location">
@@ -154,7 +136,7 @@
                 <p>מכללת עמק יזרעאל</p>
             </div>
             <div class="footer-logo">
-                <img src="LOGO2.png" alt="YVCoffee Logo">
+                <img src="logo2.png" alt="YVCoffee Logo">
             </div>
             <div class="footer-section-contact">
                 <h3> צור קשר✉️</h3>
@@ -162,7 +144,62 @@
                 <p> <a href="tel:041234567">04-1234567📞</a></p>
             </div>
         </div>
-    </footer>
-    <script src="script.js"></script>
+    </footer> 
+    <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+      
+            const script = document.createElement("script");
+            script.src = "script.js";
+            script.onload = () => {
+              console.log("✅ script.js נטען אחרי navbar!");
+              setupLoginStatus(); // מפעיל את ההתחברות
+            };
+            document.body.appendChild(script);
+          });
+      </script>
+
+    <!-- כפתור חזרה למעלה ולתחתית -->  
+    <script>
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        }
+      </script>
+<script>
+function checkLoginBeforePayment() {
+  const isLoggedIn = localStorage.getItem("userLoggedIn");
+
+  if (isLoggedIn !== "true") {
+    alert("עליך להתחבר לפני מעבר לתשלום.");
+
+    // שומרים את כתובת היעד כדי שנוכל לחזור אליה אחרי login
+    localStorage.setItem("redirectAfterLogin", "payment.html");
+
+    // נשלח לעמוד login
+    window.location.href = "logIn.html";
+    return;
+  }
+
+  // אם מחובר – נשלח לתשלום
+  window.location.href = "payment.html";
+}
+
+  </script>
+  
+    
+<div class="floating-buttons">  
+    <!-- כפתור גלילה למעלה -->
+    <div class="floating-btn-wrapper" title="חזור למעלה">
+      <button onclick="scrollToTop()" class="floating-btn">⬆</button>
+      <span class="floating-label">למעלה</span>
+    </div>
+  </div>
+      <script src="script.js"></script>
+
 </body>
 </html>

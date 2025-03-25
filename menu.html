@@ -5,128 +5,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>תפריט</title>
     <link rel="stylesheet" href="style.css">
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        .footer {
-            color: white !important;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin-top: 100px;
-        }
-        
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 25px;
-            background-color: #c57464;
-            width: 100%;
-            max-width: 95.45vw;
-            flex-direction: row-reverse;
-           
-        }
-        
-        .location {
-            text-align: left; /* מיושר לשמאל */
-        }
-        .footer-section-contact {
-            text-align: right; /* מיושר לימין */
-            
-        }
-        
-        /* הסרת הצבע הכחול והקו התחתון מהקישורים */
-        .footer-section-contact a {
-            color: white !important; /* שינוי צבע ללבן */
-            text-decoration: none !important; /* הסרת קו תחתון */
-            font-weight: bold;
-        }
-        
-        .footer-section-contact a:hover {
-            text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
-        }
-        
-        .footer-container h3 {
-            color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-        
-        }
-        .footer-container p {
-            color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-        }
-        
-        
-        .footer-bottom {
-            text-align: center;
-            font-size: 14px;
-            color: #f5f5f5;
-        }
-        
-        
-        .footer-logo {
-            text-align: center;
-        }
-        
-        .footer-logo img {
-            max-width: 140px; /* גודל הלוגו */
-        }
-        </style>
+    <style>
+        /* שיפור עיצוב ה-Footer */
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+        overflow-x: hidden;
+        width: 100%;
+    } 
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100vw; /* לרוחב מלא */
+        max-width: 100%;
+        padding: 5px 25px;
+        box-sizing: border-box; /* מונע בעיות של חישוב שוליים */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        flex-direction: row-reverse;
+    
+    } 
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important; /* מבטיח שהכותרות יהיו לבנות */
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+    }
+    .location {
+        text-align: left; /* מיושר לשמאל */
+        margin-left: 100px;
+
+    }
+    .footer-section-contact {
+        text-align: right; /* מיושר לימין */
+        margin-right: 100px;
+
+    }
+    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
+        text-decoration: none !important; /* הסרת קו תחתון */
+        font-weight: bold;
+    }
+    
+    .footer-section-contact a:hover {
+        text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
+    }
+    
+    
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    
+    .footer-logo {
+        text-align: center;
+    }
+
+    .footer-logo img {
+        max-width: 140px; /* גודל הלוגו */
+        margin-left: 80px;
+
+    }
+
+
+    /* עיצוב להקפיטריה הבשרי (מגש + תוספות ) */
+    .tray-section-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  direction: rtl;
+}
+.tray-section-inline h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.empty-tray-inline {
+  width: 60px;
+  height: auto;
+}
+
+.addons-section {
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 10px 20px;
+  direction: rtl;
+}
+
+.addon-category {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin: 0 1%;
+}
+
+.addon-category h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.addon-category label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+
+
+    </style>
 </head>
 <body class="menuBody">
-    <div id="navbar-container"></div>
-    <main>
+    <div class="station-header-bar">
+      <div class="station-title-block" id="station-title">
+        <!-- JS יכניס כאן את התמונה + השם + 📍 -->
+      </div>
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="product-search" placeholder="חיפוש מוצרים...">
+      </div>
+      <div id="tray-top"></div>
 
-        <!-- Sticky Header -->
-        <header class="menu-header">
-            <h1>תפריט</h1>
-            <div class="menu-buttons">
-                <button onclick="window.location.href='stations.html'" class="back-button">⬅ חזרה לתחנות</button>
-                <button onclick="window.location.href='cart.html'" class="cart-button">
-                    🛒 
-                </button>
-            </div>
-        </header>
-
-        
-        <!-- Menu Container -->
-        <main class="menu-container">
-            <div id="menu-items" class="menu"></div>
-            
-        </main>
-    </main>
-
-    
-<div id="navbar-container"></div>
-<script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar-container").innerHTML = data;
-            
-            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
-            setTimeout(() => {
-                const script = document.createElement("script");
-                script.src = "script.js";
-                document.body.appendChild(script);
-            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
-        });
-</script>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-section location">
-            <h3> מיקום📍</h3>
-            <p>מכללת עמק יזרעאל</p>
-        </div>
-        <div class="footer-logo">
-            <img src="LOGO2.png" alt="YVCoffee Logo">
-        </div>
-        <div class="footer-section-contact">
-            <h3> צור קשר✉️</h3>
-            <p> <a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧</a></p>
-            <p> <a href="tel:041234567">04-1234567📞</a></p>
-        </div>
     </div>
-</footer>
+  
+    <script>
+      function updateStationTitle(stationKey) {
+        const stations = {
+          cafeteria_dairy: { name: "קפטריה חלבית", img: "קפטריה_חלבית.png" },
+          snack_shop: { name: "חנות חטיפים", img: "חנות_חטיפים.png" },
+          coffee_bar: { name: "בר קפה", img: "בר_קפה.png" },
+          service_bar: { name: "בר שירות", img: "בר_שירות.png" },
+          cafeteria_meat: { name: "קפטריה בשרית", img: "קפטריה_בשרית.png" }
+        };
+  
+        const station = stations[stationKey];
+        const stationTitle = document.getElementById("station-title");
+  
+        if (stationTitle && station) {
+          stationTitle.innerHTML = `
+            <span class="station-icon">📍</span>
+            <span class="station-name-text">${station.name}</span>
+            <img src="${station.img}" alt="${station.name}" class="station-small-img">
+          `;
+        }
+      }
+  
+      // קריאה לפונקציה לאחר טעינת הדף
+      const stationFromURL = new URLSearchParams(window.location.search).get("station");
+      updateStationTitle(stationFromURL);
+    </script>
+  
+      
+
+    <!-- Navbar נטען דינמית -->
+    <div id="navbar-container"></div>
+      <!-- תפריט -->
+      <div id="menu-items" class="menu"></div>
+      <div id="addons-bottom"></div>
+
+    <!-- פוטר -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section location">
+                <h3> מיקום📍</h3>
+                <p>מכללת עמק יזרעאל</p>
+            </div>
+            <div class="footer-logo">
+                <img src="logo2.png" alt="YVCoffee Logo">
+            </div>
+            <div class="footer-section-contact">
+                <h3> צור קשר✉️</h3>
+                <p> <a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧</a></p>
+                <p> <a href="tel:041234567">04-1234567📞</a></p>
+            </div>
+        </div>
+    </footer>  
+    <!-- טעינת navbar ו־script.js -->
+    <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
+      
+            const script = document.createElement("script");
+            script.src = "script.js";
+            script.onload = () => {
+              console.log("✅ script.js נטען אחרי navbar!");
+              setupLoginStatus(); // מפעיל את ההתחברות
+            };
+            document.body.appendChild(script);
+          });
+      </script>
+
+    <!-- כפתור חזרה למעלה ולתחתית -->  
+    <script>
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        }
+      </script>
+<div class="floating-buttons">  
+    <!-- כפתור גלילה למעלה -->
+    <div class="floating-btn-wrapper" title="חזור למעלה">
+      <button onclick="scrollToTop()" class="floating-btn">⬆</button>
+      <span class="floating-label"></span>
+    </div>
+  </div>
+  
+  </body>
+  
+
 
 <script src="script.js"></script>
 

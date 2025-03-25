@@ -6,109 +6,125 @@
     <title>תחנות האוכל</title>
     <link rel="stylesheet" href="style.css">
     <style>
-
-.footer {
-    color: white !important;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    margin-top: 100px;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 25px;
-    background-color: #c57464;
-    width: 100%;
-    max-width: 95.45vw;
-    flex-direction: row-reverse;
-   
-}
-
-.location {
-    text-align: left; /* מיושר לשמאל */
-}
-.footer-section-contact {
-    text-align: right; /* מיושר לימין */
+        /* שיפור עיצוב ה-Footer */
     
-}
-
-/* הסרת הצבע הכחול והקו התחתון מהקישורים */
-.footer-section-contact a {
-    color: white !important; /* שינוי צבע ללבן */
-    text-decoration: none !important; /* הסרת קו תחתון */
-    font-weight: bold;
-}
-
-.footer-section-contact a:hover {
-    text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
-}
-
-.footer-container h3 {
-    color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-
-}
-.footer-container p {
-    color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-}
-
-
-.footer-bottom {
-    text-align: center;
-    font-size: 14px;
-    color: #f5f5f5;
-}
-
-
-.footer-logo {
-    text-align: center;
-}
-
-.footer-logo img {
-    max-width: 140px; /* גודל הלוגו */
-}
-</style>
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+        overflow-x: hidden;
+        width: 100%;
+    
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100vw; /* לרוחב מלא */
+        max-width: 100%;
+        padding: 5px 25px;
+        box-sizing: border-box; /* מונע בעיות של חישוב שוליים */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        
+    
+    }
+    
+    
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important; /* מבטיח שהכותרות יהיו לבנות */
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+    }
+    .location {
+        text-align: left; /* מיושר לשמאל */
+    }
+    .footer-section-contact {
+        text-align: right; /* מיושר לימין */
+        
+    }
+    
+    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
+        text-decoration: none !important; /* הסרת קו תחתון */
+        font-weight: bold;
+    }
+    
+    .footer-section-contact a:hover {
+        text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
+    }
+    
+    
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 140px; /* גודל הלוגו */
+    }
+    
+    
+    </style>
 </head>
 
 <body class="stationsBody">
-    <div class="wrapper">
-        <div class="backgroundImage">
-            <img src="בר_קפה.png" alt="image-container">
-        </div>
+    <div class="stationsHeader">
+        <h2>הקפיטריות שלנו מחכות לך – בוא לבחור מה מתחשק לך היום ☕🍫</h2>
+    </div>
 
-        <div class="content">
-            <h2 style="margin-top: 40px; padding-top: 20px; animation: fadeInDown 1s ease-out;">היכן תרצה להזמין היום? בחר את הקפיטריה שהכי מתאימה לך!</h2>
-            <div class="stationsContainer">
-                <div class="stationItem" onclick="redirectTo('cafeteria_dairy')">
-                    <div class="stationIcon">🥛</div>
-                    <h2 class="stationTitle">קפטריה חלבית</h2>
-                    <p class="stationLocation">  בניין 4, קומה 1-</p>
-                </div>
-                <div class="stationItem" onclick="redirectTo('snack_shop')">
-                    <div class="stationIcon">🍫</div>
-                    <h2 class="stationTitle">חנות חטיפים</h2>
-                    <p class="stationLocation">  בניין 4, קומה 1-</p>
-                </div>
-                <div class="stationItem" onclick="redirectTo('coffee_bar')">
-                    <div class="stationIcon">☕</div>
-                    <h2 class="stationTitle">בר קפה</h2>
-                    <p class="stationLocation">בניין 4, קומה 1-, סמוך לספרייה</p>
-                </div>
-                <div class="stationItem" onclick="redirectTo('service_bar')">
-                    <div class="stationIcon">🏪</div>
-                    <h2 class="stationTitle">בר שירות</h2>
-                    <p class="stationLocation">בניין 1, קומה 0</p>
-                </div>
-                <div class="stationItem" onclick="redirectTo('cafeteria_meat')">
-                    <div class="stationIcon">🥩</div>
-                    <h2 class="stationTitle">קפטריה בשרית</h2>
-                    <p class="stationLocation">בניין 6, קומה 0</p>
-                </div>
+    <div class="stationsWrapper">
+
+        <!-- שורה עליונה עם 3 תחנות -->
+        <div class="stationsRow">
+            <div class="stationItem" onclick="redirectTo('coffee_bar')">
+                <img src="בר_קפה.png" class="stationImage">
+                <h2 class="stationTitle">בר קפה</h2>
+                <p class="stationLocation">בניין 4, קומה 1-, סמוך לספרייה</p>
+                <p class="stationHours">🕗שעות פתיחה: 8:00 -14:00</p>
+            </div>
+            <div class="stationItem" onclick="redirectTo('service_bar')">
+                <img src="בר_שירות.png" class="stationImage">
+                <h2 class="stationTitle">בר שירות</h2>
+                <p class="stationLocation">בניין 1, קומה 0</p>
+                <p class="stationHours">🕗שעות פתיחה: 8:00 -17:00</p>
+            </div>
+            <div class="stationItem" onclick="redirectTo('cafeteria_meat')">
+                <img src="קפטריה_בשרית.png" class="stationImage">
+                <h2 class="stationTitle">קפטריה בשרית</h2>
+                <p class="stationLocation">בניין 6, קומה 0</p>
+                <p class="stationHours">🕗שעות פתיחה: 8:00 -14:00</p>
             </div>
         </div>
+    
+        <!-- שורה תחתונה עם 2 תחנות – ממורכזות -->
+        <div class="stationsRow center">
+            <div class="stationItem" onclick="redirectTo('cafeteria_dairy')">
+                <img src="קפטריה_חלבית.png" class="stationImage">
+                <h2 class="stationTitle">קפטריה חלבית</h2>
+                <p class="stationLocation">בניין 4, קומה 1-</p>
+                <p class="stationHours">🕗שעות פתיחה: 8:00 -17:00</p>
+            </div>
+            <div class="stationItem" onclick="redirectTo('snack_shop')">
+                <img src="חנות_חטיפים.png" class="stationImage">
+                <h2 class="stationTitle">חנות חטיפים</h2>
+                <p class="stationLocation">בניין 4, קומה 1-</p>
+                <p class="stationHours">🕗שעות פתיחה: 8:00 -14:00</p>
+            </div>
+        </div>
+    
     </div>
+    
+    
 
     <script>
         function redirectTo(station) {
@@ -116,19 +132,24 @@
         }
     </script>
 
-    <div id="navbar-container"></div>
-    <script>
-        fetch("navbar.html")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("navbar-container").innerHTML = data;
-                setTimeout(() => {
-                    const script = document.createElement("script");
-                    script.src = "script.js";
-                    document.body.appendChild(script);
-                }, 100);
-            });
-    </script>
+<div id="navbar-container"></div>
+
+<script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+  
+        const script = document.createElement("script");
+        script.src = "script.js";
+        script.onload = () => {
+          console.log("✅ script.js נטען אחרי navbar!");
+          setupLoginStatus(); // מפעיל את ההתחברות
+        };
+        document.body.appendChild(script);
+      });
+  </script>
+  
 
     <footer>
         <div class="footer-container">

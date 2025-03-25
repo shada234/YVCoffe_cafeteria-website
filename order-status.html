@@ -7,110 +7,116 @@
     <title> סטטוס ההזמנה</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .footer {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin-top: 100px;
-            direction: rtl;
-           }
-        
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 25px;
-            background-color: #c57464;
-            width: 100%;
-            max-width: 95.45vw;
-            direction: rtl;
-            flex-direction: row-reverse;
-            position: fixed;
-           
-        }
-        
-        .location {
-            text-align: left; /* מיושר לשמאל */
-            
-        }
-        .footer-section-contact {
-            text-align: right; /* מיושר לימין */
-            
-        }
-        
-        /* הסרת הצבע הכחול והקו התחתון מהקישורים */
-        .footer-section-contact a {
-            color: white !important; /* שינוי צבע ללבן */
-            text-decoration: none !important; /* הסרת קו תחתון */
-            font-weight: bold;
-        }
-        
-        .footer-section-contact a:hover {
-            text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
-        }
-        
-        .footer-container h3 {
-            color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-        
-        }
-        .footer-container p {
-            color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-        }
-        
-        
-        .footer-bottom {
-            text-align: center;
-            font-size: 14px;
-            color: #f5f5f5;
-        }
-        
-        
-        .footer-logo {
-            text-align: center;
-        }
-        
-        .footer-logo img {
-            max-width: 140px; /* גודל הלוגו */
-        }
-            </style>
+        /* שיפור עיצוב ה-Footer */
+    
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 25px;
+        overflow-x: hidden;
+        width: 100%;
+        padding: 20px 0;
 
+    
+    }
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100%; 
+        box-sizing: border-box;
+        flex-direction: row-reverse;
+        padding: 5px 25px;
+
+
+ 
+    }
+
+    
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important; /* מבטיח שהכותרות יהיו לבנות */
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+    }
+    .location {
+        text-align: left; /* מיושר לשמאל */
+        margin-left: 100px;
+
+    }
+    .footer-section-contact {
+        text-align: right; /* מיושר לימין */
+        margin-right: 100px;
+
+    }
+    
+    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
+        text-decoration: none !important; /* הסרת קו תחתון */
+        font-weight: bold;
+    }
+    
+    .footer-section-contact a:hover {
+        text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
+    }
+    
+    
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 140px; /* גודל הלוגו */
+        margin-left: 80px;
+
+    }
+    
+    
+    </style>
 
 </head>
 <body class="order-status-page">
-
-    <div class="order-container">
+    <div class="orderwrapper">
+      <div class="order-container">
         <img src="serving.png" alt="אייקון הגשה" class="order-icon">
-        <h1> סטטוס ההזמנה</h1>
+        <h1>סטטוס ההזמנה</h1>
         <p>מספר הזמנה: <span id="order-id"></span></p>
         <p>סטטוס: <span id="order-status">בהכנה</span></p>
-        <p>⏳ זמן משוער לאיסוף: <span id="order-time">3 דקות</span></p>
-
-        <h2>:הפריטים שהוזמנו</h2>
+        <p> זמן משוער לאיסוף:⏳ <span id="order-time">3 דקות</span></p>
+        <h2>הפריטים שהוזמנו:</h2>
         <ul id="order-items" class="order-items-list"></ul>
-
         <p id="total-price" class="total-price-container"></p>
-
         <a href="home.html" class="order-button"> חזרה לדף ראשי</a>
-    </div>
+      </div>
+  
+      <div id="navbar-container"></div>
+    </div> 
+    <div id="navbar-container"></div>
 
-
-
-    
-<div id="navbar-container"></div>
-<script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
+    <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
             document.getElementById("navbar-container").innerHTML = data;
-            
-            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
-            setTimeout(() => {
-                const script = document.createElement("script");
-                script.src = "script.js";
-                document.body.appendChild(script);
-            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
-        });
-</script>
+      
+            const script = document.createElement("script");
+            script.src = "script.js";
+            script.onload = () => {
+              console.log("✅ script.js נטען אחרי navbar!");
+              setupLoginStatus(); // מפעיל את ההתחברות
+            };
+            document.body.appendChild(script);
+          });
+      </script>
 
 <footer>
     <div class="footer-container">
@@ -119,7 +125,7 @@
             <p>מכללת עמק יזרעאל</p>
         </div>
         <div class="footer-logo">
-            <img src="LOGO2.png" alt="YVCoffee Logo">
+            <img src="logo2.png" alt="YVCoffee Logo">
         </div>
         <div class="footer-section-contact">
             <h3> צור קשר✉️</h3>
@@ -128,6 +134,5 @@
         </div>
     </div>
 </footer>
-
-
+</body>
 </html>

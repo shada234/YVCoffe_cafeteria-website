@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הפרופיל שלי - YVCoffe</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-y: hidden;
+
+    }
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 60px;
+      padding: 50px;
+      padding-top: 90px;
+
+    }
+    .profile-card {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      min-width: 300px;
+    }
+    .profile-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #8b4a39;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .info-label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    .info-value {
+      color: #333;
+    }
+    .edit-btn, .save-btn, .cancel-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .edit-btn {
+      background-color: #c57464;
+      color: white;
+    }
+    .save-btn {
+      background-color: #60b05a;
+      color: white;
+      margin-left: 10px;
+    }
+    .cancel-btn {
+      background-color: #aaa;
+      color: white;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .avatar {
+      text-align: center;
+    }
+    .avatar img {
+      width: 100px;
+      border-radius: 50%;
+      border: 2px solid #c57464;
+      margin-bottom: 10px;
+    }
+    .username-display {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+        /* שיפור עיצוב ה-Footer */
+    
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        width: 100%;
+    
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100vw; /* לרוחב מלא */
+        max-width: 100%;
+        padding: 5px 25px;
+        box-sizing: border-box; /* מונע בעיות של חישוב שוליים */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 190px;
+    flex-direction: row-reverse;
+    direction:rtl;
+    }
+    
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important; /* מבטיח שהכותרות יהיו לבנות */
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important; /* הפיכת כל הטקסטים ב-footer ללבן */
+    }
+    .location {
+        text-align: left; /* מיושר לשמאל */
+       margin-left: 100px;
+    }
+    .footer-section-contact {
+        text-align: right; /* מיושר לימין */
+        margin-right: 100px;
+
+        
+    }
+    
+    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
+        text-decoration: none !important; /* הסרת קו תחתון */
+        font-weight: bold;
+    }
+    
+    .footer-section-contact a:hover {
+        text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
+    }
+    
+    
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 140px; /* גודל הלוגו */
+        margin-left: 80px;
+    }
+    
+    
+  </style>
+</head>
+<body>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-title">הפרטים שלי</div>
+    <div id="view-mode">
+      <label class="info-label">שם:</label>
+      <div class="info-value" id="display-name">---</div>
+      <label class="info-label">מייל:</label>
+      <div class="info-value" id="display-email">---</div>
+      <label class="info-label">טלפון:</label>
+      <div class="info-value" id="display-phone">---</div>
+      <button class="edit-btn" id="editBtn">✏️ ערוך פרטים</button>
+    </div>
+    <form id="edit-mode" style="display:none">
+      <label class="info-label">שם:</label>
+      <input type="text" id="edit-name">
+
+      <label class="info-label">מייל:</label>
+      <input type="email" id="edit-email">
+
+      <label class="info-label">טלפון:</label>
+      <input type="text" id="edit-phone">
+
+      <label class="info-label">סיסמה חדשה:</label>
+      <input type="password" id="edit-password">
+
+      <button type="button" class="save-btn" id="saveBtn"> שמור</button>
+      <button type="button" class="cancel-btn" id="cancelBtn"> בטל</button>
+    </form>
+  </div>
+
+  <div class="avatar">
+    <img src="avatar.png" alt="User Avatar">
+    <div class="username-display" id="usernameTitle">---</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const name = localStorage.getItem("username") || "---";
+    const email = localStorage.getItem("userEmail") || "---";
+    const phone = localStorage.getItem("userPhone") || "---";
+
+    const displayName = document.getElementById("display-name");
+    const displayEmail = document.getElementById("display-email");
+    const displayPhone = document.getElementById("display-phone");
+    const usernameTitle = document.getElementById("usernameTitle");
+
+    displayName.textContent = name;
+    displayEmail.textContent = email;
+    displayPhone.textContent = phone;
+    usernameTitle.textContent = name;
+
+    document.getElementById("edit-name").value = name;
+    document.getElementById("edit-email").value = email;
+    document.getElementById("edit-phone").value = phone;
+
+    document.getElementById("editBtn").addEventListener("click", () => {
+      document.getElementById("view-mode").style.display = "none";
+      document.getElementById("edit-mode").style.display = "block";
+    });
+
+    document.getElementById("cancelBtn").addEventListener("click", () => {
+      document.getElementById("edit-mode").style.display = "none";
+      document.getElementById("view-mode").style.display = "block";
+    });
+
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const newName = document.getElementById("edit-name").value;
+      const newEmail = document.getElementById("edit-email").value;
+      const newPhone = document.getElementById("edit-phone").value;
+      const newPassword = document.getElementById("edit-password").value;
+
+      localStorage.setItem("username", newName);
+      localStorage.setItem("userEmail", newEmail);
+      localStorage.setItem("userPhone", newPhone);
+      if (newPassword) localStorage.setItem("userPassword", newPassword);
+
+      location.reload();
+    });
+  });
+</script>
+
+
+<div id="navbar-container"></div>
+<script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+  
+        const script = document.createElement("script");
+        script.src = "script.js";
+        script.onload = () => {
+          console.log("✅ script.js נטען אחרי navbar!");
+          setupLoginStatus(); // מפעיל את ההתחברות
+        };
+        document.body.appendChild(script);
+      });
+  </script>
+   <!-- FOOTER ---------------------------------------------------------------------->
+   <footer>
+    <div class="footer-container">
+        <!-- מיקום -->
+        <div class="footer-section location">
+            <h3> מיקום📍</h3>
+            <p>מכללת עמק יזרעאל</p>
+        </div>
+
+        <div class="footer-logo">
+            <img src="logo2.png" alt="YVCoffee Logo">
+        </div>
+        
+        <!-- צור קשר -->
+        <div class="footer-section-contact">
+            <h3> צור קשר✉️</h3>
+            <p><a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧 </a></p>
+            <p> <a href="tel:041234567">04-1234567📞</a></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

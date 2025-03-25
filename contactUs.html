@@ -1,142 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>צור קשר</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .footer {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin-top: 100px;
-            direction: rtl;
-           }
-        
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 25px;
-            background-color: #c57464;
-            width: 100%;
-            max-width: 95.45vw;
-            direction: rtl;
-            flex-direction: row-reverse;
-            position: fixed;
-           
-        }
-        
-        .location {
-            text-align: left; /* מיושר לשמאל */
-            
-        }
-        .footer-section-contact {
-            text-align: right; /* מיושר לימין */
-            
-        }
-        
-        /* הסרת הצבע הכחול והקו התחתון מהקישורים */
-        .footer-section-contact a {
-            color: white !important; /* שינוי צבע ללבן */
-            text-decoration: none !important; /* הסרת קו תחתון */
-            font-weight: bold;
-        }
-        
-        .footer-section-contact a:hover {
-            text-decoration: underline !important; /* קו תחתון רק כאשר העכבר מעל */
-        }
-        
-        .footer-container h3 {
-            color: white !important; /* מבטיח שהכותרות יהיו לבנות */
-        
-        }
-        .footer-container p {
-            color: white !important; /* הפיכת כל הטקסטים ב-footer ללבן */
-        }
-        
-        
-        .footer-bottom {
-            text-align: center;
-            font-size: 14px;
-            color: #f5f5f5;
-        }
-        
-        
-        .footer-logo {
-            text-align: center;
-        }
-        
-        .footer-logo img {
-            max-width: 140px; /* גודל הלוגו */
-        }
-            </style>
+        /* שיפור עיצוב ה-Footer */
+    
+    .footer {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+        overflow-x: hidden;
+        width: 100%;
+    } 
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5ede9;
+        width: 100vw;
+        max-width: 100%;
+        padding: 5px 25px;
+        box-sizing: border-box;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        flex-direction: row-reverse;
+    } 
+    .footer-container h3 {
+        color: rgb(0, 0, 0) !important;
+    }
+    .footer-container p {
+        color: rgb(0, 0, 0) !important;
+    }
+    .location {
+        text-align: left;
+        margin-left: 100px;
+    }
+    .footer-section-contact {
+        text-align: right;
+        margin-right: 100px;
+    }
+    .footer-section-contact a {
+        color: rgb(0, 0, 0) !important;
+        text-decoration: none !important;
+        font-weight: bold;
+    }
+    .footer-section-contact a:hover {
+        text-decoration: underline !important;
+    }
+    .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #f5f5f5;
+    }
+    .footer-logo {
+        text-align: center;
+    }
+    .footer-logo img {
+        max-width: 140px;
+        margin-left: 80px;
+    }
+    </style>
 </head>
 <body class="bodyContact">
     <div class="contactContainer">
-        <h1>Contact Us</h1>
+        <h1>צור קשר</h1>
         <p>נשמח לעזור ולסייע לך</p>
         <div class="contact-form">
             <form id="contactForm">
                 <div class="input-group">
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                    <input type="email" id="email" placeholder="Enter email address" required>
+                    <input type="text" id="name" placeholder="הכנס את שמך" required>
+                    <input type="email" id="email" placeholder="הכנס כתובת מייל" required>
                 </div>
-                <input type="text" id="subject" placeholder="Write a subject" required>
-                <textarea id="message" placeholder="Write your message" required></textarea>
-                <button type="submit">Send</button>
+                <input type="text" id="subject" placeholder="נושא הפנייה" required>
+                <textarea id="message" placeholder="כתוב את ההודעה שלך" required></textarea>
+                <button type="submit">שלח</button>
             </form>
         </div>
         <div class="contact-info">
-            <p><strong>Call Us:</strong> <span class="phone">+972 543567687</span></p>
-            <p><strong>Hours:</strong> Mon-Fri: 7am - 7pm | Sat, Sun: close</p>
-            <p><strong>Our Location:</strong> The Max stern yezreel valley college, Afula </p>
+            <p><strong>טלפון ליצירת קשר:</strong> <span class="phone" style="color: red;">+972 543567687</span></p>
+            <p><strong>שעות פעילות:</strong> ימים א'-ה': 07:00 - 19:00 | שישי-שבת: סגור</p>
+            <p><strong>מיקום:</strong> מכללת עמק יזרעאל, עפולה</p>
         </div>
     </div>
+
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            alert("אנחנו על זה, אחד מהנציגים שלנו יחזור אליך בקרוב. ");
+            alert("אנחנו על זה, אחד מהנציגים שלנו יחזור אליך בקרוב.");
         });
     </script>
 
-
-
-
-<div id="navbar-container"></div>
-<script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
+    <div id="navbar-container"></div>
+    <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
             document.getElementById("navbar-container").innerHTML = data;
-            
-            // 📌 כאן אנחנו מחכים שה-NAVBAR ייטען ואז מריצים את `script.js`
-            setTimeout(() => {
-                const script = document.createElement("script");
-                script.src = "script.js";
-                document.body.appendChild(script);
-            }, 100); // מחכים 100ms לוודא שה-NAVBAR נטען
-        });
-</script>
+      
+            const script = document.createElement("script");
+            script.src = "script.js";
+            script.onload = () => {
+              console.log("✅ script.js נטען אחרי navbar!");
+              setupLoginStatus(); // מפעיל את ההתחברות
+            };
+            document.body.appendChild(script);
+          });
+      </script>
 
-    
-<footer>
-    <div class="footer-container">
-        <div class="footer-section location">
-            <h3> מיקום📍</h3>
-            <p>מכללת עמק יזרעאל</p>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section location">
+                <h3>מיקום📍</h3>
+                <p>מכללת עמק יזרעאל</p>
+            </div>
+            <div class="footer-logo">
+                <img src="logo2.png" alt="YVCoffee Logo">
+            </div>
+            <div class="footer-section-contact">
+                <h3>צור קשר✉️</h3>
+                <p><a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧</a></p>
+                <p><a href="tel:041234567">04-1234567📞</a></p>
+            </div>
         </div>
-        <div class="footer-logo">
-            <img src="LOGO2.png" alt="YVCoffee Logo">
-        </div>
-        <div class="footer-section-contact">
-            <h3> צור קשר✉️</h3>
-            <p> <a href="mailto:support@yvcoffe.com">support@yvcoffe.com📧</a></p>
-            <p> <a href="tel:041234567">04-1234567📞</a></p>
-        </div>
-    </div>
-</footer>
-
+    </footer> 
 </body>
 </html>
