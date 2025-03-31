@@ -401,16 +401,19 @@ function loginUser() {
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
-/*menu*/
+/*menuPage*/
 
 function redirectTo(station) {
     window.location.href = `menu.html?station=${station}`;
 }
-
-
 const menuData = {
     cafeteria_dairy: {
-        "🥤משקאות קרים": [
+        " מנות בהרכבה אישית 🍽": [
+            { name: "סלט בהרכבה אישית", price: "20₪", image: "images/custom-salad.png", extras: { base: ["חסה", "כרוב", "עגבניות", "מלפפון", "גזר", "בצל", "פסטה"], toppings: [{ name: "ביצה קשה", price: 2 }, { name: "תירס", price: 0 }, { name: "טונה", price: 3 }, { name: "זיתים ירוקים", price: 0 }, { name: "זיתים שחורים", price: 0 }, { name: "פטריות", price: 1 }, { name: "גבינה בולגרית", price: 2 }], dressings: ["שום", "שמן זית", "אלף האיים", "לימון"] } },
+            { name: "פיצה אישית", price: "25₪", image: "images/pizaaa.png", extras: { cheese: ["צהובה", "בולגרית"], sauce: ["רוטב עגבניות", "רוטב שום"], toppings: [{ name: "זיתים", price: 1 }, { name: "פטריות", price: 2 }, { name: "בצל", price: 0 }, { name: "תירס", price: 1 }, { name: "טונה", price: 3 }] } },
+            { name: "טוסט אישי", price: "18₪", image: "images/toast.png", extras: { bread: ["לבן", "חיטה מלאה"], cheese: ["צהובה", "בולגרית"], fillings: [{ name: "זיתים", price: 0 }, { name: "עגבניות", price: 0 }, { name: "פטריות", price: 1 }, { name: "בצל", price: 0 }, { name: "ביצה", price: 2 }] } }
+          ],
+        "משקאות קרים 🥤": [
             { name: "קולה", price: "5₪", image: "images/cola.png" },
             { name: "פנטה", price: "5₪", image: "images/fanta.png" },
             { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
@@ -420,23 +423,20 @@ const menuData = {
             { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
             { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
         ],
+        
     },
-
-
-        /*toas + pizza  +salads + basta + noodles + רביולי     */
   
         snack_shop: {
             "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png" },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png" },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png" },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
-
-            ],
+                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
+                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
+                ],
             "משקאות קרים🥤": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
                 { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
@@ -463,7 +463,8 @@ const menuData = {
                 { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
                 { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
                 { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" }
+                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
+               
             ],
             "חטיפים ומתוקים🍫": [
                 { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
@@ -485,17 +486,17 @@ const menuData = {
         },
         
         coffee_bar: {
-            "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png" },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png" },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png" },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
+                "משקאות חמים☕": [
+                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
+                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
+                ],
 
-            ],
             "משקאות קרים🥤": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
                 { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
@@ -522,7 +523,8 @@ const menuData = {
                 { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
                 { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
                 { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" }
+                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
+              
             ],
             "חטיפים ומתוקים🍫": [
                 { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
@@ -531,16 +533,15 @@ const menuData = {
         },
         service_bar: {
             "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png" },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png" },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png" },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png" },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png" },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png" },
-                { name: "תה", price: "7₪", image: "images/Tea.png" },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png" },
-
-            ],
+                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
+                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
+                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
+                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
+                ],
             "משקאות קרים🥤": [
                 { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
                 { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
@@ -567,7 +568,12 @@ const menuData = {
                 { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
                 { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
                 { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" }
+                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
+                { name: "סלט בהרכבה אישית", price: "20₪", image: "images/custom-salad.png", extras: { base: ["חסה", "כרוב", "עגבניות", "מלפפון", "גזר", "בצל", "פסטה"], toppings: [{ name: "ביצה קשה", price: 2 }, { name: "תירס", price: 0 }, { name: "טונה", price: 3 }, { name: "זיתים ירוקים", price: 0 }, { name: "זיתים שחורים", price: 0 }, { name: "פטריות", price: 1 }, { name: "גבינה בולגרית", price: 2 }], dressings: ["שום", "שמן זית", "אלף האיים", "לימון"] } },
+                { name: "פיצה אישית", price: "25₪", image: "images/pizaaa.png", extras: { cheese: ["צהובה", "בולגרית"], sauce: ["רוטב עגבניות", "רוטב שום"], toppings: [{ name: "זיתים", price: 1 }, { name: "פטריות", price: 2 }, { name: "בצל", price: 0 }, { name: "תירס", price: 1 }, { name: "טונה", price: 3 }] } },
+                { name: "טוסט אישי", price: "18₪", image: "images/toast.png", extras: { bread: ["לבן", "חיטה מלאה"], cheese: ["צהובה", "בולגרית"], fillings: [{ name: "זיתים", price: 0 }, { name: "עגבניות", price: 0 }, { name: "פטריות", price: 1 }, { name: "בצל", price: 0 }, { name: "ביצה", price: 2 }] } }
+
+
             ],
             "חטיפים ומתוקים🍫": [
                 { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
@@ -612,6 +618,8 @@ const menuData = {
           }
     };             
     
+
+    // התוספות בבשרי 
     const urlParams = new URLSearchParams(window.location.search);
     const station = urlParams.get("station");
     
@@ -626,7 +634,6 @@ const menuData = {
         `;
       }
     }
-    
   
     if (station === "cafeteria_meat") {
         document.getElementById("addons-bottom").innerHTML = `
@@ -675,7 +682,7 @@ const menuData = {
             cart.push({
                 name,
                 price: parseFloat(price),
-                image: "images/addons.png", // את יכולה לשנות לתמונה שאת רוצה
+                image: "images/addons.png", // תמונה כללית לתוספות
                 quantity: 1
             });
         }
@@ -692,13 +699,12 @@ const menuData = {
             if (e.target.checked) {
                 addAddonToCart(name, price);
             } else {
-                removeFromCartByName(name); // ✅ השם המתוקן
+                removeFromCartByName(name); 
             }
         }
     });
     
           
-      
 
 // Function to get the station name from the URL
 function getStationFromURL() {
@@ -761,7 +767,7 @@ function loadMenu() {
         menuContainer.appendChild(categorySection);
     }
 
-  
+    // SERACH BAR
     
   document.getElementById('product-search').addEventListener('input', function () {
       const searchTerm = this.value.toLowerCase();
@@ -776,10 +782,6 @@ function loadMenu() {
           }
       });
   });
-
-    
-    
-    
 }
 // Ensure script runs only when DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -787,7 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*---------------------------------------------------------------------------------------------------------------*/
-/*cart*/
+/*cartPage*/
 /*שמירת העגלה ב LOCALSTORAGE*/
 
 // 🔹 מפתח לשמירת העגלה ב-localStorage
@@ -802,33 +804,56 @@ function getCart() {
 function saveCart(cart) {
     localStorage.setItem(cartKey, JSON.stringify(cart));
 }
+function findProductByName(productName) {
+    const clean = str => str.trim();
+    const station = new URLSearchParams(window.location.search).get("station");
+  
+    if (!menuData[station]) return null;
+  
+    for (const category in menuData[station]) {
+      for (const item of menuData[station][category]) {
+        if (clean(item.name) === clean(productName)) {
+          return item;
+        }
+      }
+    }
+  
+    return null;
+  }
+  
 
 // 🔹 פונקציה להוספת מוצר לעגלה
 function addToCart(name, price, image, button) {
+    const product = findProductByName(name);
+  
+    if (product && product.extras) {
+      openProductModal(product);
+      return;
+    }
+  
+    // ⬇ אם אין תוספות – ממשיכים כרגיל
     let cart = getCart();
     let item = cart.find(item => item.name === name);
-
+  
     if (item) {
-        item.quantity++; // אם המוצר כבר בעגלה, נגדיל את הכמות
+      item.quantity++;
     } else {
-        cart.push({ name, price: parseFloat(price.replace("₪", "")), image, quantity: 1 });
+      cart.push({ name, price: parseFloat(price.replace("₪", "")), image, quantity: 1 });
     }
-
+  
     saveCart(cart);
-    updateCartCount(); 
-
-    // אנימציה זמנית
+    updateCartCount();
+  
     button.classList.add("added-to-cart");
     button.innerHTML = '<span style="color: black;">✔</span>';
-    
-
-// אחרי 1.5 שניות נחזיר את הכפתור לקדמותו
-setTimeout(() => {
-    button.classList.remove("added-to-cart");
-    button.innerHTML = `<img src="add-to-cart.png" alt="הוסף לעגלה">`;
-}, 1500);
-}   
-
+  
+    setTimeout(() => {
+      button.classList.remove("added-to-cart");
+      button.innerHTML = `<img src="add-to-cart.png" alt="הוסף לעגלה">`;
+    }, 1500);
+  }
+  
+  
 
 // 🔹 פונקציה לעדכון מספר הפריטים בעגלת הקניות (בכפתור למעלה)
 function updateCartCount() {
@@ -1213,3 +1238,5 @@ function saveOrder(cart) {
     updateCartPopup(); // אם יש עגלת פופאפ
   }
   
+
+  /*---------------------------------------------------------------------------------------------------*/

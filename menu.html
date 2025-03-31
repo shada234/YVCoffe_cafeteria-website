@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* שיפור עיצוב ה-Footer */
+        /*  עיצוב ה-Footer */
     .footer {
         text-align: center;
         font-size: 16px;
@@ -45,7 +45,6 @@
         margin-right: 100px;
 
     }
-    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
     .footer-section-contact a {
         color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
         text-decoration: none !important; /* הסרת קו תחתון */
@@ -69,13 +68,11 @@
 
     .footer-logo img {
         max-width: 140px; /* גודל הלוגו */
-        margin-left: 80px;
-
+        margin-left: 80px; /* רווח מהקצה השמאלי */
     }
 
-
-    /* עיצוב להקפיטריה הבשרי (מגש + תוספות ) */
-    .tray-section-inline {
+   /* עיצוב להקפיטריה הבשרי (מגש + תוספות ) */
+  .tray-section-inline {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,13 +118,11 @@
 }
 
 
-
     </style>
 </head>
 <body class="menuBody">
     <div class="station-header-bar">
       <div class="station-title-block" id="station-title">
-        <!-- JS יכניס כאן את התמונה + השם + 📍 -->
       </div>
       <div class="search-wrapper">
         <i class="fas fa-search search-icon"></i>
@@ -206,7 +201,7 @@
           });
       </script>
 
-    <!-- כפתור חזרה למעלה ולתחתית -->  
+    <!-- כפתור חזרה למעלה ולתחתית ------------------------------------->  
     <script>
         function scrollToTop() {
           window.scrollTo({
@@ -223,13 +218,146 @@
     </div>
   </div>
   
-  </body>
+<!--  חלון קופץ לתוספות --------------------------------------------------------------------->
+<div id="menuModal" class="menu-modal" style="display: none">
+  <div class="menu-modal-content">
+    <span class="close-button-menu">&times;</span>
+    <div id="menuModalContent"></div>
+  </div>
+</div>
+
+<script>
+  const menuModal = document.getElementById("menuModal");
+  const menuModalContent = document.getElementById("menuModalContent");
+  document.querySelector(".close-button-menu").onclick = () => (menuModal.style.display = "none");
   
+  function openProductModal(product) {
+  if (!product.extras) return;
+
+  const multipleChoiceFields = ["base", "toppings", "cheese", "dressings", "fillings"];
+
+  const extrasHTML = Object.entries(product.extras).map(([key, options]) => {
+    if (!Array.isArray(options) || options.length === 0) return "";
+
+    const isObject = typeof options[0] === "object";
+    const isCheckbox = multipleChoiceFields.includes(key);
+
+    const labelMap = {
+      sizes: "בחרו גודל כוס",
+      milkTypes: "בחרו סוג חלב",
+      foam: "לבחירת שינויים",
+      base: "בחרו בסיס",
+      toppings: "בחרו תוספות",
+      cheese: "בחרו גבינה",
+      sauce: "בחרו רוטב",
+      bread: "בחרו לחם",
+      fillings: "בחרו מילוי",
+      dressings: "בחרו רוטב לסלט"
+    };
+
+    const label = labelMap[key] || key;
+
+    return `
+      <div class="extras-column">
+        <h4>${label}</h4>
+        <div class="choice-options">
+          ${options.map((opt, i) => {
+            const name = isObject ? opt.name : opt;
+            const price = isObject ? opt.price : 0;
+            return `
+              <label>
+                <input type="${isCheckbox ? "checkbox" : "radio"}"
+                       name="${key}${isCheckbox ? '[]' : ''}"
+                       value="${name}"
+                       data-price="${price}"
+                       ${!isCheckbox && i === 0 ? "checked" : ""}>
+                ${name} ${price > 0 ? "+ " + price + "₪" : ""}
+              </label>`;
+          }).join("")}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  menuModalContent.innerHTML = `
+    <img src="${product.image}" alt="${product.name}" />
+    <h2>${product.name}</h2>
+    <form id="extrasForm">
+      <div class="extras-row">
+        ${extrasHTML}
+      </div>
+
+      <div style="text-align: center; margin-top: 20px">
+        <label>כמות:
+          <input type="number" name="quantity" min="1" value="1" style="width: 60px; text-align: center;">
+        </label>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px">
+        <button type="submit">להוסיף להזמנה</button>
+      </div>
+    </form>
+  `;
+
+  menuModal.style.display = "flex";
+
+  document.getElementById("extrasForm").onsubmit = function (e) {
+    e.preventDefault();
+
+    const qty = +this.quantity.value;
+    let extrasText = [];
+    let extrasPrice = 0;
+
+    const selectedInputs = this.querySelectorAll("input[type='radio']:checked, input[type='checkbox']:checked");
+    selectedInputs.forEach(input => {
+      const value = input.value;
+      const price = +input.dataset.price || 0;
+      extrasText.push(value);
+      extrasPrice += price;
+    });
+
+    // בדיקת תוספות חובה לפי שם המוצר
+    const missing = [];
+
+    if (product.name.includes("סלט") && !this.querySelector('input[name^="base"]:checked')) {
+      missing.push("בסיס לסלט");
+    }
+
+    if (product.name.includes("פיצה")) {
+      if (!this.querySelector('input[name^="cheese"]:checked')) missing.push("גבינה");
+      if (!this.querySelector('input[name^="sauce"]:checked')) missing.push("רוטב");
+    }
+
+    if (product.name.includes("טוסט")) {
+      if (!this.querySelector('input[name^="bread"]:checked')) missing.push("לחם");
+      if (!this.querySelector('input[name^="cheese"]:checked')) missing.push("גבינה");
+    }
+
+    if (missing.length > 0) {
+      alert("אנא בחר/י: " + missing.join(", "));
+      return;
+    }
+
+    const basePrice = parseInt(product.price);
+    const total = (basePrice + extrasPrice) * qty;
+
+    const cart = getCart();
+    cart.push({
+      name: `${product.name}${extrasText.length ? " (" + extrasText.join(", ") + ")" : ""}`,
+      price: total,
+      image: product.image,
+      quantity: qty
+    });
+
+    saveCart(cart);
+    updateCartCount();
+    menuModal.style.display = "none";
+  };
+}
 
 
-<script src="script.js"></script>
-
-
+  </script>
+    <script src="script.js"></script>
 
 </body>
 </html>

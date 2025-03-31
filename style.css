@@ -1076,8 +1076,8 @@ button {
     font-weight: bold;
 }
 /*------------------------------------------------------------------------------------------------------------------------------------*/
-/*menu*/
-/* כללי */
+/*menuPage*/
+
 .menuBody {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -1196,10 +1196,10 @@ button {
 }
 
 
-/* כפתור חזרה -----------------*/
+/* כפתור חזרה למעלה-----------------*/
 .floating-buttons {
     position: fixed;
-    bottom: 20px; /* 🟢 משנה את המרחק מהתחתית - שימי לב! כאן משחקים */
+    bottom: 20px;
     left: 20px;
     display: flex;
     flex-direction: column;
@@ -1236,14 +1236,6 @@ button {
     transform: scale(1.1);
   }
   
-  .floating-label {
-    font-size: 12px;
-    margin-top: 3px;
-    color: #444;
-    font-weight: bold;
-  }
-  
-
 /* התאמה למובייל */
 @media (max-width: 768px) {
     .menu-item {
@@ -1346,8 +1338,6 @@ button {
     margin-top: 10px;
   }
   
-  
-
 #product-search {
   width: 400px;
   padding: 12px 20px;
@@ -1367,9 +1357,118 @@ button {
     font-size: 22px;
     color: #a05845; /* צבע חום שמתאים לעיצוב שלך */
   }
+
+  /*  תוספות לקפה -----------------*/
+  .menu-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
   
-/*---------------------------------------------------------------------------------------------
-cart*/
+  .menu-modal-content {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 16px;
+    position: relative;
+    direction: rtl;
+    font-family: sans-serif;
+  }
+  
+  .close-button-menu {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .menu-modal-content img {
+    width: 120px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+  .extras-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    min-height: 280px;
+  }
+  .extras-column {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+  .extras-column h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+    color: #333;
+    margin-bottom: 12px; 
+
+  }
+  
+.choice-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+
+}
+.choice-options label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-content: start;
+
+  width: 120px;
+  height: 35px; 
+  padding: 5px 12px;
+  font-size: 13px;
+
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background-color: #f8f8f8;
+  transition: 0.2s;
+  cursor: pointer;
+
+  gap: 6px;
+  direction: rtl;
+  text-align: right;
+}
+
+.choice-options input[type="radio"] {
+  accent-color: green;
+  transform: scale(1.1);
+  margin: 0;
+  justify-self: end;
+}
+
+
+.choice-options label:hover {
+  background-color: #e6f5e6;
+  border-color: #4caf50;
+}
+
+/*------------------------------------------------------------------------------------------------------------------
+cartPage*/
 #cart-page {
     background-color: #f9f9f9;
     overflow: auto;
@@ -2121,6 +2220,4 @@ cart*/
 }
 
 
-
-
-
+/* ----------------------------------------------------------------------------*/

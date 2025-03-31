@@ -6,7 +6,7 @@
     <title>תחנות האוכל</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* שיפור עיצוב ה-Footer */
+        /*  עיצוב ה-Footer */
     
     .footer {
         text-align: center;
@@ -46,10 +46,9 @@
         
     }
     
-    /* הסרת הצבע הכחול והקו התחתון מהקישורים */
     .footer-section-contact a {
-        color: rgb(0, 0, 0) !important; /* שינוי צבע ללבן */
-        text-decoration: none !important; /* הסרת קו תחתון */
+        color: rgb(0, 0, 0) !important; 
+        text-decoration: none !important; 
         font-weight: bold;
     }
     
@@ -125,7 +124,6 @@
     </div>
     
     
-
     <script>
         function redirectTo(station) {
             window.location.href = `menu.html?station=${station}`;
@@ -133,7 +131,6 @@
     </script>
 
 <div id="navbar-container"></div>
-
 <script>
     fetch("navbar.html")
       .then(response => response.text())

@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="homeBody">
-
-
     <div class="top-header">
+         <!-- התחברות הרשמה-->
         <div class="auth-container">
             <div class="auth-text">
                 <a href="login.html" class="auth-link" id="home-auth-text">התחברות / הרשמה</a>
@@ -17,18 +16,15 @@
                     <a href="profile.html">👤 הפרופיל שלי</a>
                     <a href="orders.html">📦 ההזמנות שלי</a>
                     <a href="#" id="home-logout">🚪 התנתקות</a>
-                </div>
-                
-            </div>
+                </div> </div>
             <div class="auth-icon">
-                <img src="account.png" alt="התקשרו אלינו">
+                <img src="account.png" alt="profile icon">
             </div>
         </div>
-    
+        <!-- LOGO  -->
         <div class="logo">
             <img src="logo.png" alt="YVCoffe Logo">
         </div>
-    
         <!-- סל הקניות -->
         <div class="cart-container" onmouseover="showCartPopup()" onmouseleave="hideCartPopup()">
             <div class="cart-icon">
@@ -38,9 +34,9 @@
                 <span class="cart-count">(0)</span> - <span class="cart-price">0.00₪</span>
             </div>
     
-            <!-- חלון קופץ עם רשימת הפריטים -->
+        <!-- חלון קופץ עם רשימת הפריטים -->
             <div id="cart-popup" class="cart-popup" onmouseover="keepCartPopup()" onmouseleave="hideCartPopup()">
-                <h2>🛒 עגלת הקניות שלך</h2>
+                <h2> עגלת הקניות שלך🛒</h2>
                 <div id="cart-items">
                     <p id="empty-cart-message">העגלה ריקה</p>
                 </div>
@@ -50,8 +46,7 @@
         </div>
     </div>
       
-    
-    <!-- NAVBAR ----------------------------------------------------------------->
+    <!--HOME NAVBAR ----------------------------------------------------------------->
     <nav class="HomeNavbar">
         <ul>
             <li><a href="home.html">ראשי</a></li>
@@ -89,7 +84,7 @@
     <span class="indicator" data-index="3"></span>
 </div>
 
-<!-- טקסט מרכזי ---------------------------------------------------------------------->
+<!-- טקסט מרכזי --->
 <section class="hero">
     <div class="hero-content">
         <h1 class="brand">YVCoffe</h1>
@@ -183,7 +178,6 @@
 <!-- הקפיטריות----------------------------------------------------------------------->
 
 <h2 id="cafeteria-section"> 🍽️הקפיטריות בקמפוס</h2>
-
 <section class="cafeteria-gallery">
     <!-- First row: 3 images -->
     <div class="top-row">
@@ -236,10 +230,8 @@
             <h3>טוסט</h3>
             <p>18₪</p>
      
-
         </div>
     </div>
-
     <div class="meal-item">
         <img src="/images/Almond_Croissant.png" alt="Almond Croissant">
         <div class="meal-info">
@@ -300,8 +292,6 @@
 
 
 <!-- FOOTER ---------------------------------------------------------------------->
-
-
 <footer>
     <div class="footer-container">
         <!-- מיקום -->
@@ -325,8 +315,7 @@
 
 
 <style>
-    /* שיפור עיצוב ה-Footer */
-
+/* עיצוב ה-Footer */
 footer {
     color: white;
     text-align: center;
@@ -342,8 +331,7 @@ footer {
     padding: 5px 25px;
     background-color: #c57464;
     width: 100%;
-    max-width: 95.45vw;
-   
+    max-width: 95.45vw;  
 }
 
 .location {
@@ -351,15 +339,11 @@ footer {
 }
 .footer-section-contact {
     text-align: right; /* מיושר לימין */
-
-
-    
+   
 }
-
-/* הסרת הצבע הכחול והקו התחתון מהקישורים */
 .footer-section-contact a {
-    color: white !important; /* שינוי צבע ללבן */
-    text-decoration: none !important; /* הסרת קו תחתון */
+    color: white !important; 
+    text-decoration: none !important; 
     font-weight: bold;
 }
 
@@ -383,10 +367,7 @@ footer {
     max-width: 140px; /* גודל הלוגו */
     margin-left: 80px;
 }
-
-
 </style>
-
 <script src="script.js"></script>
 </body>
 </html>
