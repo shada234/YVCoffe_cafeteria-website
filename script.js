@@ -401,389 +401,190 @@ function loginUser() {
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
-/*menuPage*/
+/* menuPage */
 
 function redirectTo(station) {
     window.location.href = `menu.html?station=${station}`;
 }
-const menuData = {
-    cafeteria_dairy: {
-        " מנות בהרכבה אישית 🍽": [
-            { name: "סלט בהרכבה אישית", price: "20₪", image: "images/custom-salad.png", extras: { base: ["חסה", "כרוב", "עגבניות", "מלפפון", "גזר", "בצל", "פסטה"], toppings: [{ name: "ביצה קשה", price: 2 }, { name: "תירס", price: 0 }, { name: "טונה", price: 3 }, { name: "זיתים ירוקים", price: 0 }, { name: "זיתים שחורים", price: 0 }, { name: "פטריות", price: 1 }, { name: "גבינה בולגרית", price: 2 }], dressings: ["שום", "שמן זית", "אלף האיים", "לימון"] } },
-            { name: "פיצה אישית", price: "25₪", image: "images/pizaaa.png", extras: { cheese: ["צהובה", "בולגרית"], sauce: ["רוטב עגבניות", "רוטב שום"], toppings: [{ name: "זיתים", price: 1 }, { name: "פטריות", price: 2 }, { name: "בצל", price: 0 }, { name: "תירס", price: 1 }, { name: "טונה", price: 3 }] } },
-            { name: "טוסט אישי", price: "18₪", image: "images/toast.png", extras: { bread: ["לבן", "חיטה מלאה"], cheese: ["צהובה", "בולגרית"], fillings: [{ name: "זיתים", price: 0 }, { name: "עגבניות", price: 0 }, { name: "פטריות", price: 1 }, { name: "בצל", price: 0 }, { name: "ביצה", price: 2 }] } }
-          ],
-        "משקאות קרים 🥤": [
-            { name: "קולה", price: "5₪", image: "images/cola.png" },
-            { name: "פנטה", price: "5₪", image: "images/fanta.png" },
-            { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
-            { name: "שוופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
-            { name: "שוופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
-            { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-            { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
-            { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
-        ],
-        
-    },
-  
-        snack_shop: {
-            "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
-                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
-                ],
-            "משקאות קרים🥤": [
-                { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
-                { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
-                { name: "קולה", price: "5₪", image: "images/cola.png" },
-                { name: "פנטה", price: "5₪", image: "images/fanta.png" },
-                { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
-                { name: "שוופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
-                { name: "שוופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
-                { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
-                { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
-            ],
-            "מאפים🥐": [
-                { name: "קרוסון שקדים", price: "7₪", image: "images/Almond_Croissant.png" },
-                { name: "קרוסון שוקולד", price: "10₪", image: "images/Chocolate_Croissant.png" },
-                { name: "מאפה קינמון", price: "7₪", image: "images/Cinnamon_Pastry.png" },
-                { name: "רוגלך", price: "10₪", image: "images/Rugelach.png" },
-                { name: "בורקס גבינה", price: "7₪", image: "images/Cheese_Bourekas.png" },
-                { name: "בורקס תפוחי אדמה", price: "10₪", image: "images/Potato_Bourekas.png" }
-            ],
-            "כריכים וסלטים🥪": [
-                { name: "אבוקדו", price: "10₪", image: "images/Avocado_Roll.png" },
-                { name: "סנדוויץ אבוקדו", price: "10₪", image: "images/Avocado_Sandwich.png" },
-                { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
-                { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
-                { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
-               
-            ],
-            "חטיפים ומתוקים🍫": [
-                { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
-                { name: "קוקי פאדג שוקולד", price: "5₪", image: "images/Chocolate_Fudge_Cookie.png" },
-                { name: "כדורי קליק", price: "8₪", image: "images/Klik_Balls.png" },
-                { name: "עוגיית קליק", price: "8₪", image: "images/Klik_Biscuit.png" },
-                { name: "קורנפלקס קליק", price: "9₪", image: "images/Klik_Cereal.png" },
-                { name: "כדורי קליק לבנים", price: "8₪", image: "images/Klik_White_Balls.png" },
-                { name: "לואקר קוביות שוקולד", price: "12₪", image: "images/Loacker_Quadratini_chocolate.png" },
-                { name: "סנדוויץ לואקר וניל", price: "10₪", image: "images/Loacker_Sandwich_Vanilla.png" },
-                { name: "מיני לואקר שוקולד", price: "6₪", image: "images/Mini_Loacker_Chocolate.png" },
-                { name: "מיני לואקר אגוזים", price: "6₪", image: "images/Mini_Loacker_Hazelnut.png" },
-                { name: "מיני לואקר וניל", price: "6₪", image: "images/Mini_Loacker_Vanilla.png" },
-                { name: "מגנום שקדים פרימיום", price: "14₪", image: "images/Premium_Almond_Magnum.png" },
-                { name: "חטיף חלבון עוגיות", price: "12₪", image: "images/Protein_Bar_Cookie.png" },
-                { name: "עוגיית פאדג וניל", price: "10₪", image: "images/Vanilla_Fudge_Cookie.png" },
-                { name: "וופלים שוקולד", price: "9₪", image: "images/Wafers_Chocolate.png" }
-            ]
-        },
-        
-        coffee_bar: {
-                "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
-                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
-                ],
 
-            "משקאות קרים🥤": [
-                { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
-                { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
-                { name: "קולה", price: "5₪", image: "images/cola.png" },
-                { name: "פנטה", price: "5₪", image: "images/fanta.png" },
-                { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
-                { name: "שוופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
-                { name: "שוופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
-                { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
-                { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
-            ],
-            "מאפים🥐": [
-                { name: "קרוסון שקדים", price: "7₪", image: "images/Almond_Croissant.png" },
-                { name: "קרוסון שוקולד", price: "10₪", image: "images/Chocolate_Croissant.png" },
-                { name: "מאפה קינמון", price: "7₪", image: "images/Cinnamon_Pastry.png" },
-                { name: "רוגלך", price: "10₪", image: "images/Rugelach.png" },
-                { name: "בורקס גבינה", price: "7₪", image: "images/Cheese_Bourekas.png" },
-                { name: "בורקס תפוחי אדמה", price: "10₪", image: "images/Potato_Bourekas.png" }
-            ],
-            "כריכים וסלטים🥪": [
-                { name: "אבוקדו", price: "10₪", image: "images/Avocado_Roll.png" },
-                { name: "סנדוויץ אבוקדו", price: "10₪", image: "images/Avocado_Sandwich.png" },
-                { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
-                { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
-                { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
-              
-            ],
-            "חטיפים ומתוקים🍫": [
-                { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
-                { name: "קוקי פאדג שוקולד", price: "5₪", image: "images/Chocolate_Fudge_Cookie.png" }
-            ]
-        },
-        service_bar: {
-            "משקאות חמים☕": [
-                { name: "קפה אמריקאנו", price: "7₪", image: "images/americano.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה שחור", price: "7₪", image: "images/Black Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה הפוך", price: "7₪", image: "images/Cafe_Au_Lait.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "אספרסו", price: "8₪", image: "images/Espresso.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "קפה נס", price: "10₪", image: "images/Instant_Coffee.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["רגיל", "ללא קצף", "מעט קצף", "הרבה קצף"] } },
-                { name: "מאקיאטו", price: "12₪", image: "images/Macchiato.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: ["מעט קצף", "הרבה קצף"] } },
-                { name: "תה", price: "7₪", image: "images/Tea.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [], foam: [] } },
-                { name: "שוקו", price: "8₪", image: "images/shoko.png", extras: { sizes: [{ name: "כוס רגילה", price: 0 }, { name: "כוס גדולה", price: 2 }], milkTypes: [{ name: "רגיל", price: 0 }, { name: "סויה", price: 0 }, { name: "שיבולת שועל", price: 2 }], foam: [] } }
-                ],
-            "משקאות קרים🥤": [
-                { name: "שוקו קר", price: "10₪", image: "images/Iced_Chocolate.png" },
-                { name: "אמריקאנו קר", price: "10₪", image: "images/Iced_Americano.png" },
-                { name: "קולה", price: "5₪", image: "images/cola.png" },
-                { name: "פנטה", price: "5₪", image: "images/fanta.png" },
-                { name: "בקבוק פנטה", price: "5₪", image: "images/fanta2.png" },
-                { name: "שוופס פירות יער", price: "8₪", image: "images/Schweppes_Fruit_Forest.png" },
-                { name: "שוופס לימון סודה", price: "8₪", image: "images/Schweppes_Lemon_Soda.png" },
-                { name: "ספרייט", price: "8₪", image: "images/sprait.png" },
-                { name: "קולה זירו", price: "8₪", image: "images/zero.png" },
-                { name: "זירו בכוס", price: "10₪", image: "images/zeroglass.png" }
-            ],
-            "מאפים🥐": [
-                { name: "קרוסון שקדים", price: "7₪", image: "images/Almond_Croissant.png" },
-                { name: "קרוסון שוקולד", price: "10₪", image: "images/Chocolate_Croissant.png" },
-                { name: "מאפה קינמון", price: "7₪", image: "images/Cinnamon_Pastry.png" },
-                { name: "רוגלך", price: "10₪", image: "images/Rugelach.png" },
-                { name: "בורקס גבינה", price: "7₪", image: "images/Cheese_Bourekas.png" },
-                { name: "בורקס תפוחי אדמה", price: "10₪", image: "images/Potato_Bourekas.png" }
-            ],
-            "כריכים וסלטים🥪": [
-                { name: "אבוקדו", price: "10₪", image: "images/Avocado_Roll.png" },
-                { name: "סנדוויץ אבוקדו", price: "10₪", image: "images/Avocado_Sandwich.png" },
-                { name: "סלט ביצים", price: "10₪", image: "images/Egg_Salad_Sandwich.png" },
-                { name: "סנדוויץ טונה", price: "18₪", image: "images/Tuna_Sandwich.png" },
-                { name: "רול טונה", price: "20₪", image: "images/Tuna_Roll.png" },
-                { name: "סנדוויץ חביתה", price: "15₪", image: "images/Omelet_Sandwich.png" },
-                { name: "סלט בהרכבה אישית", price: "20₪", image: "images/custom-salad.png", extras: { base: ["חסה", "כרוב", "עגבניות", "מלפפון", "גזר", "בצל", "פסטה"], toppings: [{ name: "ביצה קשה", price: 2 }, { name: "תירס", price: 0 }, { name: "טונה", price: 3 }, { name: "זיתים ירוקים", price: 0 }, { name: "זיתים שחורים", price: 0 }, { name: "פטריות", price: 1 }, { name: "גבינה בולגרית", price: 2 }], dressings: ["שום", "שמן זית", "אלף האיים", "לימון"] } },
-                { name: "פיצה אישית", price: "25₪", image: "images/pizaaa.png", extras: { cheese: ["צהובה", "בולגרית"], sauce: ["רוטב עגבניות", "רוטב שום"], toppings: [{ name: "זיתים", price: 1 }, { name: "פטריות", price: 2 }, { name: "בצל", price: 0 }, { name: "תירס", price: 1 }, { name: "טונה", price: 3 }] } },
-                { name: "טוסט אישי", price: "18₪", image: "images/toast.png", extras: { bread: ["לבן", "חיטה מלאה"], cheese: ["צהובה", "בולגרית"], fillings: [{ name: "זיתים", price: 0 }, { name: "עגבניות", price: 0 }, { name: "פטריות", price: 1 }, { name: "בצל", price: 0 }, { name: "ביצה", price: 2 }] } }
+// פונקציה להבאת תפריט מהשרת
+async function fetchMenuData() {
+    try {
+        const response = await fetch('http://localhost:3001/api/menu');
+        const menuItems = await response.json();
+        return menuItems;
+    } catch (error) {
+        console.error('שגיאה בטעינת התפריט:', error);
+        return [];
+    }
+}
 
 
-            ],
-            "חטיפים ומתוקים🍫": [
-                { name: "חטיף אנרגי", price: "5₪", image: "images/Energy_Granola_Bar.png" },
-                { name: "קוקי פאדג שוקולד", price: "5₪", image: "images/Chocolate_Fudge_Cookie.png" },
-                { name: "כדורי קליק", price: "8₪", image: "images/Klik_Balls.png" },
-                { name: "עוגיית קליק", price: "8₪", image: "images/Klik_Biscuit.png" },
-                { name: "קורנפלקס קליק", price: "9₪", image: "images/Klik_Cereal.png" },
-                { name: "עוגייה קליק", price: "8₪", image: "images/Klik_Cookie.png" },
-                { name: "קליק קורנפלקס", price: "9₪", image: "images/Klik_Cornflakes.png" },
-                { name: "כדורי קליק לבנים", price: "8₪", image: "images/Klik_White_Balls.png" },
-                { name: "לואקר קוביות שוקולד", price: "12₪", image: "images/Loacker_Quadratini_chocolate.png" },
-                { name: "סנדוויץ לואקר וניל", price: "10₪", image: "images/Loacker_Sandwich_Vanilla.png" },
-                { name: "חטיף חלבון עוגיות", price: "12₪", image: "images/Protein_Bar_Cookie.png" }
-            ]
-        },
-        cafeteria_meat: {
-            "מנות ראשונות 🍽️": [
-              { name: "פסטה קטנה", price: "10₪", image: "images/פסטה קטנה.png" },
-              { name: "אורז עם ירקות", price: "8₪", image: "images/אורז עם ירקות.png" },
-              { name: "תפוחי אדמה", price: "8₪", image: "images/תפוחי אדמה.png" },
-              { name: "קוסקוס עם ירקות", price: "9₪", image: "images/קוסקוס עם ירקות.png" }
-            ],
-            "מנות עיקריות 🍛": [
-              { name: "שניצל עוף", price: "18₪", image: "images/שניצל עוף.png" },
-              { name: "חזה עוף", price: "18₪", image: "images/חזה עוף.png" },
-              { name: "קציצות ברוטב עגבניות", price: "20₪", image: "images/קציצות ברוטב עגבניות.png" },
-              { name: "אורז לבן", price: "7₪", image: "images/אורז לבן.png" },
-              { name: "שווארמה", price: "22₪", image: "images/שווארמה.png" },
-              { name: "מוקפץ", price: "18₪", image: "images/מקופץ.png" },
-              { name: "פרגית", price: "21₪", image: "images/פרגית.png" },
-              { name: "קבב", price: "20₪", image: "images/קבב.png" }
-            ],
-            "סלטים 🥗": [
-              { name: "סלט ירקות", price: "6₪", image: "images/סלט ירקות.png" },
-              { name: "סלט טונה", price: "9₪", image: "images/סלט טונה.png" },
-              { name: "סלט קינואה", price: "9₪", image: "images/סלט קינואה.png" },
-              { name: "סלט יווני", price: "10₪", image: "images/סלט יווני.png" },
-              { name: "סלט חסה", price: "6₪", image: "images/סלט חסה.png" },
-              { name: "סלט עדשים", price: "8₪", image: "images/סלט עדשים.png" },
-              { name: "סלט פסטה קר", price: "9₪", image: "images/סלט פסטה קר.png" }
-            ]
-          }
-    };             
-    
 
-    // התוספות בבשרי 
-    const urlParams = new URLSearchParams(window.location.search);
-    const station = urlParams.get("station");
-    
-    if (station === "cafeteria_meat") {
-      const trayContainer = document.getElementById("tray-top");
-      if (trayContainer) {
+// תוספות לבשרי
+const urlParams = new URLSearchParams(window.location.search);
+const station = urlParams.get("station");
+
+if (station === "cafeteria_meat") {
+    const trayContainer = document.getElementById("tray-top");
+    if (trayContainer) {
         trayContainer.innerHTML = `
           <section class="tray-section-inline">
-            <h2 class="tray-title">למלא את המגש שלך </h2>
+            <h2 class="tray-title">למלא את המגש שלך</h2>
             <img src="מגש ריק.png" alt="מגש ריק" class="empty-tray-inline">
           </section>
         `;
-      }
     }
-  
-    if (station === "cafeteria_meat") {
-        document.getElementById("addons-bottom").innerHTML = `
-          <section class="addons-section">
-            <h3>תוספות לבחירה:</h3>
-      
-            <div class="addon-category">
-              <h4>רטבים ותיבול:</h4>
-              <label><input type="checkbox" class="addon-checkbox" data-name="טחינה" data-price="1"> טחינה - 1₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="עמבה" data-price="1.5"> עמבה - 1.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="מיו / מיו שום" data-price="1"> מיו / מיו שום - 1₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="קטשופ" data-price="0.5"> קטשופ - 0.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="חרדל" data-price="0.5"> חרדל - 0.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="סחוג ירוק / אדום" data-price="1"> סחוג ירוק / אדום - 1₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="שום כתוש" data-price="1"> שום כתוש - 1₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="רוטב צ'ילי מתוק" data-price="1"> רוטב צ'ילי מתוק - 1₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="רוטב סויה" data-price="0.5"> רוטב סויה - 0.5₪</label>
-            </div>
-      
-            <div class="addon-category">
-              <h4>תיבול יבש:</h4>
-              <label><input type="checkbox" class="addon-checkbox" data-name="מלח ופלפל" data-price="0"> מלח ופלפל</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="זעתר" data-price="0.5"> זעתר - 0.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="סומאק" data-price="0.5"> סומאק - 0.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="פפריקה" data-price="0.5"> פפריקה - 0.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="לימון סחוט / פלחים" data-price="1"> לימון סחוט / פלחים - 1₪</label>
-            </div>
-      
-            <div class="addon-category">
-              <h4>אקסטרה קטנות:</h4>
-              <label><input type="checkbox" class="addon-checkbox" data-name="פרוסות לחם / פיתה" data-price="1.5"> פרוסות לחם / פיתה - 1.5₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="ביצים קשות" data-price="2"> ביצים קשות - 2₪</label>
-              <label><input type="checkbox" class="addon-checkbox" data-name="זיתים / חמוצים" data-price="1"> זיתים / חמוצים - 1₪</label>
-            </div>
-          </section>
-        `;
-      }
-      
-      function addAddonToCart(name, price) {
+
+    document.getElementById("addons-bottom").innerHTML = `
+      <section class="addons-section">
+        <h3>תוספות לבחירה:</h3>
+        <div class="addon-category">
+          <h4>רטבים ותיבול:</h4>
+          <label><input type="checkbox" class="addon-checkbox" data-name="טחינה" data-price="1"> טחינה - 1₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="עמבה" data-price="1.5"> עמבה - 1.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="מיו / מיו שום" data-price="1"> מיו / מיו שום - 1₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="קטשופ" data-price="0.5"> קטשופ - 0.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="חרדל" data-price="0.5"> חרדל - 0.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="סחוג ירוק / אדום" data-price="1"> סחוג ירוק / אדום - 1₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="שום כתוש" data-price="1"> שום כתוש - 1₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="רוטב צ'ילי מתוק" data-price="1"> רוטב צ'ילי מתוק - 1₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="רוטב סויה" data-price="0.5"> רוטב סויה - 0.5₪</label>
+        </div>
+
+        <div class="addon-category">
+          <h4>תיבול יבש:</h4>
+          <label><input type="checkbox" class="addon-checkbox" data-name="מלח ופלפל" data-price="0"> מלח ופלפל</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="זעתר" data-price="0.5"> זעתר - 0.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="סומאק" data-price="0.5"> סומאק - 0.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="פפריקה" data-price="0.5"> פפריקה - 0.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="לימון סחוט / פלחים" data-price="1"> לימון סחוט / פלחים - 1₪</label>
+        </div>
+
+        <div class="addon-category">
+          <h4>אקסטרה קטנות:</h4>
+          <label><input type="checkbox" class="addon-checkbox" data-name="פרוסות לחם / פיתה" data-price="1.5"> פרוסות לחם / פיתה - 1.5₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="ביצים קשות" data-price="2"> ביצים קשות - 2₪</label>
+          <label><input type="checkbox" class="addon-checkbox" data-name="זיתים / חמוצים" data-price="1"> זיתים / חמוצים - 1₪</label>
+        </div>
+      </section>
+    `;
+
+    function addAddonToCart(name, price) {
         let cart = getCart();
         let item = cart.find(item => item.name === name);
-    
+
         if (item) {
             item.quantity++;
         } else {
             cart.push({
                 name,
                 price: parseFloat(price),
-                image: "images/addons.png", // תמונה כללית לתוספות
+                image: "images/addons.png",
                 quantity: 1
             });
         }
-    
+
         saveCart(cart);
         updateCartCount();
     }
-    
+
     document.addEventListener("change", function (e) {
         if (e.target.classList.contains("addon-checkbox")) {
             const name = e.target.dataset.name;
             const price = parseFloat(e.target.dataset.price);
-    
+
             if (e.target.checked) {
                 addAddonToCart(name, price);
             } else {
-                removeFromCartByName(name); 
+                removeFromCartByName(name);
             }
         }
     });
-    
-          
+}
 
-// Function to get the station name from the URL
+// פונקציה לקריאת התחנה מה-URL
 function getStationFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get("station");
 }
-function loadMenu() {
-    // בדיקה שהמשתנה menuData קיים
-    if (typeof menuData === "undefined") {
-        return;
 
-    }
+// טעינת התפריט
+async function loadMenu() {
     const station = getStationFromURL();
     updateStationTitle(station);
 
-    
-    // בדיקת קיום האלמנט menu-items
     const menuContainer = document.getElementById("menu-items");
     if (!menuContainer) {
         return;
     }
 
-    const menuCategories = menuData[station];
-    if (!menuCategories) {
+    const menuItems = await fetchMenuData();
+
+    const filteredItems = menuItems.filter(item => item.station === station);
+
+    if (filteredItems.length === 0) {
         menuContainer.innerHTML = "<p> לא נמצא תפריט לתחנה זו</p>";
         return;
     }
+
     menuContainer.innerHTML = "";
-    for (const category in menuCategories) {
+
+    const categories = {};
+
+    filteredItems.forEach(item => {
+        if (!categories[item.category]) {
+            categories[item.category] = [];
+        }
+        categories[item.category].push(item);
+    });
+
+    for (const categoryName in categories) {
         const categorySection = document.createElement("div");
         categorySection.classList.add("category-section");
 
         const categoryTitle = document.createElement("h2");
         categoryTitle.classList.add("category-title");
-        categoryTitle.textContent = category;
+        categoryTitle.textContent = categoryName;
         categorySection.appendChild(categoryTitle);
 
         const itemsContainer = document.createElement("div");
         itemsContainer.classList.add("category-items");
 
-        menuCategories[category].forEach(item => {
+        categories[categoryName].forEach(item => {
             const itemElement = document.createElement("div");
             itemElement.classList.add("menu-item");
+
             itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="menu-item-image" onerror="this.src='images/placeholder.png';">
-            <h3>${item.name}</h3>
-            <div class="menu-item-bottom">
-                <p class="menu-price">${item.price.includes("₪") ? item.price : item.price + " ₪"}</p>
-                <button class="add-to-cart" onclick="addToCart('${item.name}', '${item.price.replace("₪", "").trim()}', '${item.image}', this)">
-                    <img src="add-to-cart.png" alt="הוסף לעגלה">
-                </button>
-
-
-            </div>
-        `;
-        
+                <img src="${item.image}" alt="${item.name}" class="menu-item-image" onerror="this.src='images/placeholder.png';">
+                <h3>${item.name}</h3>
+                <div class="menu-item-bottom">
+                    <p class="menu-price">${item.price}₪</p>
+                    <button class="add-to-cart" onclick="addToCart('${item.name}', '${item.price}', '${item.image}', this)">
+                        <img src="add-to-cart.png" alt="הוסף לעגלה">
+                    </button>
+                </div>
+            `;
             itemsContainer.appendChild(itemElement);
         });
+
         categorySection.appendChild(itemsContainer);
         menuContainer.appendChild(categorySection);
     }
 
-    // SERACH BAR
-    
-  document.getElementById('product-search').addEventListener('input', function () {
-      const searchTerm = this.value.toLowerCase();
-      const products = document.querySelectorAll('.menu-item'); // עדכני לשם הקלאס שלך
+    // חיפוש מוצר
+    document.getElementById('product-search').addEventListener('input', function () {
+        const searchTerm = this.value.toLowerCase();
+        const products = document.querySelectorAll('.menu-item');
 
-      products.forEach(product => {
-          const text = product.textContent.toLowerCase();
-          if (text.includes(searchTerm)) {
-              product.style.display = 'block';
-          } else {
-              product.style.display = 'none';
-          }
-      });
-  });
+        products.forEach(product => {
+            const text = product.textContent.toLowerCase();
+            product.style.display = text.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
 }
-// Ensure script runs only when DOM is fully loaded
+
+// התחלה
 document.addEventListener("DOMContentLoaded", () => {
     loadMenu();
 });
